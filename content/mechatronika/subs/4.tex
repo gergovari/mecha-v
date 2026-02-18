@@ -1,1 +1,95 @@
 \subsection{Írja fel a diszkrét idejű állapottér modell általános algebrai alakját, magyarázó ábrával szemléltesse! Ismertesse az összefüggésben szereplő együtthatók szerepét!}
+
+\noindent \textbf{Állapottér modell:}
+\begin{itemize}
+    \item egyfajta matematikai modell
+    \item állapotváltozók segítségével
+    \item általános állapottér modell:
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto, >=latex, thick]
+            \node [draw, align=left, minimum height=2.5em] (block1) {Az állapot\\megváltoztatásának\\szabályai\\Memória jellegű};
+            \node [coordinate, left=1.5cm of block1] (input) {};
+            \node [coordinate, right=2cm of block1] (mid) {};
+            \node [draw, align=left, right=3cm of block1, minimum height=2.5em] (block2) {Memória nélküli\\leképezés};
+            \node [coordinate, right=1.5cm of block2] (output) {};
+
+            \draw [->] (input) -- node [above, align=center] {Bemenő jelek\\gerjesztés} (block1);
+            \draw [->] (block1) -- node [above, align=center] {Állapot\\állapotváltozók} (block2);
+            \draw [->] (block2) -- node [above, align=center] {Kimenő jelek\\Kívülről\\Látható/mérhető\\változások} (output);
+            
+            \draw [->] (input) -- ++(1,0) |- ($(block2.south) + (0, -0.5)$) -- (block2.south);
+        \end{tikzpicture}
+    \end{figure}
+
+    \item lineáris idő invariáns (LTI) rendszerek diszkrét idejű állapottér modellje:
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto, >=latex, thick]
+            \node [draw, align=left, minimum height=2.5em] (block1) {állapot egyenlet(ek)\\n db memória};
+            \node [coordinate, left=1.5cm of block1] (input) {};
+            \node [draw, align=left, right=3cm of block1, minimum height=2.5em] (block2) {kimeneti\\egyenletek(ek)};
+            \node [coordinate, right=1.5cm of block2] (output) {};
+
+            \draw [->] (input) -- node [above, align=left] {bemenő jel\\u[k]} (block1);
+            \draw [->] (block1) -- node [above, align=left] {állapotváltozók\\$x_1[k+1] ... x_n[k+1]$} (block2);
+            \draw [->] (block2) -- node [above, align=left] {kimenő jel\\y[k]} (output);
+            
+            \draw [->] (input) -- ++(1,0) |- ($(block2.south) + (0, -0.5)$) -- (block2.south);
+        \end{tikzpicture}
+    \end{figure}
+
+    \item MIMO (Multiple Input Multiple Output) diszkrét idejű állapotegyenlete:
+    
+    \begin{align*}
+        \underline{x}[k+1] &= \underline{\underline{A_d}} \underline{x}[k] + \underline{\underline{B_d}} \underline{u}[k] \\
+        \underline{y}[k] &= \underline{\underline{C_d}} \underline{x}[k] + \underline{\underline{D_d}} \underline{u}[k]
+    \end{align*}
+
+    \begin{itemize}
+        \item $\underline{\underline{A_d}}$: állapotmátrix – a jelenlegi állapot hatása a következő állapotra
+        \item $\underline{\underline{B_d}}$: bemeneti mátrix – a jelenlegi bemenet hatása a következő állapotra
+        \item $\underline{\underline{C_d}}$: kimeneti mátrix – az állapot hatása a kimenetre
+        \item $\underline{\underline{D_d}}$: segédmátrix – a bemenet hatása közvetlenül a kimenetre
+        \item a mátrixok dimenziója függ a bemenetek és kimenetek számától, pl. egy SISO (Single Input Single Output) rendszernél: $\underline{\underline{B_d}} \in \mathbb{R}^{n \times 1}$, $\underline{\underline{C_d}} \in \mathbb{R}^{1 \times n}$, $\underline{\underline{D_d}} \in \mathbb{R}^{1 \times 1}$
+        \item hatásvázlat:
+        
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[auto, node distance=1.5cm, >=latex, thick]
+                \node [coordinate] (input) {};
+                \node [draw, rectangle, right=1cm of input] (Bd) {$B_d$};
+                \node [draw, circle, right=1cm of Bd] (sum1) {};
+                \draw[-] (sum1.north west) -- (sum1.south east);
+                \draw[-] (sum1.south west) -- (sum1.north east);
+                
+                \node [draw, rectangle, right=1cm of sum1] (z) {$z^{-1}$};
+                \node [draw, rectangle, right=1cm of z] (Cd) {$C_d$};
+                
+                \node [draw, circle, right=1cm of Cd] (sum2) {};
+                \draw[-] (sum2.north west) -- (sum2.south east);
+                \draw[-] (sum2.south west) -- (sum2.north east);
+                
+                \node [coordinate, right=1cm of sum2] (output) {};
+                
+                \node [draw, rectangle, below=1cm of z] (Ad) {$A_d$};
+                \node [draw, rectangle, below=2cm of Ad] (Dd) {$D_d$};
+
+                \draw [->] (input) -- node [above] {$\underline{u}[k]$} (Bd);
+                \draw [->] (Bd) -- (sum1);
+                \draw [->] (sum1) -- node [above] {$\underline{x}[k+1]$} (z);
+                \draw [->] (z) -- node [above] {$\underline{x}[k]$} (Cd);
+                \draw [->] (Cd) -- (sum2);
+                \draw [->] (sum2) -- node [above] {$\underline{y}[k]$} (output);
+                
+                \draw [->] (z.east) -- ++(0.5,0) |- (Ad.east);
+                \draw [->] (Ad.west) -| (sum1.south);
+                
+                \draw [->] (input) -- ++(0.5,0) |- (Dd.west);
+                \draw [->] (Dd.east) -| (sum2.south);
+            \end{tikzpicture}
+        \end{figure}
+    \end{itemize}
+\end{itemize}
