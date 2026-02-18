@@ -1,2 +1,91 @@
 \subsection{Hasonlítsa össze a vezérlést és a szabályozást: a hatáslánc jellege, zavarjelekkel szembeni ellenállás, a mért mennyiség fajtája, reakció idő, illetve az irányításhoz felhasznált eszközök költsége szerint!}
-ooo
+
+% Define block styles for diagrams
+\tikzset{
+    block/.style = {draw, fill=white, rectangle, minimum height=2em, minimum width=3em},
+    sum/.style = {draw, fill=white, circle, node distance=1cm},
+    input/.style = {coordinate},
+    output/.style = {coordinate},
+    pinstyle/.style = {help lines,font=\scriptsize}
+}
+
+\begin{minipage}[t]{0.48\textwidth}
+    \textbf{Vezérlés:}
+    \begin{itemize}
+        \item nyílt hatáslánc: nincs visszacsatolás
+        \item a rendszer belső jellemzőit/bemeneteit mérjük, valamint részben függ a külső feltételektől is, de a kimenetet (irányítani kívánt jellemzőt) nem mérjük
+        \item logikai függvényt hozunk létre
+        \item gyors reakció
+        \item csak determinisztikus zavarok kezelésére képes
+        \item vagy egyszerű (olcsó), de így kevés dolgot veszünk figyelembe
+        \item vagy komplex (drága) és sok mindent figyelembe veszünk
+    \end{itemize}
+
+    \textbf{vezérlés hatáslánca:}
+
+    \begin{center}
+        \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+            \node [block] (vez) {vezérlő};
+            \node [block, right=1cm of vez] (rend) {rendszer};
+            \draw [->] (vez) -- node {$u$} (rend);
+            \draw [->] (rend) -- node {$y$} ++(1cm,0);
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{vezérlés fajtái:}
+    \begin{itemize}
+        \item idővezérlés – pl. lámpa időzített fel-, lekapcsolása
+        \item lefutó vezérlés
+              \begin{itemize}
+                  \item sorrendi – pl. csomagolás
+                  \item feltétel
+              \end{itemize}
+    \end{itemize}
+\end{minipage}
+\hfill
+\vrule
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \textbf{Szabályozás:}
+    \begin{itemize}
+        \item zárt hatáslánc: van visszacsatolás
+        \item az irányítani kívánt jellemző is tudja befolyásolni a folyamatot
+        \item instabil rendszert is képes kezelni (stabilizálni)
+        \item lassabb reakció, pontatlanabb
+        \item képes kiküszöbölni a zavarjeleket
+        \item alacsony műszaki komplexitás:
+        \item mérés
+        \item kivonás
+        \item jelerősítés
+    \end{itemize}
+
+    \textbf{szabályozás hatáslánca:}
+
+    \begin{center}
+        \begin{tikzpicture}[auto, node distance=2cm,>=latex', scale=0.8, every node/.style={scale=0.8}]
+            \node [input, name=input] {};
+            \node [sum, right=0.7cm of input] (sum) {};
+            \node [block, right=0.7cm of sum] (szab) {szabályozó};
+            \node [block, right=1.2cm of szab] (szak) {\begin{tabular}{c} szabályozott \\ szakasz \end{tabular}};
+            \node [output, right=1.2cm of szak] (output) {};
+            \node [block, below=0.8cm of $(szab.east)!0.5!(szak.west)$] (fb) {\begin{tabular}{c} érzékelő \\ (visszacsatolás) \end{tabular}};
+
+            \draw [->] (input) -- node {alapjel} (sum);
+            \draw [->] (sum) -- node {hibajel} (szab);
+            \draw [->] (szab) -- node {\scriptsize \begin{tabular}{l} beavatkozó \\ jel \end{tabular}} (szak);
+            \draw [->] (szak) -- node [name=y] {\scriptsize \begin{tabular}{l} szabályozni \\ kívánt \\ jellemző \end{tabular}} (output);
+            \draw [->] (y) |- (fb);
+            \draw [->] (fb) -| node [pos=0.9, left] {mért jel} (sum);
+            \draw (sum.south west) -- (sum.north east);
+            \draw (sum.north west) -- (sum.south east);
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{szabályozás fajtái:}
+    \begin{itemize}
+        \item értéktartó – pl. hőmérséklet
+        \item követő – pl. pálya
+        \item kaszkád – több hurkú szabályozás
+        \item állapotszabályozás – állapottér modell alapján szabályoz – többváltozós rendszerek – pl. inverz inga egyensúlyban tartása
+    \end{itemize}
+\end{minipage}
