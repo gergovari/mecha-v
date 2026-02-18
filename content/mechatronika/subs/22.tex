@@ -1,1 +1,137 @@
-\subsection{Mutassa be, milyen módszerekkel határozható meg a kereszt illetve átmenő változók értékei különféle források figyelembevétele esetén!}
+\subsection{Ismertesse a koncentrált paraméterű hálózatok rendszeregyenleteinek előállítására szolgáló módszereket!}
+
+\noindent \textbf{Feladatmegoldás:}
+\begin{itemize}
+    \item ha kapunk egy rendszert, hogy oldjuk meg a feladatot?
+    \item első lépés: struktúragráfot készítünk
+    \item a struktúragráf alapján elkészítjük az impedanciahálózatot (itt már Laplace tartományban vagyunk)
+    \item a struktúragráfot redukáljuk
+    \item miután a legegyszerűbb alakra hoztuk, felmerül a kérdés, hogy mit is kell kiszámolnunk, és ez milyen módszerrel lehetséges
+    \item több módszer van, a forrás és a keresett változó típusától függ, hogyan tudjuk megoldani a feladatot
+\end{itemize}
+
+\noindent \textbf{A lehetséges módszerek:}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|l|}
+        \hline
+        Forrás & Keresett mennyiség & Számítás módja \\ \hline
+        $\phi_g$ & $\chi_i$ & a) csomóponti potenciálok módszere \\
+        & & b) feszültségosztó + forráscsere (Thevenin tétel) \\ \hline
+        $\phi_g$ & $\phi_i$ & a) hurokáramok módszere \\
+        & & b) áramosztó \\ \hline
+        $\chi_g$ & $\chi_i$ & a) csomóponti potenciálok módszere \\
+        & & b) feszültségosztó \\ \hline
+        $\chi_g$ & $\phi_i$ & a) hurokáramok módszere \\
+        & & b) áramosztó + forráscsere (Norton tétel) \\ \hline
+    \end{tabular}
+\end{table}
+
+\noindent \textbf{Forráscsere:}
+\begin{itemize}
+    \item akkor lehet szükség rá, ha a keresett mennyiség és a forrás típusa különböző
+    \item a Thevenin illetve Norton ekvivalens képe egy tetszőleges hálózatnak:
+\end{itemize}
+
+% [Diagram: Thevenin és Norton ekvivalens]
+
+\begin{itemize}
+    \item forráscserénél az általánosított Ohm-törvény alapján a belső ellenállással tudjuk kiszámolni a forráscsere utáni forrásokat ($\chi_g = Z_b \phi_g$)
+\end{itemize}
+
+\noindent \textbf{Elanyagolható impedanciák:}
+\begin{itemize}
+    \item keresztváltozó forrással párhuzamosan kapcsolt impedanciák:
+\end{itemize}
+
+% [Diagram: Párhuzamosan kapcsolt impedanciák áthúzva]
+
+\begin{itemize}
+    \item átmenő változó forrással sorosan kapcsolt impedanciák:
+\end{itemize}
+
+% [Diagram: Sorosan kapcsolt impedanciák áthúzva]
+
+\newpage
+\noindent \textbf{Feszültségosztó:}
+
+% [Diagram: Feszültségosztó kapcsolás]
+
+\begin{itemize}
+    \item $u_2$-t keressük
+    \item tudjuk, hogy ugyanaz az áram folyik $R_1$-en és $R_2$-n: $i = i_1 = i_2$
+    \item a feszültség pedig megoszlik az ellenállásokon: $u_g = u_1 + u_2$
+    \item az Ohm-törvényt alkalmazva ezekre az egyenletekre:
+    $$ \frac{u_1}{R_1} = \frac{u_2}{R_2} $$
+    \item rendezzük át az egyenletet
+    $$ u_1 = \frac{R_1}{R_2} u_2 $$
+    \item helyettesítsünk be $u_g$-be:
+    $$ u_g = \frac{R_1}{R_2} u_2 + u_2 = \frac{R_1 + R_2}{R_2} u_2 $$
+    \item átrendezve a keresett $u_2$ feszültség:
+    $$ u_2 = \frac{R_2}{R_1 + R_2} u_g $$
+    \item ez felírható az általánosított Ohm-törvénnyel is:
+    $$ \chi_2 = \frac{R_2}{R_1 + R_2} \chi_g $$
+\end{itemize}
+
+\noindent \textbf{Áramosztó:}
+
+% [Diagram: Áramosztó kapcsolás]
+
+\begin{itemize}
+    \item ismert a forrás, az ellenállások értékei és keressük $i_1$-et
+    \item tudjuk, hogy a párhuzamosan kapcsolt ellenállásokon ugyanaz a feszültség esik:
+    $$ u = u_1 = u_2 $$
+    \item az áram pedig az ellenállásoknak megfelelően megoszlik:
+    $$ i_g = i_1 + i_2 $$
+    \item felírva az Ohm-törvényt:
+    $$ R_1 i_1 = R_2 i_2 \to i_2 = \frac{R_1}{R_2} i_1 $$
+    \item $i_g$-be való behelyettesítés és rendezés:
+    $$ i_g = i_1 + \frac{R_1}{R_2} i_1 = \frac{R_1 + R_2}{R_2} i_1 \to i_1 = \frac{R_2}{R_1 + R_2} i_g $$
+    \item általános Ohm-törvénnyel:
+    $$ \phi_1 = \frac{Z_2}{Z_1 + Z_2} \phi_g $$
+\end{itemize}
+
+\newpage
+\noindent \textbf{Csomóponti potenciálok módszere:}
+
+% [Diagram: Csomóponti potenciálok struktúragráf]
+
+\begin{itemize}
+    \item minden csomópontra felírjuk a Kirchhoff csomóponti törvényt: $\sum i = 0$
+    $$ \chi_1 : \phi_d + \phi_k - \phi_g = \frac{\chi_1 - \chi_2}{Z_d} + \frac{\chi_1 - \chi_3}{Z_k} - \phi_g = 0 $$
+    $$ \chi_2 : \phi_a - \phi_d = \frac{\chi_2 - \chi_3}{Z_a} - \frac{\chi_1 - \chi_2}{Z_d} = 0 $$
+    $$ \chi_3 : \phi_g - \phi_a - \phi_k = \phi_g - \frac{\chi_2 - \chi_3}{Z_a} - \frac{\chi_1 - \chi_3}{Z_k} = 0 $$
+    \item tudjuk, hogy a referencia 0, így leegyszerűsödik az egyenletünk
+    \item az egyenletet átalakítva, majd megoldva:
+    $$ (Z_d + Z_a) \cdot \chi_2 = Z_a \cdot \chi_1 $$
+    $$ \chi_1 = \frac{Z_d + Z_a}{Z_a} \cdot \chi_2 $$
+    \item innen már csak vissza kell helyettesíteni és kifejezni a keresett változót:
+    $$ \chi_2 = \frac{Z_k \cdot Z_a}{Z_a + Z_k + Z_d} \cdot \phi_g \qquad \chi_1 = \frac{Z_d + Z_a}{Z_a} \cdot \frac{Z_k \cdot Z_a}{Z_a + Z_k + Z_d} \cdot \phi_g = \frac{Z_k(Z_a + Z_d)}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+\end{itemize}
+
+\noindent \textbf{Hurokáramok módszere:}
+
+% [Diagram: Hurokáramok struktúragráf]
+
+\begin{itemize}
+    \item feszítőfát kell választani: olyan hurokmentes részgráf, mely minden csomópontot tartalmaz
+    \item a feszítőfa ágai és a kötőágak hurkokat határoznak meg, melyek irányait az irányított kötőágak szabnak meg
+    \item minden hurokra felírjuk a Kirchhoff huroktörvényt: miszerint az egy hurkon belül a feszültségek előjeles összege 0: $\sum u = 0$
+    \item felírjuk a hurokegyenleteket (pozitív irány: az ág iránya egyezik a hurokéval):
+    $$ \text{I} : \chi_g + \chi_k = 0 $$
+    $$ \text{II} : \chi_a - \chi_k + \chi_d = 0 $$
+    \item kifejezzük a feszültségeket a hurokáramok segítségével, az általános Ohm-törvény felírásával:
+    $$ Z = \frac{\chi}{\phi} $$
+    $$ \chi_d = Z_d \cdot \phi_d = Z_d \cdot \phi_{\text{II}} $$
+    $$ \chi_a = Z_a \cdot \phi_a = Z_a \cdot \phi_{\text{II}} $$
+    $$ \chi_k = Z_k \cdot \phi_k = Z_k \cdot (\phi_{\text{I}} - \phi_{\text{II}}) $$
+    \item visszaírva a hurokegyenletbe a 2-es ág esetén:
+    $$ \text{II} : Z_a \cdot \phi_{\text{II}} - Z_k \cdot (\phi_{\text{I}} - \phi_{\text{II}}) + Z_d \cdot \phi_{\text{II}} = Z_a \cdot \phi_{\text{II}} - Z_k \cdot \phi_{\text{I}} + Z_k \cdot \phi_{\text{II}} + Z_d \cdot \phi_{\text{II}} = 0 $$
+    $$ (Z_a + Z_k + Z_d) \cdot \phi_{\text{II}} = Z_k \cdot \phi_{\text{I}} $$
+    \item az 1-es ágban a forrás előírja az abban az ágban folyó áramot, $\phi_{\text{I}} = \phi_g$, így:
+    $$ \phi_{\text{II}} = \frac{Z_k}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+    \item mivel a hurokáramok ismertek, kiszámolhatók belőlük a feszültségek az általános Ohm-törvénnyel
+    $$ \chi_2 = \chi_a = \frac{Z_a \cdot Z_k}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+    $$ \chi_1 = \chi_k = Z_k \cdot \left( 1 - \frac{Z_k}{Z_a + Z_k + Z_d} \right) \cdot \phi_g = \frac{Z_k(Z_a + Z_d)}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+    \item az éleken folyó áramok pedig kiszámolhatók a már ismert hurokáramok előjeles összegeiből
+\end{itemize}
