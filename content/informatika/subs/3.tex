@@ -1,1 +1,156 @@
 \subsection{A számítógép felépítése. Memóriák. CPU részei. Utasítás ciklus. Szubrutinhívás. Interrupt. Közvetlen memória hozzáférés.}
+
+\noindent \textbf{Hardver:}
+\begin{itemize}
+    \item elektronikus/mechanikus alkatrészek összessége
+    \item kézbe vehető
+    \item szoftver nélkül nem üzemképes
+\end{itemize}
+
+\noindent \textbf{Szoftver:}
+\begin{itemize}
+    \item számítógépet működtető programok
+\end{itemize}
+
+\noindent \textbf{Firmware:}
+\begin{itemize}
+    \item a kettő együtt
+    \item olyan szoftver, mely egy hardverben található
+    \item pl PC-nél bekapcsoláskor elinduló ROM-BIOS az alaplap egyik integrált áramkörébe töltött program
+\end{itemize}
+
+\noindent \textbf{Logikai felépítés és funkciók:}
+\begin{itemize}
+    \item \textbf{Busz:} adatok, címek, vezérlő jelek továbbítása
+    \item \textbf{CPU:} műveletvégzés
+    \item \textbf{Memóriák:} adattárolás
+    \item \textbf{Perifériák:} kapcsolat a külvilággal
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/info_3_bus.png}
+\end{figure}
+
+\begin{itemize}
+    \item busz: párhuzamos (manapság soros) jelköteg
+    \item busz szélességek: egyszerre átvihető adat mérete
+    \item adatbusz: 8, 16, 32, 64 bit, szinte mindig akkumulátor regiszter mérete
+    \item címbusz: memória max méretét adja meg
+\end{itemize}
+
+\noindent \textbf{Memóriák – tárolók hierarchia szintjei:}
+\begin{itemize}
+    \item \textbf{regiszterek:}
+    \begin{itemize}
+        \item a CPU belső tárolói
+        \item nagyon gyors hozzáférés az adatokhoz
+        \item közvetlenül a CPU-ban találhatóak
+        \item utasítások végrehajtása
+        \item adatok köztes tárolása
+    \end{itemize}
+    \item \textbf{cache:}
+    \begin{itemize}
+        \item kis méretű, gyors, közel a processzorhoz
+        \item az aktuálisan leggyakrabban használt adatokat, utasításokat tárolja
+        \item cél: memória-hozzáférési idő csökkentése, rendszer teljesítményének javítása
+    \end{itemize}
+    \item \textbf{operatív tár} (RAM – random access memory):
+    \begin{itemize}
+        \item adatok, utasítások átmeneti tárolása
+        \item nagyobb kapacitás, mint a cache és regiszterek, de lassabb hozzáférés
+        \item a futó programok számára ideiglenesen tárolódnak itt adatok
+    \end{itemize}
+    \item \textbf{Mágneses / SSD direkt elérésű háttértár:}
+    \begin{itemize}
+        \item mágneses lemezeket (merevlemezeket) vagy szilárdtest meghajtókat (SSD) használ
+        \item nagyobb kapacitás
+        \item adatok hosszútávú tárolása
+    \end{itemize}
+    \item \textbf{Szekvenciális elérésű háttértár}
+    \begin{itemize}
+        \item szalag típusú adathordozók
+        \item adatok egymás után találhatóak
+        \item ilyen sorrendben történik a hozzáférés
+        \item lassabb
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/imgs/info_3_memory_pyramid.png}
+\end{figure}
+
+\noindent \textbf{CPU:}
+\begin{itemize}
+    \item központi feldolgozó egység
+    \item operatív memóriából olvassa be a program utasításait és az adatokat
+    \item az utasításokat dekódolja, végrehajtja
+    \item eredmények operatív memóriában
+    \item buszok vezérlése: címek kiküldése, vezérlőjelek, memória/periféria címzése, adat bekérése/kiküldése buszon (olvasás/írás)
+    \item órajel működteti $\to$ szekvenciális
+    \item gyorsítani lehet: cache, utasítás végrehajtó egység számának növelése
+\end{itemize}
+
+\noindent \textbf{CPU részei:}
+\begin{itemize}
+    \item regiszterek:
+    \begin{itemize}
+        \item processzoron belüli memória
+        \item adatok, címek, műveletek eredményei
+        \item az utasítások a busz nélkül elérik
+    \end{itemize}
+    \item ALU
+    \begin{itemize}
+        \item aritmetikai-logikai egység
+        \item aritmetikai műveletek: összeadás, kivonás, a++, a--, 2-es komplemens képzés, néha egész számok szorzása/osztása, bitek eltolása
+        \begin{itemize}
+            \item lebegőpontos műveletekhez szoftver, vagy társ(-, vagy co)processzor
+        \end{itemize}
+        \item logikai műveletek: negálás, és, vagy, kizáró vagy, összehasonlítás: kivonás, eredménye csak flag-ekben jelenik meg
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Utasítás ciklus:}
+\begin{itemize}
+    \item végrehajtandó utasítás címe programszámláló regiszterben
+    \item utasítás beolvasása a memóriából (fetch)
+    \item utasítás dekódolása, ha vannak, akkor paraméterek beolvasása memóriából
+    \item utasítás végrehajtása, eredmény tárolása (ha van)
+    \item következő utasítás címének megadása: programszámláló regiszter a végrehajtott utasítás hosszával inkrementálódik
+\end{itemize}
+
+\noindent \textbf{Szubrutinhívás:}
+\begin{itemize}
+    \item egy korábbi kódrészlet újrahívása
+    \item a következő utasítás címe veremtárba kerül, a program oda fog visszatérni
+    \item újra használható a kód
+\end{itemize}
+
+\noindent \textbf{Interrupt:}
+\begin{itemize}
+    \item megszakítja az adott utasítást
+    \item eltárolja, hogy hova kell visszatérjen
+    \item megszakítás kezelése (ISR – interrupt service routine)
+    \item visszatérés oda, ahol félbe lett szakítva
+\end{itemize}
+
+\noindent \textbf{Közvetlen memória hozzáférés:}
+\begin{itemize}
+    \item DMA – direct memory access
+    \item a művelet közben nincs nagy számítási igény: buszt kell vezérelni, címet növelni 1-gyel
+    \item speciális áramkör: DMA vezérlő
+    \item a CPU megmondja a DMA vezérlőnek, hogy honnan, hova, hány bájtot
+    \item a DMA vezérlő elkéri a buszt a CPU-tól, ha annak épp nincs szüksége rá
+    \item DMA vezérlő átvisz 1 bájtot a perifériából a saját adatregiszterébe
+    \item a DMA vezérlő által elkért buszon átvisz 1 bájtot a memóriába (írás esetén fordítva)
+    \item DMA vezérlő visszaadja a buszt
+    \item DMA újra elkéri a buszt
+    \item az utolsó bájt átvitele után nem kéri el a buszt, IRQ (interrupt request) -val jelzi, hogy az átvitel kész
+    \item busz arbitáció: busz elkérése
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/info_3_dma.png}
+\end{figure}
