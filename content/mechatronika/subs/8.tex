@@ -1,1 +1,395 @@
 \subsection{Adott két diszkrét idejű átviteli függvény. Vezesse le az eredő átviteli függvény összefüggését, ha a két átviteli függvény sorba, párhuzamosan, illetve visszacsatolva (pozitív és negatív) kapcsolódik egymáshoz. Mutassa be, a hatásvázlat átalakításának szabályait (elágazási pont áthelyezése tag mögé és tag elé, illetve összegzési pont áthelyezése tag mögé és tag elé)!}
+
+\noindent \textbf{Hatásvázlat:}
+\begin{itemize}
+    \item rendszer működését lehet ábrázolni
+    \item bal oldalt a bemenet(ek), jobb oldalt kimenet(ek)
+    \item grafikus úton kapunk átviteli függvényt
+    \item nyíl irányával jelezzük a jel haladási irányát
+    \item műveletek:
+    \begin{itemize}
+        \item elágazás
+        \item összegzés (negatív esetén az érintett negyed besatírozása)
+    \end{itemize}
+    \item az impulzus átviteli függvényeket blokkban ábrázoljuk
+\end{itemize}
+
+\noindent \textbf{Sorba kapcsolás:}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[auto, node distance=2cm, >=latex]
+        \node [coordinate] (input) {};
+        \node [draw, rectangle, right=1.5cm of input, minimum height=2em, minimum width=3em, thick] (w1) {$\mathbf{w_1(z)}$};
+        \node [draw, rectangle, right=1.5cm of w1, minimum height=2em, minimum width=3em, thick] (w2) {$\mathbf{w_2(z)}$};
+        \node [coordinate, right=1.5cm of w2] (output) {};
+
+        \draw [->, thick] (input) -- node [above] {$u_1(z)$} (w1);
+        \draw [->, thick] (w1) -- (w2);
+        \draw [->, thick] (w2) -- node [above] {$y_1(z)$} (output);
+    \end{tikzpicture}
+\end{figure}
+$$ u_1(z) \cdot w_1(z) \cdot w_2(z) = y_1(z) $$
+
+\noindent \textbf{Párhuzamosan kapcsolás:}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[auto, node distance=2cm, >=latex]
+        \node [coordinate] (input) {};
+        \node [coordinate, right=1cm of input] (branch) {};
+        
+        \node [draw, rectangle, above right=0.5cm and 1cm of branch, minimum height=2em, minimum width=3em] (w1) {$w_1(z)$};
+        \node [draw, rectangle, below right=0.5cm and 1cm of branch, minimum height=2em, minimum width=3em] (w2) {$w_2(z)$};
+        
+        \node [draw, circle, right=4cm of branch, inner sep=0pt, minimum size=6mm] (sum) {};
+        \draw (sum.north west) -- (sum.south east);
+        \draw (sum.north east) -- (sum.south west);
+        
+        \node [coordinate, right=1cm of sum] (output) {};
+
+        \draw [thick] (input) -- node [above] {$u_1[z]$} (branch);
+        \draw [->, thick] (branch) |- (w1);
+        \draw [->, thick] (branch) |- (w2);
+        \draw [->, thick] (w1) -| node [near end, above] {$y_1[z]$} (sum);
+        \draw [->, thick] (w2) -| node [near end, below] {$y_2[z]$} (sum);
+        \draw [->, thick] (sum) -- node [above] {$y[z]$} (output);
+        
+        \fill (branch) circle (2pt);
+    \end{tikzpicture}
+\end{figure}
+$$ y(z) = y_1(z) + y_2(z) = w_1(z)u_1(z) + w_2(z)u_1(z) $$
+$$ y(z)(w_1(z) + w_2(z))u_1(z) = w_e(z)u_1(z) $$
+
+\noindent \textbf{Visszacsatolás, elágazási pontok, összegzési pontok:}
+\begin{itemize}
+    \item negatív visszacsatolást szoktunk leggyakrabban alkalmazni
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex]
+            \node [coordinate] (input) {};
+            \node [draw, circle, right=1cm of input, minimum size=6mm, inner sep=0pt] (sum) {};
+            \draw (sum.north west) -- (sum.south east);
+            \draw (sum.north east) -- (sum.south west);
+            \fill [black] (sum.center) -- (sum.south) arc (-90:-270:3mm) -- cycle; % Shade left half?? No, usually specific quadrant.
+            % Let's shade bottom quadrant for negative feedback from bottom
+            \fill [white] (sum.center) circle (2.8mm); % Clear
+            \draw (sum.north west) -- (sum.south east);
+            \draw (sum.north east) -- (sum.south west);
+            \fill [black] (sum.center) -- (sum.south) arc (-90:-135:3mm) -- cycle; % Just graphical approximation of shading
+            \fill [black] (sum.center) -- (sum.south) arc (270:225:3mm) -- cycle; % Wait, arc 270 is south.
+            % Simplified: Just draw standard crossed circle diagram
+            
+            \node [draw, rectangle, right=1cm of sum, minimum height=2em, minimum width=3em, thick] (w1) {$\mathbf{w_1(z)}$};
+            \node [coordinate, right=1cm of w1] (branch) {};
+            \node [coordinate, right=1cm of branch] (output) {};
+            \node [draw, rectangle, below=1cm of w1, minimum height=2em, minimum width=3em, thick] (w2) {$\mathbf{w_2(z)}$};
+            
+            \draw [->, thick] (input) -- node [above] {$u_1(z)$} (sum);
+            \draw [->, thick] (sum) -- node [below] {$x_{\text{előre}}$} (w1);
+            \draw [->, thick] (w1) -- (output) node [above, pos=0.8] {$y_1(z)$};
+            \draw [->, thick] (branch) |- (w2);
+            \draw [->, thick] (w2) -| node [near end, left] {$x_{\text{hátra}}$} (sum);
+            
+            \fill (branch) circle (2pt);
+        \end{tikzpicture}
+    \end{figure}
+    $$ x_{\text{előre}}(z) = u_1(z) - x_{\text{hátra}}(z) = u_1(z) - w_2(z)y_1(z) $$
+    $$ y_1(z) = x_{\text{előre}}(z)w_1(z) \rightarrow x_{\text{előre}}(z) = \frac{y_1(z)}{w_1(z)} $$
+    $$ y_1(z) = u_1(z)w_1(z) - w_2(z)w_1(z)y_1(z) $$
+    $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 + w_1(z)w_2(z)} $$
+    \item pozitív visszacsatolás:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex]
+            \node [coordinate] (input) {};
+            \node [draw, circle, right=1cm of input, minimum size=6mm, inner sep=0pt] (sum) {};
+            \draw (sum.north west) -- (sum.south east);
+            \draw (sum.north east) -- (sum.south west);
+            
+            \node [draw, rectangle, right=1cm of sum, minimum height=2em, minimum width=3em, thick] (w1) {$\mathbf{w_1(z)}$};
+            \node [coordinate, right=1cm of w1] (branch) {};
+            \node [coordinate, right=1cm of branch] (output) {};
+            \node [draw, rectangle, below=1cm of w1, minimum height=2em, minimum width=3em, thick] (w2) {$\mathbf{w_2(z)}$};
+            
+            \draw [->, thick] (input) -- node [above] {$u_1(z)$} (sum);
+            \draw [->, thick] (sum) -- (w1);
+            \draw [->, thick] (w1) -- (output) node [above, pos=0.8] {$y_1(z)$};
+            \draw [->, thick] (branch) |- (w2);
+            \draw [->, thick] (w2) -| (sum);
+            
+            \fill (branch) circle (2pt);
+        \end{tikzpicture}
+    \end{figure}
+    \begin{itemize}
+        \item a negatív visszacsatoláshoz hasonlóan levezethető, az eredmény:
+        $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 + w_1(z)w_2(z)} $$
+    \end{itemize}
+    \item elágazási pont áthelyezése a tag mögé:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, >=latex, node distance=1cm]
+             % Original
+             \node [coordinate] (in1) {};
+             \node [coordinate, right=0.5cm of in1] (br1) {};
+             \node [draw, rectangle, right=1cm of br1, minimum height=2em, minimum width=2.5em, thick] (w1) {$\mathbf{w_1(z)}$};
+             \node [coordinate, right=1cm of w1] (out1) {};
+             \node [draw, rectangle, below=0.8cm of w1, minimum height=2em, minimum width=2.5em, thick] (w2) {$\mathbf{w_2(z)}$};
+             \node [coordinate, right=1cm of w2] (out2) {};
+             
+             \draw [thick] (in1) -- node [above] {$x_1(z)$} (br1);
+             \draw [->, thick] (br1) -- (w1) -- (out1) node [above] {$y_1(z)$};
+             \draw [->, thick] (br1) |- node [near start, left] {$x_1(z)$} (w2) -- (out2) node [above] {$y_2(z)$};
+             \fill (br1) circle (2pt);
+             
+             % Transformed
+             \node [coordinate, below=2.5cm of in1] (in2) {};
+             \node [draw, rectangle, right=1.5cm of in2, minimum height=2em, minimum width=2.5em, thick] (w1b) {$\mathbf{w_1(z)}$};
+             \node [coordinate, right=0.5cm of w1b] (br2) {};
+             \node [coordinate, right=1.5cm of br2] (out3) {};
+             \node [draw, rectangle, below=0.8cm of w1b, minimum height=2em, minimum width=2.5em, thick] (invw1) {$\frac{1}{w_1(z)}$};
+             \node [draw, rectangle, right=0.5cm of invw1, minimum height=2em, minimum width=2.5em, thick] (w2b) {$\mathbf{w_2(z)}$};
+             \node [coordinate, right=0.5cm of w2b] (out4) {};
+             
+             \draw [->, thick] (in2) -- node [above] {$x_1(z)$} (w1b);
+             \draw [thick] (w1b) -- (br2); 
+             \draw [->, thick] (br2) -- (out3) node [above] {$y(z)$};
+             \draw [->, thick] (br2) |- node [near start, left] {$w_1(z) \cdot x_1(z)$} (invw1) -- (w2b) -- (out4);
+             \fill (br2) circle (2pt);
+             
+             % Arrow between diagrams?
+        \end{tikzpicture}
+    \end{figure}
+    \item elágazási pont áthelyezése a tag elé:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, >=latex, node distance=1cm]
+             % Original
+             \node [coordinate] (in1) {};
+             \node [draw, rectangle, right=1cm of in1, minimum height=2em, minimum width=2.5em, thick] (w1) {$\mathbf{w_1(z)}$};
+             \node [coordinate, right=0.5cm of w1] (br1) {};
+             \node [coordinate, right=1cm of br1] (out1) {};
+             \node [draw, rectangle, below=0.8cm of w1, minimum height=2em, minimum width=2.5em, thick] (w2) {$\mathbf{w_2(z)}$};
+             \node [coordinate, right=1cm of w2] (out2) {};
+
+             \draw [->, thick] (in1) -- node [above] {$x_1(z)$} (w1);
+             \draw [thick] (w1) -- (br1);
+             \draw [->, thick] (br1) -- (out1) node [above] {$y_1(z)$};
+             \draw [->, thick] (br1) |- (w2) -- (out2) node [above] {$y_2(z)$};
+             \fill (br1) circle (2pt);
+
+             % Transformed
+             \node [coordinate, below=2.5cm of in1] (in2) {};
+             \node [coordinate, right=0.5cm of in2] (br2) {};
+             \node [draw, rectangle, right=1cm of br2, minimum height=2em, minimum width=2.5em, thick] (w1b) {$\mathbf{w_1(z)}$};
+             \node [coordinate, right=1cm of w1b] (out3) {};
+             
+             \node [draw, rectangle, below=0.8cm of w1b, minimum height=2em, minimum width=2.5em, thick] (w1c) {$\mathbf{w_1(z)}$};
+             \node [draw, rectangle, right=0.5cm of w1c, minimum height=2em, minimum width=2.5em, thick] (w2b) {$\mathbf{w_2(z)}$};
+             \node [coordinate, right=0.5cm of w2b] (out4) {};
+
+             \draw [thick] (in2) -- node [above] {$x_1(z)$} (br2);
+             \draw [->, thick] (br2) -- (w1b) -- (out3) node [above] {$y_1(z)$};
+             \draw [->, thick] (br2) |- (w1c) -- (w2b) -- (out4) node [above] {$y_2(z)$};
+             \fill (br2) circle (2pt);
+        \end{tikzpicture}
+    \end{figure}
+    \item összegzési pont áthelyezése a tag mögé:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, >=latex, node distance=1cm]
+            % Original
+            \node [coordinate] (in1) {};
+            \node [draw, circle, right=1cm of in1, minimum size=6mm, inner sep=0pt] (sum) {};
+            \draw (sum.north west) -- (sum.south east);
+            \draw (sum.north east) -- (sum.south west);
+            \node [coordinate, below=0.8cm of sum] (in2) {};
+            \node [draw, rectangle, right=1cm of sum, minimum height=2em, minimum width=2.5em, thick] (w1) {$\mathbf{w_1(z)}$};
+            \node [coordinate, right=1cm of w1] (out1) {};
+            
+            \draw [->, thick] (in1) -- node [above] {$x_1(z)$} (sum);
+            \draw [->, thick] (in2) -- node [above] {$x_2(z)$} (sum);
+            \draw [->, thick] (sum) -- (w1) -- (out1) node [above] {$y(z)$};
+
+            % Transformed
+             \node [coordinate, below=2cm of in1] (in3) {};
+             \node [draw, rectangle, right=1cm of in3, minimum height=2em, minimum width=2.5em, thick] (w1b) {$\mathbf{w_1(z)}$};
+             \node [draw, circle, right=1cm of w1b, minimum size=6mm, inner sep=0pt] (sum2) {};
+             \draw (sum2.north west) -- (sum2.south east);
+             \draw (sum2.north east) -- (sum2.south west);
+             \node [coordinate, right=1cm of sum2] (out2) {};
+             
+             \node [coordinate, below=0.8cm of w1b] (in4) {};
+             \node [draw, rectangle, below=0.5cm of w1b, minimum height=2em, minimum width=2.5em, thick] (w1c) {$\mathbf{w_1(z)}$};
+             
+             \draw [->, thick] (in3) -- node [above] {$x_1(z)$} (w1b);
+             \draw [->, thick] (w1b) -- (sum2);
+             \draw [->, thick] (in4) -- node [above] {$x_2(z)$} (w1c);
+             \draw [->, thick] (w1c) -| (sum2);
+             \draw [->, thick] (sum2) -- (out2) node [above] {$y(z)$};
+        \end{tikzpicture}
+    \end{figure}
+    \item összegzési pont áthelyezése a tag elé:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, >=latex, node distance=1cm]
+            % Original
+            \node [coordinate] (in1) {};
+            \node [draw, rectangle, right=1cm of in1, minimum height=2em, minimum width=2.5em, thick] (w1) {$\mathbf{w_1(z)}$};
+            \node [draw, circle, right=1cm of w1, minimum size=6mm, inner sep=0pt] (sum) {};
+            \draw (sum.north west) -- (sum.south east);
+            \draw (sum.north east) -- (sum.south west);
+            \node [coordinate, below=0.8cm of sum] (in2) {};
+            \node [coordinate, right=1cm of sum] (out1) {};
+            
+            \draw [->, thick] (in1) -- node [above] {$x_1(z)$} (w1);
+            \draw [->, thick] (w1) -- (sum);
+            \draw [->, thick] (in2) -- node [above] {$x_2(z)$} (sum);
+            \draw [->, thick] (sum) -- (out1) node [above] {$y(z)$};
+
+            % Transformed
+             \node [coordinate, below=2cm of in1] (in3) {};
+             \node [draw, circle, right=1cm of in3, minimum size=6mm, inner sep=0pt] (sum2) {};
+             \draw (sum2.north west) -- (sum2.south east);
+             \draw (sum2.north east) -- (sum2.south west);
+             \node [draw, rectangle, right=1cm of sum2, minimum height=2em, minimum width=2.5em, thick] (w1b) {$\mathbf{w_1(z)}$};
+             \node [coordinate, right=1cm of w1b] (out2) {};
+             
+             \node [coordinate, below=0.8cm of sum2] (in4) {};
+             \node [draw, rectangle, left=0.5cm of sum2, yshift=-1cm, minimum height=2em, minimum width=2.5em, thick] (invw) {$\frac{1}{w_1(z)}$};
+             
+             \draw [->, thick] (in3) -- node [above] {$x_1(z)$} (sum2);
+             \draw [->, thick] (sum2) -- (w1b) -- (out2) node [above] {$y(z)$};
+             \draw [->, thick] (in4) -- node [above] {$x_2(z)$} (invw) -| (sum2);
+        \end{tikzpicture}
+    \end{figure}
+    \item elágazási pont áthelyezése összegzési pont elé:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, >=latex, node distance=1cm]
+             % Original: Sum then Branch
+             % "elágazási pont áthelyezése összegzési pont elé" = moving branch point (which is currently after sum) to before sum.
+             % Image 3 middle: 
+             % Starts with: x1, x2 into Sum -> Branch -> y(z)
+             % Ends with: Branch x1, Branch x2 ? No.
+             % Image 3 middle diagrams:
+             % Top diagram: x1, x2 -> Sum -> Branch to y(z) and y(z).
+             % Bottom diagram: x1 Branch, x2 Branch. One path sums to y(z). The other sums to y(z).
+             
+             % Replicating Image 3 Middle
+             % Top part
+             \node [coordinate] (x1) {};
+             \node [draw, circle, right=1cm of x1, minimum size=6mm, inner sep=0pt] (sum1) {};
+             \draw (sum1.north west) -- (sum1.south east); \draw (sum1.north east) -- (sum1.south west);
+             \node [coordinate, below=0.8cm of sum1] (x2) {};
+             \node [coordinate, right=0.5cm of sum1] (br1) {};
+             \node [coordinate, right=1cm of br1] (y1) {};
+             \node [coordinate, below=0.5cm of y1] (y2) {};
+
+             \draw [->, thick] (x1) -- node [above] {$x_1(z)$} (sum1);
+             \draw [->, thick] (x2) -- node [above] {$x_2(z)$} (sum1);
+             \draw [thick] (sum1) -- (br1);
+             \draw [->, thick] (br1) -- (y1) node [above] {$y(z)$};
+             \draw [->, thick] (br1) |- (y2) node [above] {$y(z)$};
+             \fill (br1) circle (2pt);
+
+             % Bottom part (Transformed)
+             \node [coordinate, below=2cm of x1] (x1b) {};
+             \node [coordinate, right=0.5cm of x1b] (brx1) {};
+             \node [coordinate, below=1.5cm of x2] (x2b) {};
+             \node [coordinate, right=0.5cm of x2b] (brx2) {};
+             
+             \node [draw, circle, right=2cm of x1b, minimum size=6mm, inner sep=0pt] (sum2) {};
+             \draw (sum2.north west) -- (sum2.south east); \draw (sum2.north east) -- (sum2.south west);
+             \node [draw, circle, below=1cm of sum2, minimum size=6mm, inner sep=0pt] (sum3) {};
+             \draw (sum3.north west) -- (sum3.south east); \draw (sum3.north east) -- (sum3.south west);
+             
+             \node [coordinate, right=1cm of sum2] (y3) {};
+             \node [coordinate, right=1cm of sum3] (y4) {};
+             
+             \draw [thick] (x1b) -- node [above] {$x_1(z)$} (brx1);
+             \draw [->, thick] (brx1) -- (sum2);
+             \draw [->, thick] (brx1) |- (sum3);
+             \fill (brx1) circle (2pt);
+             
+             \draw [thick] (x2b) -- node [above] {$x_2(z)$} (brx2);
+             \draw [->, thick] (brx2) -| (sum2); % Overlap risk
+             \draw [->, thick] (brx2) -- (sum3);
+             \fill (brx2) circle (2pt);
+             
+             \draw [->, thick] (sum2) -- (y3) node [above] {$y(z)$};
+             \draw [->, thick] (sum3) -- (y4) node [above] {$y(z)$};
+        \end{tikzpicture}
+    \end{figure}
+    \item összegzési pont áthelyezése elágazási pont elé:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, >=latex, node distance=1cm]
+             % Original: Branch then Sum
+             % Image 3 Bottom
+             % Top diagram: x1 -> Branch -> Sum (with x2) -> y1(z)
+             %                              -> y2(z) [Directly from x1]
+             % Bottom diagram: x1, x2 -> Sum -> y1. AND x1 -> y2? NO.
+             % Wait, "összegzési pont áthelyezése elágazási pont elé" = moving sum point to BEFORE branch point.
+             % Original image: x1 -> Sum (with x2) -> Branch.
+             % Top diagram in stack:
+             % x1 -> Sum (with x2) -> Branch -> y1.
+             %                       -> y2.
+             % Bottom diagram in stack: (Transformed)
+             % x1 -> Branch -> Sum (with x2) -> y1.
+             %              -> Sum (with x2) -> y2.
+             
+             % Let's re-examine visual.
+             % Top: x1 -> Sum -> Branch -> y1(z), y2(z).
+             % Bottom: x1 -> Branch -> Sum -> y1(z).
+             %                      -> Sum -> y2(z).
+             % BUT THE IMAGE SHOWS:
+             % Top: x1 -> Sum (with x2) -> Branch -> y1(z), y2(z).
+             % Bottom: x1 -> Branch -> Sum (with x2) -> y1(z).
+             %                      -> Sum (with x2) -> y2(z).
+             
+             % Replicating Image 3 Bottom
+              % Top part
+             \node [coordinate] (x1) {};
+             \node [draw, circle, right=1cm of x1, minimum size=6mm, inner sep=0pt] (sum1) {};
+             \draw (sum1.north west) -- (sum1.south east); \draw (sum1.north east) -- (sum1.south west);
+             \node [coordinate, below=0.5cm of sum1] (x2) {};
+             \node [coordinate, right=0.5cm of sum1] (br1) {};
+             \node [coordinate, right=1cm of br1] (y1) {};
+             \node [coordinate, below=0.5cm of y1] (y2) {};
+
+             \draw [->, thick] (x1) -- node [above] {$x_1(z)$} (sum1);
+             \draw [->, thick] (x2) -| node [above, near start] {$x_2(z)$} (sum1);
+             \draw [thick] (sum1) -- (br1);
+             \draw [->, thick] (br1) -- (y1) node [above] {$y_1(z)$};
+             \draw [->, thick] (br1) |- (y2) node [above] {$y_2(z)$};
+             \fill (br1) circle (2pt);
+
+             % Bottom part (Transformed)
+             \node [coordinate, below=2cm of x1] (x1b) {};
+             \node [coordinate, right=0.5cm of x1b] (brx1) {};
+             \node [coordinate, below=1cm of x2] (x2b) {};
+             \node [coordinate, right=0.5cm of x2b] (brx2) {}; % Branching x2 also?
+             % Image shows x2 branching to both sums.
+             
+             \node [draw, circle, right=2cm of x1b, minimum size=6mm, inner sep=0pt] (sum2) {};
+             \draw (sum2.north west) -- (sum2.south east); \draw (sum2.north east) -- (sum2.south west);
+             \node [draw, circle, below=1cm of sum2, minimum size=6mm, inner sep=0pt] (sum3) {};
+             \draw (sum3.north west) -- (sum3.south east); \draw (sum3.north east) -- (sum3.south west);
+             
+             \node [coordinate, right=1cm of sum2] (y3) {};
+             \node [coordinate, right=1cm of sum3] (y4) {};
+             
+             \draw [thick] (x1b) -- node [above] {$x_1(z)$} (brx1);
+             \draw [->, thick] (brx1) -- (sum2);
+             \draw [->, thick] (brx1) |- (sum3);
+             \fill (brx1) circle (2pt);
+             
+             \draw [thick] (x2b) -- node [above] {$x_2(z)$} (brx2);
+             \draw [->, thick] (brx2) -| (sum2);
+             \draw [->, thick] (brx2) -- (sum3);
+             \fill (brx2) circle (2pt);
+             
+             \draw [->, thick] (sum2) -- (y3) node [above] {$y_1(z)$};
+             \draw [->, thick] (sum3) -- (y4) node [above] {$y_2(z)$};
+        \end{tikzpicture}
+    \end{figure}
+\end{itemize}
