@@ -23,7 +23,10 @@
     \item rendezett tömbben bináris keresés (intervallumfelezés): $O(\log_2 n)$
 \end{itemize}
 
-% [Diagram: tömb indexelése]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/info_4_array.png}
+\end{figure}
 
 \noindent \textbf{Kapcsolt lista:}
 \begin{itemize}
@@ -35,8 +38,10 @@
     \item az adatok sorrendje a memóriában tetszőleges, csak a pointereket változtatjuk
 \end{itemize}
 
-% [Diagram: kapcsolt lista láncolás és törlés]
-% [Diagram: kapcsolt lista beszúrás]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/info_4_linked_list.png}
+\end{figure}
 
 \newpage
 
@@ -58,7 +63,26 @@
     \item tárolásuk: szomszédsági mátrix: $a_{ij} = 1$, ha i-ből j-be halad él, egyébként 0
 \end{itemize}
 
-% [Diagram: gráf példák és szomszédsági mátrix]
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{res/imgs/info_4_graph_simple.png}
+        \caption*{Egyszerű gráf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{res/imgs/info_4_graph_complete.png}
+        \caption*{Teljes gráf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{res/imgs/info_4_graph_weighted.png}
+        \caption*{Súlyozott gráf}
+    \end{minipage}
+\end{figure}
 
 \noindent \textbf{Fa:}
 \begin{itemize}
