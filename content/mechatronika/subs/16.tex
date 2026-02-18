@@ -1,3 +1,36 @@
 \subsection{Mutassa be a lineáris idő invariáns (LTI) rendszerek esetén folytonos idejű állapottér modell rendszermátrixának sajátértékei és a rendszer átviteli függvényének pólusai közötti összefüggést!}
 
-TODO
+\noindent \textit{Ez a fejezet mesterséges intelligencia segítségével készült.}
+
+Egy folytonos idejű, lineáris időinvariáns (LTI) rendszer állapottér modellje:
+\begin{align*}
+    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) \\
+    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t)
+\end{align*}
+ahol $\mathbf{A}$ a rendszermátrix, $\mathbf{B}$ a bemeneti mátrix, $\mathbf{C}$ a kimeneti mátrix és $\mathbf{D}$ a közvetlen csatolási mátrix.
+
+Végezzük el a Laplace-transzformációt zérus kezdeti feltételek mellett ($\mathbf{x}(0) = \mathbf{0}$):
+\begin{align*}
+    s\mathbf{x}(s) &= \mathbf{A}\mathbf{x}(s) + \mathbf{B}\mathbf{u}(s) \quad \implies \quad (s\mathbf{I} - \mathbf{A})\mathbf{x}(s) = \mathbf{B}\mathbf{u}(s) \\
+    \mathbf{y}(s) &= \mathbf{C}\mathbf{x}(s) + \mathbf{D}\mathbf{u}(s)
+\end{align*}
+
+Az első egyenletből kifejezve az állapotvektort:
+$$ \mathbf{x}(s) = (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{u}(s) $$
+
+Behelyettesítve a kimeneti egyenletbe:
+$$ \mathbf{y}(s) = \left[ \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} \right] \mathbf{u}(s) $$
+
+Az átviteli függvény mátrix tehát:
+$$ \mathbf{H}(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} $$
+
+Tudjuk, hogy az inverz mátrix a következőképpen számítható ki:
+$$ (s\mathbf{I} - \mathbf{A})^{-1} = \frac{\text{adj}(s\mathbf{I} - \mathbf{A})}{\det(s\mathbf{I} - \mathbf{A})} $$
+
+Az átviteli függvény pólusai azok az $s$ értékek, ahol a nevező zérus, azaz:
+$$ \det(s\mathbf{I} - \mathbf{A}) = 0 $$
+
+Ez pontosan az $\mathbf{A}$ rendszermátrix karakterisztikus egyenlete. Az egyenlet megoldásai az $\mathbf{A}$ mátrix sajátértékei ($\lambda_i$).
+
+\textbf{Összefüggés:}
+Az LTI rendszer átviteli függvényének pólusai megegyeznek a rendszermátrix sajátértékeivel (feltéve, hogy a rendszer minimálrealizáció, azaz nem történik pólus-zérus kiejtés az állapotváltozók közötti irányíthatatlanság vagy megfigyelhetetlenség miatt). Ez az összefüggés alapvető a rendszer stabilitásának vizsgálatánál: a rendszer akkor és csak akkor aszimptotikusan stabil, ha az $\mathbf{A}$ mátrix összes sajátértékének valós része negatív.

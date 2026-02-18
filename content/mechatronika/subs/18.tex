@@ -1,3 +1,38 @@
 \subsection{Vezesse le a Fourier sorfejtésének alakja komplex alakját!}
 
-TODO
+\noindent \textit{Ez a fejezet mesterséges intelligencia segítségével készült.}
+
+A periodikus $f(t)$ függvény ($T$ periódussal) valós alakú Fourier-sora:
+$$ f(t) = a_0 + \sum_{k=1}^{\infty} \left( a_k \cos(k\omega_0 t) + b_k \sin(k\omega_0 t) \right) $$
+ahol $\omega_0 = \frac{2\pi}{T}$.
+
+Használjuk fel az Euler-formulákat:
+$$ \cos(k\omega_0 t) = \frac{e^{jk\omega_0 t} + e^{-jk\omega_0 t}}{2}, \quad \sin(k\omega_0 t) = \frac{e^{jk\omega_0 t} - e^{-jk\omega_0 t}}{2j} = -j\frac{e^{jk\omega_0 t} - e^{-jk\omega_0 t}}{2} $$
+
+Behelyettesítve a sorba:
+\begin{align*}
+    f(t) &= a_0 + \sum_{k=1}^{\infty} \left[ a_k \frac{e^{jk\omega_0 t} + e^{-jk\omega_0 t}}{2} - jb_k \frac{e^{jk\omega_0 t} - e^{-jk\omega_0 t}}{2} \right] \\
+    f(t) &= a_0 + \sum_{k=1}^{\infty} \left[ \frac{a_k - jb_k}{2} e^{jk\omega_0 t} + \frac{a_k + jb_k}{2} e^{-jk\omega_0 t} \right]
+\end{align*}
+
+Definiáljuk a komplex Fourier-együtthatókat ($c_k$):
+- $c_0 = a_0$
+- $c_k = \frac{a_k - jb_k}{2}$ ha $k > 0$
+- $c_{-k} = \frac{a_k + jb_k}{2}$ (ami éppen $c_k$ konjugáltja, ha $f(t)$ valós)
+
+Ekkor a szummázás kiterjeszthető a negatív indexekre is:
+$$ f(t) = \sum_{k=-\infty}^{\infty} c_k e^{jk\omega_0 t} $$
+
+Az együtthatók kiszámítása:
+Tudjuk, hogy $a_k = \frac{2}{T} \int_T f(t) \cos(k\omega_0 t) dt$ és $b_k = \frac{2}{T} \int_T f(t) \sin(k\omega_0 t) dt$.
+Ebből $c_k$ ($k \neq 0$):
+\begin{align*}
+    c_k &= \frac{1}{2} (a_k - jb_k) = \frac{1}{T} \int_T f(t) \left( \cos(k\omega_0 t) - j\sin(k\omega_0 t) \right) dt \\
+    c_k &= \frac{1}{T} \int_T f(t) e^{-jk\omega_0 t} dt
+\end{align*}
+
+Ez az összefüggés érvényes $k=0$ esetén is, hiszen $c_0 = a_0 = \frac{1}{T} \int_T f(t) dt$.
+
+\textbf{Végeredmény:}
+A komplex Fourier-sor alakja és az együtthatók:
+$$ f(t) = \sum_{k=-\infty}^{\infty} c_k e^{jk\omega_0 t}, \quad c_k = \frac{1}{T} \int_{-T/2}^{T/2} f(t) e^{-jk\omega_0 t} dt $$

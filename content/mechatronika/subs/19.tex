@@ -1,3 +1,26 @@
 \subsection{A Fourier sorfejtés miként általánosítható nem periodikus (lecsengő) függvényekre? Ismertesse a Fourier transzformáció származtatását!}
 
-TODO
+\noindent \textit{Ez a fejezet mesterséges intelligencia segítségével készült.}
+
+A Fourier-sor periodikus függvények felírására alkalmas. Ha egy függvény nem periodikus (lecsengő), tekinthetjük úgy, mint egy olyan periodikus függvényt, amelynek periódusideje a végtelenbe tart ($T \to \infty$).
+
+Kiindulva a komplex Fourier-sorból:
+$$ f(t) = \sum_{k=-\infty}^{\infty} c_k e^{jk\omega_0 t}, \quad c_k = \frac{1}{T} \int_{-T/2}^{T/2} f(t) e^{-jk\omega_0 t} dt $$
+
+Helyettesítsük be $c_k$-t a sorba:
+$$ f(t) = \sum_{k=-\infty}^{\infty} \left[ \frac{1}{T} \int_{-T/2}^{T/2} f(\tau) e^{-jk\omega_0 \tau} d\tau \right] e^{jk\omega_0 t} $$
+
+Mivel $\omega_0 = \frac{2\pi}{T}$, ezért $\frac{1}{T} = \frac{\omega_0}{2\pi}$. Jelöljük $\Delta\omega = \omega_0$-t:
+$$ f(t) = \frac{1}{2\pi} \sum_{k=-\infty}^{\infty} \left[ \int_{-T/2}^{T/2} f(\tau) e^{-j(k\Delta\omega) \tau} d\tau \right] e^{j(k\Delta\omega) t} \Delta\omega $$
+
+Ahogy $T \to \infty$, úgy $\Delta\omega \to d\omega$, a diszkrét frekvenciaértékek ($k\Delta\omega$) pedig folytonos változóvá ($\omega$) válnak. A szumma ekkor integrállá alakul:
+$$ f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \left[ \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \tau} d\tau \right] e^{j\omega t} d\omega $$
+
+Definiáljuk a belső integrált mint a függvény Fourier-transzformáltját:
+$$ F(j\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt $$
+
+Ekkor az eredeti függvény visszakapható az inverz Fourier-transzformációval:
+$$ f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(j\omega) e^{j\omega t} d\omega $$
+
+\textbf{Összefoglalva:}
+A Fourier-transzformáció a Fourier-sor általánosítása nem periodikus jelekre. Míg a Fourier-sor diszkrét frekvencia-spektrumot (vonalas spektrum) eredményez, addig a Fourier-transzformáció folytonos spektrumot ad. A transzformáció létezésének feltétele a Dirichlet-feltételek teljesülése, legfontosabb ezek közül az abszolút integrálhatóság: $\int_{-\infty}^{\infty} |f(t)| dt < \infty$.
