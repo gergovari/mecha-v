@@ -1,1 +1,159 @@
-\subsection{A számítógép architektúrák alapjai. Boole függvények. Logikai kapuk. Kombinációs és szekvenciális logikai hálózatok. Tárolók: S-R, J-K, D.}
+\subsection{Ismertesse a Neumann-elveket! Ismertesse a Boole-függvények megadási módjait, a logikai alapműveleteket és a De Morgan-azonosságokat! Ismertesse a kombinációs és szekvenciális hálózatok alapvető típusait (S-R, J-K, D tárolók)!}
+
+\noindent \textbf{Neumann elvek (1945):}
+\begin{itemize}
+    \item teljesen elektronikus működés
+    \item kettes számrendszer használata
+    \item szekvenciális művelet végrehajtás
+    \item adatok és programok a belső memóriában
+    \item univerzális felhasználás: Turing-gép
+    \item öt funkcionális egység:
+    \begin{itemize}
+        \item aritmetikai egység
+        \item központi vezérlőegység
+        \item memóriák
+        \item bemeneti-,
+        \item és kimeneti egységek
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Boole függvények:}
+\begin{itemize}
+    \item olyan matematikai függvények, melyek vagy 1, vagy 0 értéket vesznek fel
+    \item bemenetei és kimenetei is logikai változók
+    \item két független bemenet (A és B) esetén:
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{|l|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{A} & \textbf{B} & \boldmath$f_0$ & \boldmath$f_1$ & \boldmath$f_2$ & \boldmath$f_3$ & \boldmath$f_4$ & \boldmath$f_5$ & \boldmath$f_6$ & \boldmath$f_7$ & \boldmath$f_8$ & \boldmath$f_9$ & \boldmath$f_{10}$ & \boldmath$f_{11}$ & \boldmath$f_{12}$ & \boldmath$f_{13}$ & \boldmath$f_{14}$ & \boldmath$f_{15}$ \\ \hline
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ \hline
+    0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\ \hline
+    1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\ \hline
+    1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item ismert logikai műveletek: negálás, és, vagy, kizáró vagy (ezekre van műveleti jel is C-ben)
+    \item f1: „és”, f7: „vagy”, f6: „kizáró vagy”, f8: „nem vagy”, f14: „nem és”, f0: „azonosan 0”, f15: „azonosan 1”.
+    \item $n$ bemenet esetén $n$ db változó van, mindegyiknek 2 értéke, szóval a $2^n$ bemeneti kombinációhoz 2 elemet rendelünk, így $2^{2^n}$ db függvény lesz
+    \item \textbf{De Morgan azonosságok:}
+    $$ \overline{(A \wedge B)} = \bar{A} \vee \bar{B} $$
+    $$ \overline{(A \vee B)} = \bar{A} \wedge \bar{B} $$
+\end{itemize}
+
+\noindent \textbf{Logikai kapuk:}
+\begin{itemize}
+    \item logikai ,,építőkockák”, melyek alapműveleteket valósítanak meg
+    \item összekapcsolásukkal jöhet létre az aritmetikai művelet
+\end{itemize}
+
+% [Diagram: logikai kapuk jelei]
+
+\noindent \textbf{Kombinációs logikai hálózat:}
+\begin{itemize}
+    \item kimenete(i) csak a bemenet(ek)től függenek
+    \item minden kimenetet egy függvény ír le: $F_1(X_1, X_2, \dots, X_n)$
+\end{itemize}
+
+% [Diagram: Kombinációs hálózat vázlata]
+
+\noindent \textbf{Példa: 1 bites fél összeadó}
+\begin{itemize}
+    \item bemenetek: A és B
+    \item kimenet: Y és C (carry)-átvitel
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{A} & \textbf{B} & \textbf{Y} & \textbf{C} \\ \hline
+    0 & 0 & 0 & 0 \\ \hline
+    0 & 1 & 1 & 0 \\ \hline
+    1 & 0 & 1 & 0 \\ \hline
+    1 & 1 & 0 & 1 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item Függvények:
+    \item Y = A xor B
+    \item C = A and B
+\end{itemize}
+
+\noindent \textbf{Szekvenciális logikai hálózat:}
+\begin{itemize}
+    \item függ a \textbf{bemenetektől} és a \textbf{hálózat belső állapotától}
+    \item aszinkron: nincs ütemező órajel
+    \item szinkron: csak órajelnél vált állapotot (CPU)
+\end{itemize}
+
+% [Diagram: Szekvenciális hálózat vázlata (Komb. hálózat + Tároló elem)]
+
+\newpage
+
+\noindent \textbf{S-R tároló:}
+\begin{itemize}
+    \item S: set, 1-re állítja a kimenetet
+    \item R: reset, 0-ra
+    \item S = 0 és R = 0, akkor tartja az értékét (memória)
+    \item S = 1 és R = 1 érvénytelen, mert kimenet és a kimenet negáltja is 0
+\end{itemize}
+
+% [Diagram: S-R tároló vázlat és kapuszintű megvalósítás]
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{S} & \textbf{R} & \textbf{Q} & \boldmath$\bar{Q}$ \\ \hline
+    0 & 0 & latch & latch \\ \hline
+    0 & 1 & 0 & 1 \\ \hline
+    1 & 0 & 1 & 0 \\ \hline
+    1 & 1 & 0 & 0 \\ \hline
+    \end{tabular}
+\end{table}
+
+\noindent \textbf{J-K tároló:}
+\begin{itemize}
+    \item működése az S-R tárolóéhoz hasonló, viszont ez egy szinkron működésű szekvenciális logikai hálózat
+    \item J: set, 1-re állít
+    \item K: reset, 0-ra állít
+    \item S = 0, R = 0, tartja az értékét (memória)
+    \item S = 1, r = 1, megváltoztatja az értékét az előző kimenet negáltjára
+\end{itemize}
+
+% [Diagram: J-K tároló kapuszintű megvalósítás (pulse detectorral)]
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{C} & \textbf{J} & \textbf{K} & \textbf{Q} & \boldmath$\bar{Q}$ \\ \hline
+    $\uparrow$ & 0 & 0 & latch & latch \\ \hline
+    $\uparrow$ & 0 & 1 & 0 & 1 \\ \hline
+    $\uparrow$ & 1 & 0 & 1 & 0 \\ \hline
+    $\uparrow$ & 1 & 1 & toggle & toggle \\ \hline
+    x & 0 & 0 & latch & latch \\ \hline
+    x & 0 & 1 & latch & latch \\ \hline
+    x & 1 & 0 & latch & latch \\ \hline
+    x & 1 & 1 & latch & latch \\ \hline
+    \end{tabular}
+\end{table}
+
+\noindent \textbf{D tároló:}
+\begin{itemize}
+    \item Az S-R tárolót kiegészítjük „és” kapukkal, valamint egy léptető órajellel: Clk
+    \item Az egyetlen bemenetet kettéágaztatjuk, egyik felét negáljuk $\to$ nem lehet S és R egyszerre 1
+    \item ,,statikus RAM”
+    \item gyors elérés
+    \item bonyolult felépítés
+    \item CPU regiszterei, cache
+\end{itemize}
+
+% [Diagram: D tároló kapuszintű megvalósítás]
