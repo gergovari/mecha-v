@@ -1,1 +1,30 @@
 \subsection{Mutassa be, hogy az átviteli mátrix hogyan származtatható a lineáris idő invariáns (LTI) rendszerek folytonos idejű állapottér modellből!}
+
+\noindent \textbf{Lineáris idő invariáns rendszerek folytonos idejű állapottér modellje:}
+\begin{align*}
+    \underline{\dot{x}}(t) &= \underline{\underline{A}}\underline{x}(t) + \underline{\underline{B}}\underline{u}(t) \\
+    \underline{y}(t) &= \underline{\underline{C}}\underline{x}(t) + \underline{\underline{D}}\underline{u}(t)
+\end{align*}
+
+\begin{itemize}
+    \item első lépésben Laplace transzformáljuk az egyenleteket:
+    \begin{align*}
+        s\underline{X}(s) - \underline{x}(0) &= \underline{\underline{A}}\underline{X}(s) + \underline{\underline{B}}\underline{U}(s) \\
+        \underline{Y}(s) &= \underline{\underline{C}}\underline{X}(s) + \underline{\underline{D}}\underline{U}(s)
+    \end{align*}
+
+    \item az 1. egyenlet átrendezve:
+    $$ (s\underline{\underline{I}} - \underline{\underline{A}})\underline{X}(s) = \underline{x}(0) + \underline{\underline{B}}\underline{U}(s) $$
+
+    \item $\underline{X}(s)$ kifejezése:
+    $$ \underline{X}(s) = (s\underline{\underline{I}} - \underline{\underline{A}})^{-1}\underline{x}(0) + (s\underline{\underline{I}} - \underline{\underline{A}})^{-1}\underline{\underline{B}}\underline{U}(s) $$
+
+    \item $\underline{X}(s)$ visszahelyettesítve a kimeneti egyenletbe, majd rendezve:
+    $$ \underline{Y}(s) = \underbrace{\underline{\underline{C}}(s\underline{\underline{I}} - \underline{\underline{A}})^{-1}\underline{x}(0)}_{\text{tranziens tag}} + \underbrace{(\underline{\underline{C}}(s\underline{\underline{I}} - \underline{\underline{A}})^{-1}\underline{\underline{B}} + \underline{\underline{D}})}_{\text{átviteli mátrix}}\underline{U}(s) $$
+
+    \item Így az átviteli mátrix ($\underline{U}(s)$ együtthatója)
+    $$ W(s) = \underline{\underline{C}}(s\underline{\underline{I}} - \underline{\underline{A}})^{-1}\underline{\underline{B}} + \underline{\underline{D}} $$
+    \begin{itemize}
+        \item a tranziens tag eltűnik, az állandósult viselkedést az átviteli mátrix írja le
+    \end{itemize}
+\end{itemize}
