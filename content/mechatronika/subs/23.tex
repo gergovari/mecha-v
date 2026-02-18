@@ -1,1 +1,100 @@
 \subsection{Egy adott, tanult példa (egyenáramú motor) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}
+
+\noindent \textbf{Egyenáramú motor:}
+\begin{itemize}
+    \item villamos energiát mechanikus energiává képes alakítani, vagy fordítva: generátor
+    \item leggyakrabban állómágnest tartalmaz, az ez által létrehozott mezőben: tekercselt forgórész
+\end{itemize}
+
+% [Diagram: DC motor felépítése]
+
+\begin{itemize}
+    \item a tekercs rendelkezik $R$ ellenállással, illetve $L$ induktivitással, így a villamos hálózattal a következő módon írható le a rendszer:
+\end{itemize}
+
+% [Diagram: DC motor helyettesítő kapcsolási rajza]
+
+\begin{itemize}
+    \item a huroktörvényt alkalmazva felírható a rendszerre a következő egyenlet:
+    $$ u_{\text{be}}(t) = R i(t) + L \frac{di(t)}{dt} + u_{\text{ind}}(t) $$
+    \item a fizikai összefüggésekből levezethető, hogy:
+    $$ u_{\text{ind}} = k_e \omega(t), \quad \text{valamint} \quad M_{\text{vill}}(t) = k_m i(t) $$
+    \begin{itemize}
+        \item ahol $k_e$ a motor sebességállandója, $k_m$ pedig a nyomatékállandó
+        \item a két mennyiség értéke SI-ben azonos
+    \end{itemize}
+    \item írjuk fel a motorra a dinamika alaptételét:
+    $$ J \frac{d\omega(t)}{dt} = M_{\text{vill}}(t) - B \omega(t) - M_t(t) $$
+    \begin{itemize}
+        \item $J$: a motor tehetetlenségi nyomatéka
+        \item $B$: viszkózus csillapítási tényező
+        \item $M_t(t)$: terhelő nyomaték
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{DC motor struktúragráfja és impedanciahálózata:}
+
+% [Diagram: DC motor struktúragráfja]
+
+\begin{itemize}
+    \item $M_t$ nyomaték előjele negatív, mivel a terhelés csökkenti a fordulatszámot
+\end{itemize}
+
+% [Diagram: DC motor impedanciahálózata]
+
+\begin{itemize}
+    \item az impedanciák értékei (Laplace tartományban):
+    \begin{itemize}
+        \item $Z_R = R$
+        \item $Z_L = sL$
+        \item $Z_B = \frac{1}{B}$
+        \item $Z_J = \frac{1}{Js}$
+    \end{itemize}
+    \item akkor lehet a kapcsolt kétpólus oldalait redukálni, ha:
+    \begin{itemize}
+        \item veszteségmentes: $P_{\text{be}} = P_{\text{ki}}$, előjelkonvenció miatt $P_{\text{be}} + P_{\text{ki}} = 0$
+        \item lineáris, statikus rendszer -- algebrai egyenletekkel leírható
+        \item a transzformátor egyenletei:
+        $$ \begin{bmatrix} \chi_{12} \\ \phi_1 \end{bmatrix} = \begin{bmatrix} c_{11} & 0 \\ 0 & -\frac{1}{c_{11}} \end{bmatrix} \begin{bmatrix} \chi_{34} \\ \phi_2 \end{bmatrix} \implies \begin{bmatrix} u_{\text{ind}} \\ i \end{bmatrix} = \begin{bmatrix} k_e & 0 \\ 0 & -\frac{1}{k_m} \end{bmatrix} \begin{bmatrix} \omega \\ M_{\text{vill}} \end{bmatrix} $$
+        \item impedanciák:
+        $$ Z_{\text{mech}} = \frac{\Omega(s)}{M(s)} = \frac{\frac{1}{k_e} U(s)}{k_m I(s)} = \frac{1}{k_e k_m} \frac{U(s)}{I(s)} = \frac{1}{k_e k_m} Z_{\text{vill}} $$
+    \end{itemize}
+    \item a soros és párhuzamos impedanciákat össze tudjuk vonni:
+    \begin{itemize}
+        \item $Z_{e, RL} = R + sL$
+        \item $Z_{e, BJ} = \frac{1}{B + Js}$
+    \end{itemize}
+    \item redukálás:
+\end{itemize}
+
+% [Diagram: Redukált impedanciahálózat]
+
+\begin{itemize}
+    \item innen már a tanult módszerek segítségével tudunk számolni
+\end{itemize}
+
+\noindent \textbf{Fizikai összefüggések:}
+\begin{itemize}
+    \item \textbf{indukált feszültség:}
+    \begin{itemize}
+        \item a mágneses fluxus változásából írhatjuk le - \textbf{Faraday törvény:}
+        $$ u_{\text{ind}}(t) = \frac{d\Phi(t)}{dt} = B_x \frac{dA(t)}{dt} = B_x \frac{d(l \cdot 2r \sin\varphi(t))}{dt} = (B_x l \cdot 2r \cos\varphi(t)) \omega(t) $$
+        \item az indukált feszültséget és a szögsebességet összekötő tagot elnevezzük sebességállandónak, jele: $k_e$
+    \end{itemize}
+    \item \textbf{motor villamos nyomatéka:}
+    \begin{itemize}
+        \item a Lorentz-erőből adódó forgatónyomatékkal számolható
+        \item arányos az áramerősséggel
+    \end{itemize}
+\end{itemize}
+
+% [Diagram: Lorentz-erő és nyomaték szemléltetése]
+
+\begin{itemize}
+    \item a Lorentz-erő:
+    $$ \underline{F} = i(\underline{l} \times \underline{B}) = i \begin{bmatrix} 0 \\ 0 \\ -l \end{bmatrix} \times \begin{bmatrix} B_x \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ -iB_x l \\ 0 \end{bmatrix} $$
+    \item a Lorentz-erőből számolt nyomaték:
+    $$ \underline{M} = \underline{r} \times \underline{F} = \begin{bmatrix} r \cos\varphi \\ r \sin\varphi \\ 0 \end{bmatrix} \times \begin{bmatrix} 0 \\ F \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ r F \cos\varphi \end{bmatrix} $$
+    \item $M_{\text{vill}} = 2M = (2 B_x l \cdot r \cos\varphi(t)) i$
+    \item az áramot és a nyomatékot összekötő tagot elnevezzük nyomatékállandónak, jele: $k_m$
+\end{itemize}
