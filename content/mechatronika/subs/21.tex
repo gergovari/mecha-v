@@ -123,7 +123,13 @@
 \end{figure}
 
 \noindent \textbf{Paraméterek összehasonlítása:}
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{res/imgs/mecha_21_fluid_params.png}
-\end{figure}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        & \textbf{Pneumatikus} & \textbf{Hidraulikus} \\ \hline
+        kapacitás & $C_f = \frac{V}{\kappa p_1}$ & $C_f = \frac{A}{\rho g}$ \\ \hline
+        induktivitás & nincs & $L_f = \frac{\rho l}{A}$ \\ \hline
+        disszipatív elem & $R_f$ & $R_f$ \\ \hline
+    \end{tabular}
+\end{table}
