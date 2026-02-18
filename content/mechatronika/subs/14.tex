@@ -1,1 +1,68 @@
 \subsection{Ismertesse az kéttárolós arányos tag súly és átmeneti függvényeit! Válaszában térjen ki a minőségi jellemzőkre!}
+
+\noindent \textbf{Arányos kéttárolós tag -- PT2 példával:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/mecha_14_pt2_example.png}
+\end{figure}
+$$ m\ddot{x}(t) + b\dot{x}(t) + kx(t) = f_g(t) $$
+$$ V(s) = \frac{1}{ms+b+\frac{k}{s}} F_g(s) = \frac{s}{ms^2+bs+k}F_g(s) $$
+\begin{itemize}
+    \item az elmozdulást keressük, Laplace tartományban az integrálási szabály miatt: $X(s) = \frac{1}{s}V(s)$
+    $$ X(s) = \frac{1}{ms^2 + bs + k} F_g(s) $$
+    
+    \item \textbf{átviteli függvény:}
+    $$ W(s) = \frac{1}{ms^2 + bs + k} = \frac{b_0}{a_2s^2 + a_1s + a_0} \quad \text{általános algebrai alak} $$
+    
+    \item \textbf{gyöktényezős alak:}
+    $$ W(s) = \frac{b_0/a_2}{s^2 + \frac{a_1}{a_2}s + \frac{a_0}{a_2}} = \frac{1/m}{s^2 + 2\zeta\omega_n s + \omega_n^2} $$
+    $\omega_n$: csillapítatlan sajátkörfrekvencia, $\zeta$: relatív csillapítási tényező
+    
+    \item \textbf{időállandós alak:}
+    $$ W(s) = \frac{b_0/a_0}{\frac{a_2}{a_0}s^2 + \frac{a_1}{a_0}s + 1} = \frac{K}{T^2s^2 + 2\zeta T s + 1} $$
+    $T = \frac{1}{\omega_n}$ időállandó, $K$: erősítési tényező
+\end{itemize}
+
+\noindent \textbf{átmeneti függvény:}
+\begin{itemize}
+    \item $u(t) = \varepsilon(t) \to U(s) = 1/s$
+    $$ Y(s) = \frac{K\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} U(s) \rightarrow v(t) = y(t) \dots $$
+    $$ v(t) = K \left( 1 - e^{-\zeta\omega_n t} \left( \cos(\omega_d t) + \frac{\zeta\omega_n}{\omega_d} \sin(\omega_d t) \right) \right) \varepsilon(t) $$
+    ahol $\omega_d = \omega_n \sqrt{1-\zeta^2}$ a csillapított sajátkörfrekvencia.
+    
+    \item \textbf{ábrázolva:}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{res/imgs/mecha_14_step_response.png}
+    \end{figure}
+\end{itemize}
+
+\noindent \textbf{Minőségi jellemzők:}
+\begin{itemize}
+    \item \textbf{belengési idő (peak time): $t_p$}
+    \begin{itemize}
+        \item az átmeneti függvény első maximumának eléréséhez szükséges idő
+        $$ t_p = \frac{\pi}{\omega_d} $$
+    \end{itemize}
+    
+    \item \textbf{maximális túllövés (max. overshoot): $M_p$}
+    \begin{itemize}
+        \item az átmeneti függvény első maximumának a $K$ állandósult értékhez viszonyított értéke
+        $$ M_p = \frac{v(t_p)}{v(\infty)} - 1 = e^{-\frac{\zeta\omega_n \pi}{\omega_d}} = e^{-\frac{\zeta\pi}{\sqrt{1-\zeta^2}}} $$
+        \item százalékos túllövés: $P.O. = M_p \cdot 100 [\%]$
+    \end{itemize}
+    
+    \item \textbf{beállási idő (settling time): $t_s$}
+    \begin{itemize}
+        \item az az időpillanat, amikor az átmeneti függvény eléri, és ezt követően már nem hagyja el a $v(\infty)=K$ állandósult érték körül definiált $K(1 \pm \alpha\%)$ szélességű sávot
+        $$ t_s = \frac{1}{\zeta\omega_n} \ln\left( \frac{100}{\alpha} \right) $$
+    \end{itemize}
+    
+    \item \textbf{felfutási idő (rise time): $t_r$}
+    \begin{itemize}
+        \item a $v(\infty)=K$ állandósult érték első eléréséhez szükséges idő
+        $$ t_r = \frac{\pi - \arccos(\zeta)}{\omega_d} $$
+    \end{itemize}
+\end{itemize}
+
+\noindent \textit{A súlyfüggvény nem volt előadáson.}
