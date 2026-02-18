@@ -32,3 +32,18 @@ $$ W(s) = \frac{A}{s-p_1} = \frac{K}{1+sT} $$
         \includegraphics[width=0.4\textwidth]{res/imgs/mecha_13_step_func.png}
     \end{figure}
 \end{itemize}
+
+\noindent \textbf{T és K változók az átmeneti függvénynél:}
+\begin{itemize}
+    \item K meghatározza, hogy hova konvergál a rendszer
+    \item T meghatározza, hogy mennyi idő alatt konvergál
+\end{itemize}
+
+\noindent \textbf{Időállandó fogalma:}
+\begin{itemize}
+    \item Az átviteli függvény időállandós alakjából s együtthatói, melyet az átviteli függvény gyöktényezős alakjából tudunk átalakítani
+    \item így az időállandó(k) a gyöktényezős alak – mely s-re nézve egy valós együtthatójú racionális törtfüggvény – \textbf{pólusai} valós részének reciprokának mínusz egyszerese:
+    $$ W(s) = \frac{b_r}{a_n} \frac{(s-z_1)(s-z_2) \dots (s-z_r)}{(s-p_1)(s-p_2) \dots (s-p_n)} $$
+    $$ W(s) = \underbrace{ \frac{b_r (-z_1)(-z_2) \dots (-z_r)}{a_n (-p_1)(-p_2) \dots (-p_n)} }_{\text{erősítés}} \frac{(1-\frac{1}{z_1}s)(1-\frac{1}{z_2}s) \dots (1-\frac{1}{z_r}s)}{(1-\frac{1}{p_1}s)(1-\frac{1}{p_2}s) \dots (1-\frac{1}{p_n}s)} $$
+    \item időállandók: $T_1 = -\frac{1}{p_1}, T_2 = -\frac{1}{p_2}, \dots, T_n = -\frac{1}{p_n}$
+\end{itemize}
