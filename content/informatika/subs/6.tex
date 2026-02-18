@@ -1,1 +1,110 @@
 \subsection{Az adatbázisok alapjai. Adatmodellezés. Kapcsolatok típusai. Relációs adatbázismodell. Relációk jellemzői. A relációs algebra műveletei. SQL alapok, lekérdezések.}
+
+\noindent \textbf{Adatbázisok:}
+\begin{itemize}
+    \item rekord: összetartozó adatok egy példányhoz
+    \item adattételekből áll
+    \item összetartozó adatokat tárol
+    \item \textbf{adatmodell:} a valós világ elemeinek és köztük lévő kapcsolatok leképzése adatokra
+    \begin{itemize}
+        \item egész pontosan: az azokról meglévő ismereteinket képezzük le az adatokra
+    \end{itemize}
+    \item szűkebb értelemben: a leírásra szolgáló adatok szerkezete
+    \item az adatmodell általánosan tartalmazza:
+    \begin{itemize}
+        \item az alapelemeket
+        \item az alapelemekkel végzett műveleteket
+        \item integritási kényszereket:
+        \begin{itemize}
+            \item adatszerkezet: adatok tárolására szolgáló elemi adatok rendszere
+            \item művelet: a megjelenítési igényeknek megfelelően (pl. indexek)
+            \item integritási kényszer: ellentmondás mentességet biztosító feltételek, megszorítások
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Egyed – kapcsolat modell:}
+\begin{itemize}
+    \item egyed: a világ egy megkülönböztetett objektuma
+    \item egyedek egy halmaza – rekordtípus
+    \item egyedelőfordulás-halmaz: azonos, megkülönböztető tulajdonsággal jellemzett egyedelőfordulások gyűjteménye
+    \item megkülönböztethetőség biztosítása:
+    \begin{itemize}
+        \item természetes módon (ujjlenyomat)
+        \item mesterségesen (OM azonosító, személyi, TAJ, stb)
+    \end{itemize}
+    \item kapcsolat: egyedek közt fennálló viszony
+    \item kapcsolattípus előfordulás halmaz: két egyedelőfordulás halmaz, illetve az egyedelőfordulások között fennálló viszony
+    \item kapcsolat típusa:
+    \begin{itemize}
+        \item 1:1 (házasság)
+        \item 1:N (oktató – csoport)
+        \item N:M (ingatlan – nyilvántartó)
+    \end{itemize}
+    \item tulajdonság: egyedek, illetve kapcsolatok azon jellemzői, melyek az egyedtípust definiálják / az egyedtípusok közti kapcsolatok jellemzői (szőke ember)
+    \item tulajdonságérték: az egyed-, vagy kapcsolatelőfordulásokhoz tartozó konkrét adat (szőke)
+    \item értékhalmaz: a tulajdonság lehetséges értékei (szőke, barna, fekete, vörös)
+\end{itemize}
+
+\noindent \textbf{Reláció:}
+\begin{itemize}
+    \item n darab halmaz direkt szorzatának részhalmaza
+    \item névvel azonosítjuk
+    \item minden sor különböző benne
+    \item kulcs: a reláció bármely elemét egyértelműen azonosítja
+    \item fokszám: a relációt alkotó halmazok (értelmezési tartományok) száma
+    \item kardinalitás: a reláció elemeinek száma
+    \item attribútum: egyes elemekben a tényezők konkrét értéke
+    \item az egyes elemeknek nincs sorrendje
+    \item \textbf{műveletek:}
+    \begin{itemize}
+        \item egyesítés
+        \item metszet
+        \item különbség
+    \end{itemize}
+    \item \textbf{csonkító műveletek:}
+    \begin{itemize}
+        \item vetítés (projection): tényezők (értelmezési tartományok) kiemelése
+        \item kiválasztás (select): elemek kiválasztása
+    \end{itemize}
+    \item \textbf{kapcsoló műveletek:}
+    \begin{itemize}
+        \item join: kapcsoló tényezők kapcsolnak
+        \item Descartes szorzat: mindent mindennel (direkt szorzat)
+    \end{itemize}
+    \item a reláció ábrázolható kétdimenziós adattáblával
+    \item oszlopok: tulajdonságok
+    \item a táblát névvel azonosítjuk (reláció neve)
+    \item sorok: reláció előfordulások halmaza – nincs két azonos sor
+    \item tulajdonságok nem lehetnek összetettek
+\end{itemize}
+
+\noindent \textbf{Kulcsok:}
+\begin{itemize}
+    \item segítségükkel megkülönböztetjük a sorokat (nem lehetnek ugyanolyanok)
+    \item szuperkulcs: sorokat megkülönböztető oszlophalmaz
+    \item kulcs: minimális elemszámú szuperkulcs
+    \item elsődleges kulcs: a megkülönböztetésre választott kulcs
+    \begin{itemize}
+        \item egyedi érték kell legyen
+        \item nem lehet benne NULL
+    \end{itemize}
+    \item külső kulcs: 1:N és M:N kapcsolatok leírására
+    \begin{itemize}
+        \item másik táblázat elsődleges kulcsa által felvett érték, vagy NULL lehet
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Lekérdezések:}
+\begin{itemize}
+    \item \texttt{SELECT [ALL  | DISTINCT | TOP n [PERCENT] ] \{ <kifejezés lista> | * \}}
+    \item \texttt{FROM \{ <táblázat név> > \} [másodnév] [, ...]}
+    \item \texttt{[WHERE <kiválasztási feltétel>]}
+    \item \texttt{[GROUP BY <oszlopnév lista>]}
+    \item \texttt{[HAVING <kiválasztási feltétel>]}
+    \item \texttt{[ORDER BY \{<oszlop név> | <egész áll>\} [ASC|DESC] [, ...] ]}
+    \item pl. kik kaptak elégtelent?
+    \item \texttt{SELECT neptun FROM vizsga WHERE jegy=1;}
+    \item Ahhoz, hogy a nevet is megtudjuk, kell a másik tábla is
+    \item \texttt{SELECT hallgato.nev, vizsga.jegy FROM hallgato, vizsga, WHERE hallgato.neptun = vizsga.neptun and jegy=1;}
+\end{itemize}
