@@ -1,1 +1,136 @@
-\subsection{Hálózati kommunikáció, OSI/ISO modell. Hálózati elsőbbségi elvek. Az interneten használt kommunikációs protokollok. IP cím, maszkolás, DNS rendszer.}
+\subsection{Számítógép hálózatok. OSI modell. Hálózati eszközök. IP címzés. DNS.}
+
+\noindent \textbf{Hálózatok:}
+\begin{itemize}
+    \item számítógépeket gyakran kötjük adathálózatba
+    \item erőforrás megosztás
+    \item csoportmunka
+    \item kommunikációs platform
+    \item történet: a meglévő telefonhálózatot használták adatátvitel céljára
+    \item ma adatátvitelre használt hálózaton telefonálunk, nézünk ,,TV"-t
+\end{itemize}
+
+\noindent \textbf{OSI/ISO (open systems interconnection) modell:}
+\begin{enumerate}
+    \item fizikai: összeköttetés, áramkörök
+    \item adatkapcsolati: hibajavítás, forgalomvezérlés
+    \item hálózat: ismétlés, darabolás, blokk, hálózati cím
+    \item szállítási: topológiamentes adatszállítás érpár közt
+    \item viszonylati (együttműködési): párbeszéd, kommunikáció fel-, és újraépítése
+    \item megjelenítési (ábrázolási): szintakszis alkalmazások irányában
+    \item alkalmazási: felhasználó programja (pl. böngésző, facebook app)
+\end{enumerate}
+
+\noindent \textbf{Hálózati cím:} egyértelműen meghatározza, kitől jön és kinek megy az adat. Hálózaton belül egyedi.
+
+\noindent \textbf{Hálózat típusok:}
+\begin{itemize}
+    \item PAN: personal area network
+    \item LAN: local area network
+    \item WAN: wide area network
+    \item topológiák: busz, csillag, gyűrű
+\end{itemize}
+
+\noindent \textbf{(Ethernet) hálózat elemei:}
+\begin{itemize}
+    \item repeater/hub: jelerősítő (csillag közepén)
+    \item bridge/switch: cím/port párosítások megtanulása, forgalom irányítása
+    \item router: útvonalválasztó – címváltoztatás is történik
+\end{itemize}
+
+\noindent \textbf{Hálózati elsőbbségi elvek:}
+\begin{itemize}
+    \item egy hálózaton több node is található, el kell dönteni, hogy ki kapcsolhat adásra – közlekedési analógia
+    \item[1.] minden node kaphat időszeletet, ha szabad a csatorna, foglalt csatornánál véletlenszerű ideig vár, majd újravizsgál: kis terhelésnél hatékony
+    \begin{itemize}
+        \item[a.] ethernet ezt használja
+    \end{itemize}
+    \item[2.] fix időszelet áll rendelkezésre az adáshoz
+    \begin{itemize}
+        \item[a.] az időszelet lehet azonos az összes node-ra (token-ring)
+        \item[b.] lehet változtatható: sok kis cella közlekedik, néhány a node-é
+        \item[c.] mindig megvan a sávszélesség: nemzetközi vonalakhoz
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Logikai elrendezések:}
+\begin{itemize}
+    \item kliens/szerver modell: központi erőforrású informatikai rendszer
+    \item peer-to-peer modell: minden node rendelkezhet megosztott erőforrással (pl filecserélő hálózat)
+\end{itemize}
+
+\noindent \textbf{Az interneten használt kommunikációs protokollok:}
+\begin{itemize}
+    \item RFC: request for comments
+    \begin{itemize}
+        \item IETF és más szervezetek adják ki
+        \item dokumentumtípus, protokollokat, szabványokat írnak le benne
+        \item HTTP: Hypertext Transfer Protocol
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{IP cím (RFC -791):}
+\begin{itemize}
+    \item minden internetes protokollt használó host-nak egy, 32 bit-es (= 4 byte (v4)) címe van
+    \item a címet decimálisan ábrázoljuk, pontokkal elválasztva, pl. 152.66.25.4
+    \item hálózati maszk: direktben elérhető gépek számításához
+    \item ARP protokoll használata: IP$\leftrightarrow$MAC address (LAN szegmensen belül)
+    \item Gateway/átjáró: annak a node-nak a címe, amelyik a maszkon kívüli címek eléréséhez kell (router)
+    \item legyen gépünk ip-je 152.66.25.4, maszk: 255.255.255.0, átjáró: 152.66.25.254
+    \item a forrás és célcímet a maszkkal bináris ÉS művelettel számítjuk
+\end{itemize}
+
+\noindent Küldjünk csomagot a 152.66.25.13 célcímre.
+\begin{verbatim}
+152. 66. 25. 4 &        152. 66. 25. 13 &
+255.255.255.0           255.255.255.0
+----------------        ----------------
+152.66.25.0             152.66.25.0 ugyanaz jött ki (== igaz)
+\end{verbatim}
+A másik gép közvetlenül (etherneten) elérhető
+
+\noindent Kérdezzünk le a 217.20.130.97-címről:
+\begin{verbatim}
+152. 66. 25. 4 &        217. 20.130. 97 &
+255.255.255.0           255.255.255.0
+----------------        ----------------
+152.66.25.0             217. 20.130.0 nem ugyanaz (==hamis).
+\end{verbatim}
+A kérést az átjárónak címezzük (152.66.25.254) (etherneten), majd ő továbbítja
+
+\begin{itemize}
+    \item bővítés (címtartomány betelik): ip v6: 8 db 16 bites szám hexadecimálisan, kettőspontok között, 0-k elhagyhatóak
+    \item első 4 szám: hálózat, második 4 szám: ezen belüli gép
+    \item pl. facebook IPv6 címe: 2a03:2880:f10c:83:face:b00c:0:25de
+\end{itemize}
+
+\noindent \textbf{DNS rendszer:}
+\begin{itemize}
+    \item domain name system
+    \item az emberek számára nehezen megjegyezhetőek az IP címek
+    \item a DNS név alapján találja meg a keresett szerver IP címét
+    \item a gépeket névvel látják el, ezekhez kapcsolódnak az IP címek
+    \item hierarchikus adatszerkezet alakul ki
+    \item a felhasználó beírja egy cím nevét
+    \item ha a cache nem ismeri a címet, akkor le kell kérdezi a helyi DNS kiszolgálót
+    \item ez megkérdezi a gyökér DNS-szervert, az válaszol, majd a helyi DNS kérdez le újra az válaszban adott szervertől
+    \item megkapja a keresett IP címet
+\end{itemize}
+
+\noindent \textbf{Keresés: mogi.bme.hu oldal ip címe ?}
+\begin{itemize}
+    \item TLD szerver: hu:$\rightarrow$ ns.nic.hu
+    \item ns.nic.hu: bme.hu $\rightarrow$ ns.bme.hu
+    \item ns.bme.hu: mogi.bme.hu$\rightarrow$delta.inflab.bme.hu
+    \item delta.inflab.bme.hu$\rightarrow$centos.mogi.bme.hu
+    \item (ip: 152.66.24.184)
+\end{itemize}
+
+\begin{itemize}
+    \item reverse lookup: ip címből tud nevet mondani
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{res/imgs/info_10_dns.png}
+\end{figure}
