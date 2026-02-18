@@ -1,1 +1,56 @@
 \subsection{Egy adott, tanult példa (hidraulikus és pneumatikus munkahenger) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}
+
+\noindent \textbf{Hidraulikus munkahenger:}
+
+% [Diagram: Hidraulikus munkahenger felépítése]
+
+\begin{itemize}
+    \item nincs $C_f$ mert a tartály zárt, valamint nem összenyomható a közeg
+    \item \textbf{struktúragráf:}
+\end{itemize}
+
+% [Diagram: Hidraulikus munkahenger struktúragráfja]
+
+\begin{itemize}
+    \item \textbf{Megjegyzés:} átmenő változó generátorral sorosan kapcsolt impedancia elhanyagolható: $R_f$
+    \item akkor lehet a kapcsolt kétpólus oldalait redukálni, ha:
+    \begin{itemize}
+        \item veszteségmentes: $P_{\text{be}} = P_{\text{ki}}$, előjelkonvenció miatt $P_{\text{be}} + P_{\text{ki}} = 0$
+        \item lineáris, statikus rendszer -- algebrai egyenletekkel leírható
+    \end{itemize}
+    \item \textbf{fizikai összefüggések:} $p_{12} = (-) \frac{f}{A}, q_v = A v$
+    \item \textbf{így a girátor:}
+    $$ \begin{bmatrix} p_{12} \\ q_v \end{bmatrix} = \begin{bmatrix} 0 & (-) \frac{1}{A} \\ A & 0 \end{bmatrix} \begin{bmatrix} v \\ f \end{bmatrix} $$
+\end{itemize}
+
+\noindent \textbf{Pneumatikus munkahenger:}
+\begin{itemize}
+    \item mivel a gáz összenyomható: van $C_f$
+    \item a kompresszor tápnyomást állít elő $\to$ keresztváltozó forrás
+    \item \textbf{struktúragráf:}
+\end{itemize}
+
+% [Diagram: Pneumatikus munkahenger struktúragráfja]
+
+\begin{itemize}
+    \item a fizikai összefüggések ugyanazok, mint a hidraulikus rendszernél
+    \item \textbf{impedanciahálózat:}
+\end{itemize}
+
+% [Diagram: Pneumatikus munkahenger impedanciahálózata]
+
+\noindent \textbf{Impedanciahálózat redukálása girátorral:}
+
+% [Diagram: Impedanciahálózat girátorral]
+
+\begin{itemize}
+    \item \textbf{forrás redukálása:}
+    $$ \left. \begin{matrix} \chi_{\text{ki}} = c_{12} \phi_{\text{be}} \\ \phi_{\text{ki}} = \frac{1}{c_{12}} \chi_{\text{be}} \end{matrix} \right\} \text{a forrás típusa is megváltozik} $$
+    \item \textbf{impedanciák redukálása:}
+    $$ Z_{\text{ki}} = \frac{\chi_{\text{ki}}}{\phi_{\text{ki}}} = \frac{c_{12} \phi_{\text{be}}}{\frac{1}{c_{12}} \chi_{\text{be}}} = c_{12}^2 \frac{1}{Z_{\text{be}}} $$
+    \begin{itemize}
+        \item az impedanciák kapcsolása is megváltozik: soros $\leftrightarrow$ párhuzamos
+    \end{itemize}
+\end{itemize}
+
+% [Diagram: Redukált hálózat girátor után]
