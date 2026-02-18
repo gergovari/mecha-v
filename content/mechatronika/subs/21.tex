@@ -1,1 +1,28 @@
 \subsection{Adja meg az villamos rendszer (kapcsolt elektromechanikai), haladó és forgómozgású mechanikai rendszerek és az áramlástechnikai (pneumatikus és hidraulikai) rendszerek koncentrált paraméterű leírása esetén az átmenő és keresztváltozó típusát, valamint az energiatárolókat (amennyiben léteznek) és disszipatív elemeket.}
+
+\noindent \textbf{Villamos rendszer:}
+\begin{itemize}
+    \item $\Phi$: $i$ -- áramerősség [A] (átmenő változó)
+    \item $\chi$: $u$ -- feszültség [V] (keresztváltozó)
+    \item \textbf{energiatárolók:}
+    $$ E_\chi = \int Q du = \int C u du = \frac{1}{2} C u^2 $$
+    $$ E_\Phi = \int i d\phi_m = \int \frac{1}{L} \phi_m d\phi_m = \frac{1}{2L} \phi_m^2 = \frac{1}{2} L i^2 $$
+    \item \textbf{disszipatív elem:}
+    \begin{itemize}
+        \item ellenállás
+        \item $i = \frac{1}{R} u$
+        \item $[R] = \Omega$
+    \end{itemize}
+    \item \textbf{további elemek:}
+    \begin{itemize}
+        \item $L$ -- induktivitás [H]
+        \item $C$ -- kapacitás [F]
+        \item $\phi_m$ -- mágneses fluxus [Wb] = [Vs]
+        \item $Q$ -- töltés [C] = [As]
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_elec_tetrahedron.png}
+\end{figure}
