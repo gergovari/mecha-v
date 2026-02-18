@@ -2,23 +2,25 @@
 
 \noindent \textbf{Villamos rendszer:}
 \begin{itemize}
-    \item $\Phi$: $i$ -- áramerősség [A] (átmenő változó)
-    \item $\chi$: $u$ -- feszültség [V] (keresztváltozó)
-    \item \textbf{energiatárolók:}
-    $$ E_\chi = \int Q du = \int C u du = \frac{1}{2} C u^2 $$
-    $$ E_\Phi = \int i d\phi_m = \int \frac{1}{L} \phi_m d\phi_m = \frac{1}{2L} \phi_m^2 = \frac{1}{2} L i^2 $$
-    \item \textbf{disszipatív elem:}
+    \item $\phi: i$ -- áramerősség [A]
+    \item $\chi: u$ -- feszültség [V]
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] $ E_\chi = \int Q du = \int C u du = \frac{1}{2} C u^2 $
+        \item[] $ E_\phi = \int i d\phi_m = \int \frac{1}{L} \phi_m d\phi_m = \frac{1}{2L} \phi_m^2 = \frac{1}{2} L i^2 $
+    \end{itemize}
+    \item disszipatív elem:
     \begin{itemize}
         \item ellenállás
         \item $i = \frac{1}{R} u$
         \item $[R] = \Omega$
     \end{itemize}
-    \item \textbf{további elemek:}
+    \item további elemek:
     \begin{itemize}
-        \item $L$ -- induktivitás [H]
-        \item $C$ -- kapacitás [F]
+        \item L -- induktivitás [H]
+        \item C -- kapacitás [F]
         \item $\phi_m$ -- mágneses fluxus [Wb] = [Vs]
-        \item $Q$ -- töltés [C] = [As]
+        \item Q -- töltés [C] = [As]
     \end{itemize}
 \end{itemize}
 
@@ -30,23 +32,25 @@
 \newpage
 \noindent \textbf{Mechanikai haladó:}
 \begin{itemize}
-    \item $\Phi$: $f$ -- erő [N]
-    \item $\chi$: $v$ -- sebesség [m/s]
-    \item \textbf{energiatárolók:}
-    $$ E_\chi = \int I dv = \int m v dv = \frac{1}{2} m v^2 $$
-    $$ E_\Phi = \int f dx = \int kx dx = \frac{1}{2} k x^2 $$
-    \item \textbf{disszipatív elem:}
+    \item $\phi: f$ -- erő [N]
+    \item $\chi: v$ -- sebesség [m/s]
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] $ E_\chi = \int I dv = \int m v dv = \frac{1}{2} m v^2 $
+        \item[] $ E_\phi = \int f dx = \int kx dx = \frac{1}{2} k x^2 $
+    \end{itemize}
+    \item disszipatív elem:
     \begin{itemize}
         \item viszkózus csillapítási tényező
         \item $f = bv$
         \item $[b] = \text{Ns/m}$
     \end{itemize}
-    \item \textbf{további elemek:}
+    \item további elemek:
     \begin{itemize}
-        \item $I$ -- lendület [Ns] = [kg m/s]
-        \item $x$ -- elmozdulás [m]
-        \item $k$ -- rugómerevség [N/m]
-        \item $m$ -- tömeg [kg]
+        \item I -- lendület [Ns] = [kg m/s]
+        \item x -- elmozdulás [m]
+        \item k -- rugómerevség [N/m]
+        \item m -- tömeg [kg]
     \end{itemize}
 \end{itemize}
 
@@ -57,49 +61,51 @@
 
 \noindent \textbf{Mechanikai forgó:}
 \begin{itemize}
-    \item $\Phi$: $M$ -- nyomaték [Nm]
-    \item $\chi$: $\omega$ -- szögsebesség [rad/s]
-    \item \textbf{energiatárolók:}
-    $$ E_\chi = \int \pi d\omega = \int J \omega d\omega = \frac{1}{2} J \omega^2 $$
-    $$ E_\Phi = \int M d\varphi = \int k \varphi d\varphi = \frac{1}{2} k \varphi^2 $$
-    \item \textbf{disszipatív elem:}
+    \item $\phi: M$ -- nyomaték [Nm]
+    \item $\chi: \omega$ -- szögsebesség [rad/s]
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] $ E_\chi = \int \pi d\omega = \int J \omega d\omega = \frac{1}{2} J \omega^2 $
+        \item[] $ E_\phi = \int M d\varphi = \int k \varphi d\varphi = \frac{1}{2} k \varphi^2 $
+    \end{itemize}
+    \item disszipatív elem:
     \begin{itemize}
         \item viszkózus csillapítási tényező
         \item $M = B\omega$
         \item $[B] = \text{Nms/rad}$
     \end{itemize}
-    \item \textbf{további elemek:}
+    \item további elemek:
     \begin{itemize}
         \item $\pi$ -- perdület [Nms]
         \item $\varphi$ -- szögelfordulás [rad]
-        \item $k$ -- torziós rugómerevség [Nm/rad]
-        \item $J$ -- tehetetlenségi nyomaték [kgm$^2$]
+        \item k -- torziós rugómerevség [Nm/rad]
+        \item J -- tehetetlenségi nyomaték [kgm$^2$]
     \end{itemize}
 \end{itemize}
 
-\noindent \textbf{Megjegyzés:} $\dot{\pi} = M$, 3D-ben szögvektor NEM létezik!
+\noindent $\dot{\pi} = M$ \hfill $[J] = \text{kgm}^2$ \hfill $[k] = \frac{\text{Nm}}{\text{rad}}$ \hfill \textcolor{red}{3D-ben szögvektor NEM létezik!} \hfill $[\varphi] = \text{rad}$
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_mech_rot_tetrahedron.png}
+    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_21_mech_rot_tetrahedron.png}
 \end{figure}
 
 \newpage
 \noindent \textbf{Áramlástechnikai:}
 \begin{itemize}
-    \item $\Phi$: $q_v$ -- tömegáram/térfogatáram
-    \item $\chi$: $p_{12}$ -- nyomás
-    \item \textbf{energiatárolók:}
+    \item $\phi: q_v$ -- tömegáram/térfogatáram
+    \item $\chi: p_{12}$ -- nyomás
+    \item energiatárolók:
     \begin{itemize}
-        \item fluid kapacitás: $q_v = C_f \frac{dp_{12}}{dt}$
-        \item fluid induktivitás: $q_v = \int_{T_1}^{T_2} \frac{1}{L_f} p dt$
+        \item[] fluid kapacitás: $q_v = C_f \frac{dp_{12}}{dt}$
+        \item[] fluid induktivitás: $q_v = \int_{T_1}^{T_2} \frac{1}{L_f} p dt$
     \end{itemize}
-    \item \textbf{disszipatív elem:}
+    \item disszipatív elem:
     \begin{itemize}
         \item fluid ellenállás
         \item $q_v = \frac{1}{R_f} p_{12}$
     \end{itemize}
-    \item \textbf{áramlástechnikai (fluid) rendszerek:}
+    \item áramlástechnikai (fluid) rendszerek:
     \begin{itemize}
         \item hidraulikus: nem összenyomható közeg
         \item pneumatikus: összenyomható közeg, légköri nyomásnál nagyobb nyomás
@@ -111,15 +117,15 @@
     \centering
     \includegraphics[width=0.35\textwidth]{res/imgs/mecha_21_fluid_tetrahedron.png}
 \end{figure}
+\noindent nem igazán használt [q?]
 
-\noindent \textbf{Megjegyzés:} Az elmozdulás ($q$) fluid rendszerekben nem igazán használt.
-
-\noindent \textbf{Hidraulikus rendszer kapacitás (nyitott tartály):}
+\noindent \textbf{hidraulikus rendszer kapacitás:}
 \begin{itemize}
+    \item nyitott tartály
     \item tápnyomás: $p_t = \rho g h$
-    \item beáramlás: $q_v = \frac{dV}{dt} = A v \to V = A h \to \frac{dV}{dt} = A \frac{dh}{dt}$
-    $$ \frac{dp}{dt} = \rho g \frac{dh}{dt} \to \frac{dp}{dt} = \rho g \frac{1}{A} \frac{dV}{dt} $$
-    $$ q_v = \frac{A}{\rho g} \frac{dp_{12}}{dt} \implies C_f = \frac{A}{\rho g} $$
+    \item $q_v = \frac{dV}{dt} = A v \to V = A h \to \frac{dV}{dt} = A \frac{dh}{dt}$ \\
+    $\frac{dp}{dt} = \rho g \frac{dh}{dt} \to \frac{dp}{dt} = \rho g \frac{1}{A} \frac{dV}{dt} $ \\
+    \fbox{$q_v = \frac{A}{\rho g} \frac{dp_{12}}{dt}$} \quad hidraulikus kapacitás $C_f$
 \end{itemize}
 
 \begin{figure}[H]
@@ -127,14 +133,12 @@
     \includegraphics[width=0.4\textwidth]{res/imgs/mecha_21_pipe.png}
 \end{figure}
 
-\noindent \textbf{Paraméterek összehasonlítása:}
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-        & \textbf{Pneumatikus} & \textbf{Hidraulikus} \\ \hline
-        kapacitás & $C_f = \frac{V}{\kappa p_1}$ & $C_f = \frac{A}{\rho g}$ \\ \hline
-        induktivitás & nincs & $L_f = \frac{\rho l}{A}$ \\ \hline
-        disszipatív elem & $R_f$ & $R_f$ \\ \hline
-    \end{tabular}
-\end{table}
+\begin{center}
+\begin{tabular}{c|c|c}
+    & Pneumatikus & Hidraulikus \\
+    \hline
+    kapacitás & $C_f = \frac{V}{\kappa p_1}$ & $C_f = \frac{A}{\rho g}$ \\
+    induktivitás & nincs & $L_f = \frac{\rho l}{A}$ \\
+    disszipatív elem & $R_f$ & $R_f$
+\end{tabular}
+\end{center}
