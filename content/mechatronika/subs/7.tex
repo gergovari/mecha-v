@@ -25,17 +25,15 @@
                 width=6cm, height=4cm,
                 axis lines=middle,
                 ylabel={$\delta[k]$},
-                xmin=-2.5, xmax=2.5,
+                xmin=-2.5, xmax=3.5,
                 ymin=0, ymax=1.5,
-                xtick={-2,-1,0,1,2},
+                xtick={-2,-1,0,1,2,3},
+                xticklabels={-2,-1,0,1,2,$k$},
                 ytick={1},
                 axis line style={->},
                 every axis y label/.style={at={(current axis.north)}, anchor=south},
-                xlabel style={at={(current axis.right of origin)}, anchor=north},
             ]
                 \addplot[black, thick, ycomb, mark=*] coordinates {(-2,0) (-1,0) (0,1) (1,0) (2,0)};
-                % Manual k label looking like a point
-                \node[anchor=north] at (axis cs:2.4, 0) {$k$};
             \end{axis}
         \end{tikzpicture}
     \end{figure}
@@ -55,16 +53,15 @@
                 width=6cm, height=4cm,
                 axis lines=middle,
                 ylabel={$\varepsilon[k]$},
-                xmin=-2.5, xmax=3.5,
+                xmin=-2.5, xmax=4.5,
                 ymin=0, ymax=1.5,
-                xtick={-2,-1,0,1,2,3},
+                xtick={-2,-1,0,1,2,3,4},
+                xticklabels={-2,-1,0,1,2,3,$k$},
                 ytick={1},
                 axis line style={->},
                 every axis y label/.style={at={(current axis.north)}, anchor=south},
             ]
                 \addplot[green, thick, dashed, ycomb, mark=o, mark options={solid, black, thick}] coordinates {(-2,0) (-1,0) (0,1) (1,1) (2,1) (3,1)};
-                % Manual k label looking like a point
-                \node[anchor=north] at (axis cs:3.4, 0) {$k$};
             \end{axis}
         \end{tikzpicture}
     \end{figure}
@@ -95,35 +92,36 @@
                 axis lines=middle,
                 xmin=-0.5, xmax=5.5,
                 ymin=0, ymax=1.8,
-                xtick={1, 4.5},
-                xticklabels={$i$, $K$},
+                xtick={1},
+                xticklabels={$i$},
                 ytick=\empty,
                 axis line style={->},
-                xlabel=\empty,
+                xlabel=$K$,
+                xlabel style={at={(current axis.right of origin)}, anchor=north},
                 ylabel=\empty,
                 clip=false
             ]
-                % Labels for axes/signals are floating in the image
+                % Labels for axes/signals
                 \node at (axis cs:-0.4, 1.6) {$u[k]$};
-                \node at (axis cs:-0.2, 1.6) {$w[k]$};
+                \node at (axis cs:0.2, 1.4) {$w[k]$};
                 
-                % Main impulse u[i] at i=1
-                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(1,0.6)};
-                \node[above] at (axis cs:1, 0.6) {$u[i]$};
+                % Main impulse u[i] at i=1 - Tallest
+                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(1,1.2)};
+                \node[above] at (axis cs:1, 1.2) {$u[i]$};
 
                 % Series of impulses
-                % u[i]w[0] coincident with u[i] at i=1
-                % We shift the label slightly or just point to the same impulse
+                % u[i]w[0] coincident with u[i] at i=1 - Lower
+                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(1, 0.7)};
                 \node[right, font=\scriptsize] (w0) at (axis cs:1.3, 0.9) {$u[i]w[0]$};
-                \draw[gray, thin] (w0) -- (axis cs:1.05, 0.65);
+                \draw[gray, thin] (w0) -- (axis cs:1.05, 0.75);
 
                  % u[i]w[1] at i+1 = 2
-                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(2, 0.5)};
+                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(2, 0.6)};
                 \node[right, font=\scriptsize] (w1) at (axis cs:2.2, 0.8) {$u[i]w[1]$};
-                \draw[gray, thin] (w1) -- (axis cs:2.05, 0.55);
+                \draw[gray, thin] (w1) -- (axis cs:2.05, 0.65);
                 
                  % u[i]w[2] at i+2 = 3
-                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(3, 0.4)};
+                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {(3, 0.5)};
 
                 % Dots
                 \node at (axis cs:3.7, 0.5) {$\dots$};
