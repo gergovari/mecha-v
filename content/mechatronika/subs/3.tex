@@ -1,1 +1,123 @@
 \subsection{Hasonlítsa össze a rendszereket a leírt állapotváltozók (dimenzió) száma (véges/végtelen), valamint annak diszkrét/folytonos jellege szerint!}
+
+\paragraph{A rendszer dimenziója:}
+\begin{itemize}
+    \item a rendszer állapotváltozóinak száma
+    \begin{itemize}
+        \item állapotváltozó: az állapot egyértelmű leírására szolgálnak
+        \item állapot: a múlt összesített hatása
+    \end{itemize}
+    \item végtelen: végtelen számú állapotváltozóval írható le a rendszer
+    \item véges: véges számú állapotváltozóval írható le a rendszer
+    \begin{itemize}
+        \item $\underline{x}(t) \in \mathbb{R}^n$
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Diszkrét/folytonos jelleg:}
+\begin{itemize}
+    \item diszkrét állapotú:
+    \begin{itemize}
+        \item ha egy véges dimenziójú rendszer állapotváltozói véges számú értéket vehetnek fel, akkor a rendszer diszkrét állapotú
+        \item pl. digitális technika: 0 vagy 1
+        \item állapotautomaták:
+        \begin{itemize}
+            \item az állapotbeli változások egy-egy esemény hatására ugrásszerűen mennek végbe
+            \item tipikusan szekvenciális hálózatok
+        \end{itemize}
+    \end{itemize}
+    \item folytonos állapotú:
+    \begin{itemize}
+        \item az állapotváltozók folytonos értéket vesznek fel
+        \item pl. sebesség
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}[local bounding box=plots]
+            % Analog
+            \begin{axis}[
+                at={(0,4cm)}, anchor=south west,
+                width=5cm, height=4cm,
+                axis lines=middle,
+                xtick=\empty, ytick=\empty,
+                xlabel={$t$}, ylabel={$y(t)$},
+                title={analóg},
+                ymin=0, ymax=1.2,
+                xmin=0, xmax=4
+            ]
+                \addplot[blue, thick, samples=100, domain=0.2:3.8] {0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5))};
+            \end{axis}
+            
+            % Mintavételezett
+            \begin{axis}[
+                at={(6cm,4cm)}, anchor=south west,
+                width=5cm, height=4cm,
+                axis lines=middle,
+                xtick={1,2,3}, xticklabels={{$k-1$}, {$k$}, {$k+1$}},
+                ytick=\empty,
+                xlabel={$k$}, ylabel={$y[k]$},
+                title={mintavételezett},
+                ymin=0, ymax=1.2,
+                xmin=0, xmax=4
+            ]
+                \addplot[blue, thick, ycomb, mark=*, samples at={0.5,1,1.5,2,2.5,3,3.5}] {0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5))};
+            \end{axis}
+            
+            % Kvantált
+            \begin{axis}[
+                at={(0,0)}, anchor=south west,
+                width=5cm, height=4cm,
+                axis lines=middle,
+                xtick=\empty, ytick=\empty,
+                xlabel={$t$}, ylabel={$y_q(t)$},
+                title={kvantált},
+                ymin=0, ymax=1.2,
+                xmin=0, xmax=4
+            ]
+                \addplot[blue, thick, const plot, samples=20, domain=0.2:3.8] {round((0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5)))*5)/5};
+            \end{axis}
+            
+            % Digitális
+            \begin{axis}[
+                at={(6cm,0)}, anchor=south west,
+                width=5cm, height=4cm,
+                axis lines=middle,
+                xtick=\empty, ytick=\empty,
+                xlabel={$k$}, ylabel={$y_q[k]$},
+                title={digitális},
+                ymin=0, ymax=1.2,
+                xmin=0, xmax=4
+            ]
+                \addplot[blue, thick, only marks, mark=*, samples at={0.5,1,1.5,2,2.5,3,3.5}] {round((0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5)))*5)/5};
+                % dotted lines to show quantization levels?
+                \draw[gray, dotted] (0, 0.2) -- (4, 0.2);
+                \draw[gray, dotted] (0, 0.4) -- (4, 0.4);
+                \draw[gray, dotted] (0, 0.6) -- (4, 0.6);
+                \draw[gray, dotted] (0, 0.8) -- (4, 0.8);
+                \draw[gray, dotted] (0, 1.0) -- (4, 1.0);
+
+            \end{axis}
+        \end{scope}
+        
+        \node[rotate=90, anchor=south] at ($(plots.north west)!0.25!(plots.south west) + (-0.5,0)$) {térben folytonos};
+        \node[rotate=90, anchor=south] at ($(plots.north west)!0.75!(plots.south west) + (-0.5,0)$) {térben diszkrét};
+        
+        \node[anchor=north] at ($(plots.south west)!0.25!(plots.south east) + (0,-0.5)$) {időben folytonos};
+        \node[anchor=north] at ($(plots.south west)!0.75!(plots.south east) + (0,-0.5)$) {időben diszkrét};
+    \end{tikzpicture}
+\end{figure}
+
+\paragraph{Diszkrét idejű folytonos értékű rendszer:}
+\begin{itemize}
+    \item differencia egyenletekkel írható le $\underline{x}[k+1] = \underline{\Phi}\underline{x}[k] + \underline{\Gamma}\underline{u}[k]$
+    \item az állapotváltozók tetszőleges értéket vehetnek fel, de a diszkrét idő miatt ugrásszerűen mennek végbe
+\end{itemize}
+
+\paragraph{Folytonos idejű folytonos értékű rendszer:}
+\begin{itemize}
+    \item differenciál egyenletekkel írható le $\underline{\dot{x}}(t) = \underline{A}\underline{x}(t) + \underline{B}\underline{u}(t)$
+    \item állapotváltozók tetszőleges értéket vehetnek fel, folytonos idő miatt folyamatosan változnak
+\end{itemize}
