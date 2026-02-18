@@ -1,1 +1,98 @@
-\subsection{Adatszerkezetek. Tömbök, kapcsolt listák, gráf, fa, verem, sor.}
+\subsection{Ismertesse a fontosabb adatszerkezeteket (tömb, kapcsolt lista, verem, sor, fa, gráf) és a pointer fogalmát!}
+
+\noindent \textbf{Pointer:}
+\begin{itemize}
+    \item nem adatot, hanem címet tárol
+    \item az adatot indirekt módon tudjuk elérni
+    \item típusa: ilyen típusú adatot tartalmaz a cím, amire a pointer mutat
+\end{itemize}
+
+\noindent Adatokat különböző adattárolókban lehet tárolni, melyek más-más módon működnek, attól függően érdemes kiválasztani, melyiket szeretnénk használni, hogy mire használjuk őket.
+
+\noindent \textbf{Tömb:}
+\begin{itemize}
+    \item azonos típusú adatok
+    \item az adatok indexelve vannak (számozva)
+    \item az index segítségével férhetünk hozzá bármelyik adathoz (\textbf{kicímzés} lehetséges!!!!)
+    \item egymást követő memóriacímeken van tárolva
+    \item deklarálásnál meg van szabva, hány elemű
+    \item egy adott elemhez konstans idővel, bejárás nélkül férünk hozzá
+    \item beszúrás/törlés nem hatékony
+    \item vannak lineárisak és többdimenziósak is: mátrixok
+    \item rendezetlen tömbben lineáris keresés: $O(n)$
+    \item rendezett tömbben bináris keresés (intervallumfelezés): $O(\log_2 n)$
+\end{itemize}
+
+% [Diagram: tömb indexelése]
+
+\noindent \textbf{Kapcsolt lista:}
+\begin{itemize}
+    \item Adatok olyan sorrendje, ahol a sorrendet a pointerek határozzák meg
+    \item beszúrás/törlés hatékony
+    \item bejárás, valamint \textbf{egy elem keresése} is lineáris bonyolultságú
+    \item lehet egy,- és kétirányú lánc
+    \item végjel: NULL pointer
+    \item az adatok sorrendje a memóriában tetszőleges, csak a pointereket változtatjuk
+\end{itemize}
+
+% [Diagram: kapcsolt lista láncolás és törlés]
+% [Diagram: kapcsolt lista beszúrás]
+
+\newpage
+
+\noindent \textbf{Gráf:}
+\begin{itemize}
+    \item sorszámozott csomópontok és az azokat összekötő élek halmaza
+    \item szomszédok: összekötött csomópontok
+    \item deg(u): egy adott csomópont foka a befutó élek száma
+    \item ha deg(u) = 0, akkor a csomópont izolált pont
+    \item egyik csomópontból ($v_0$) egy másikba ($v_n$) haladó élek halmaza az út
+    \item P($v_0, \dots, v_n$) út zárt, ha $v_0 = v_n$
+    \item egy út egyszerű, ha minden pontja különböző
+    \item kör: 3-nál hosszabb egyszerű, zárt út
+    \item összefüggő: olyan gráf, melynek bármelyik 2 pontja közt létezik út
+    \item teljes: minden csomópont mindegyik másikkal össze van kötve
+    \item címkézett: az élekhez súlyokat rendelünk
+    \item súlyozott: nemnegatív címkék
+    \item irányított: az éleknek iránya van
+    \item tárolásuk: szomszédsági mátrix: $a_{ij} = 1$, ha i-ből j-be halad él, egyébként 0
+\end{itemize}
+
+% [Diagram: gráf példák és szomszédsági mátrix]
+
+\noindent \textbf{Fa:}
+\begin{itemize}
+    \item Köröket nem tartalmazó gráf
+    \item elemek véges (T) halmaza, mely
+    \begin{itemize}
+        \item tartalmaz egy kitüntetett gyökérelemet
+        \item a többi elem nemnulla diszjunkt részfája T-nek
+    \end{itemize}
+    \item tárolás:
+    \begin{itemize}
+        \item info(k) – az elem adatai
+        \item gyermek – az első gyermek indexe
+        \item testvér – az első testvér indexe
+    \end{itemize}
+    \item bináris fa: egy szülőnek max 2 leszármazottja lehet
+\end{itemize}
+
+% [Diagram: fa szerkezet és tömbös tárolás]
+
+\noindent \textbf{Veremtár/stack:}
+\begin{itemize}
+    \item LIFO: Last In First Out
+    \item Push: elemet a verembe rak
+    \item Pop: elemet leemel a verem tetejéről
+    \item alkalmazások: függvényhívás, rekurzió, böngésző ,,vissza”, szövegszerkesztő ,,undo” gombja
+    \item SP: stack pointer: a verem tetejét mutatja
+\end{itemize}
+
+\noindent \textbf{Sor/Queue:}
+\begin{itemize}
+    \item FIFO: First In First Out
+    \item 2 mutató: WP, RP (write, read)
+    \item írás/olvasás előtt/után a mutatót növelni kell
+\end{itemize}
+
+% [Diagram: sor puffer RP/WP mutatókkal]
