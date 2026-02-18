@@ -1,4 +1,4 @@
-\subsection{Információelmélet. Shannon hírközlés modellje. Forráskódolás. Prefix kód. Huffman-kód.}
+\subsection{Shannon hírközlési modellje. Forráskódolás, prefix kód.}
 
 \noindent \textbf{Shannon hírközlés modellje:}
 \begin{itemize}
@@ -23,7 +23,7 @@
     \centering
     \includegraphics[width=0.8\textwidth]{res/imgs/info_9_channel_coding.png}
 \end{figure}
-
+\newpage
 \begin{itemize}
     \item \textbf{Csatornakódolás (hibajavító kódolás):} lehetővé teszi a zajos csatornán át a biztonságos(abb) üzenetátvitelt, a hibák jelzését és kijavítását.
     \item \textbf{csatorna:}
@@ -45,7 +45,7 @@
     \centering
     \includegraphics[width=0.4\textwidth]{res/imgs/info_9_decoder.png}
 \end{figure}
-
+\newpage
 \begin{itemize}
     \item Kijavítja és/vagy jelzi a vett jelek hibáit, elvégzi a csatorna dekódolást.
     \item \textbf{vevő/nyelő:}
@@ -72,7 +72,7 @@
     \item Legyen $A = \{A_1, A_2, ..., A_m\}$ esemény-halmaz, az $A_1$ esemény valószínűsége $p_1$, az $A_m$ esemény valószínűsége $p_m$. Ekkor az $A_i$ esemény megnevezésével nyert információ: $I(A_i) = \log_2 \frac{1}{p_i} = -\log_2 p_i$
     \item Ha $p_i = 1/m$ az összes i-re, akkor visszakapjuk a Hartley féle definíciót.
 \end{itemize}
-
+\newpage
 \noindent \textbf{Forráskódolás:}
 \begin{itemize}
     \item A forrás kimenetén véges sok elemből álló $A = \{A_1, A_2, ..., A_n\}$ halmaz elemei jelenhetnek meg. Az A halmaz elnevezése: forrásábécé.
