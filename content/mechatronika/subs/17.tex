@@ -1,1 +1,39 @@
 \subsection{Ismertesse a frekvencia-átviteli függvény fogalmát, illetve annak megjelenítési módjait (Bode diagram)!}
+
+\noindent \textbf{A kérdés, hogy egy folytonos idejű időinvariáns rendszer milyen választ ad harmonikus gerjesztésre:}
+\begin{itemize}
+    \item szinuszos vizsgáló jelet használunk:
+    $$ u(t) = A \sin(\omega t) \to U(s) = \frac{A\omega}{s^2 + \omega^2} $$
+    \item harmonikus gerjesztés esetén a válasz (állandósult értéke):
+    $$ y(t) = \tilde{A}(\omega) \sin(\omega t - \varphi(\omega)) $$
+    $\tilde{A}(\omega)$: frekvenciafüggő amplitúdó, \quad $\varphi(\omega)$: frekvenciafüggő fáziseltolás
+    \item formális helyettesítés: $s \to j\omega$ komplex szám
+    \begin{itemize}
+        \item \textbf{frekvencia-átviteli függvény az átviteli függvényből:}
+        $$ W(j\omega) = W(s)|_{s=j\omega} $$
+    \end{itemize}
+    \item a komplex szám nagysága:
+    $$ |W(j\omega)| = \frac{A_{ki}}{A_{be}} = A_r, \quad \text{ahol } A_{ki} = \tilde{A}, \ A_{be} = A, \ A_r: \text{amplitúdó arány} $$
+    \item fáziskülönbség:
+    $$ \Delta \varphi = \varphi_{ki} - \varphi_{be} = \arg(W(j\omega)) = \arctan \left( \frac{\text{Im}\{W(j\omega)\}}{\text{Re}\{W(j\omega)\}} \right) $$
+\end{itemize}
+
+\noindent \textbf{Frekvencia-átviteli függvény megjelenítése:}
+\begin{itemize}
+    \item \textbf{Nyquist-diagram:}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_17_nyquist.png}
+    \end{figure}
+    \item \textbf{Bode diagram(ok):}
+    \begin{itemize}
+        \item[a)] amplitúdó -- körfrekvencia diagram (teljesítmény arány)
+        \item[b)] fázisszög -- körfrekvencia diagram (fáziskülönbség)
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Amplitúdó -- körfrekvencia diagram:}
+$$ A_r \to P_r = A_r^2 $$
+$$ B = \lg(P_r) = \lg(A_r^2) \ [B] \text{ (bel)} $$
+$$ B = 10 \lg(P_r) \ [dB] \text{ (decibel)} $$
+$$ B = 10 \lg(A_r^2) = 20 \lg(A_r) \ [dB] $$
