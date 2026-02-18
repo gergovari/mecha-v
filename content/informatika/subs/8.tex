@@ -1,1 +1,156 @@
-\subsection{Holtpont az operációs rendszerben. Holtpont kezelése. Holtpont észlelése. Holtpont megelőzés. Bankár algoritmus.}
+\subsection{Folyamat kezelés. Holtpont fogalma és kezelése. Bankár algoritmus.}
+
+\noindent \textbf{Folyamat kezelés:}
+\begin{itemize}
+    \item folyamat: egy végrehajtás alatt lévő program
+    \item erőforrásokra van szüksége
+    \item operációs rendszer feladata:
+    \begin{itemize}
+        \item folyamat létrehozása, törlése
+        \item folyamat felfüggesztése, újraindítása (multitaszk)
+        \item eszközök biztosítása a folyamatok szinkronizációjához, kommunikációjához
+    \end{itemize}
+    \item folyamat általában műveletek végrehajtása meghatározott sorrendben
+    \item folyamat elkezdődik és befejeződik
+    \item a következő részművelet végrehajtása akkor kezdődhet, ha az előző befejeződött
+\end{itemize}
+\noindent Ha több folyamat is ugyanazt az erőforrást használja, ügyelni kell a holtpont elkerülésére.
+
+\noindent \textbf{Holtpont:} a folyamatok nem tudnak folytatódni.
+\begin{itemize}
+    \item pl. ha két folyamat egymásra vár, mert pont a másik folyamat erőforrására lenne szüksége, de azt meg éppen ő foglalja
+\end{itemize}
+
+\noindent \textbf{Holtpont kezelése:}
+\begin{itemize}
+    \item nem teszünk semmit (strucc algoritmus)
+    \item detektálás és feloldás: észrevesszük, ha holtpont van és megpróbáljuk feloldani
+    \item megelőzés: struktúrájában holtpontmentes rendszer tervezése
+\end{itemize}
+
+\noindent \textbf{Holtpont detektálása, példa:}
+\begin{itemize}
+    \item legyen 1 erőforrás, ebből 10 példány
+    \item legyen 4 folyamat: P1, P2, P3, P4
+    \item a pillanatnyi helyzet:
+    \item 9 erőforrás le van foglalva, 1 szabad
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{} & \textbf{Lefoglalva} & \textbf{Igény} \\ \hline
+    P1        & 4                   & 4              \\ \hline
+    P2        & \textcolor{red}{1}  & 0              \\ \hline
+    P3        & 3                   & 4              \\ \hline
+    P4        & \textcolor{red}{1}  & 1              \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item P2 fut (mivel nem igényel több erőforrást), P1, P3, P4 várakoznak
+    \item P2 lefut, 1 erőforrás felszabadul (szabad: 2)
+    \item P4 lefut (igénye 1), még 1 erőforrás felszabadul (szabad: 3)
+    \item P1 (igény 4) és P3 (igény 4) közül egyik se tud futni, nincs (elég) szabad erőforrás, így holtpontra kerülnek
+\end{itemize}
+
+\noindent \textbf{Holtpont feloldása, példa:}
+\begin{itemize}
+    \item radikális megoldás: a holtpontban érintett összes folyamatot felszámoljuk
+    \item kíméletes megoldás:
+    \item erőforrás átmenetileg mentés, kiosztás másnak, majd visszaállítás
+    \item legkevesebb folyamat felszámolása
+    \item prioritásos folyamatoknál: alacsonyabb prioritású folyamat mentése
+    \item Hol tartunk a folyamatban?
+    \item Folyamat és erőforrás visszaállíthatósága szükséges a kíméletes feloldáshoz
+\end{itemize}
+
+\noindent \textbf{Holtpont megelőzése: bankár algoritmus:}
+\begin{itemize}
+    \item biztonságosan tervezett az a folyamatokat és erőforrásokat tartalmazó rendszer, amelyben:
+    \begin{itemize}
+        \item létezik a folyamatoknak (legalább egy) olyan sorrendje, mely szerint végrehajtva őket, azok maximális erőforrás igénye is kielégíthető
+        \item a biztonságos rendszerben nem lehetséges holtpont kialakulása
+    \end{itemize}
+    \item az ellenőrzést \textbf{bankár algoritmus}sal végezzük a folyamat indítása és az erőforrás foglalás előtt
+\end{itemize}
+
+\noindent \textbf{Bankár algoritmus példa:}
+\begin{itemize}
+    \item egy rendszerben 3 erőforrás van: E1 10 db, E2 5 db, E3 7 db
+    \item ebben a rendszerben 5 folyamat fut: P1, P2, P3, P4, P5
+\end{itemize}
+
+\noindent Max igény (1. lépés)
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{} & \textbf{E1} & \textbf{E2} & \textbf{E3} \\ \hline
+    P1        & 7           & 5           & 3           \\ \hline
+    P2        & 3           & 2           & 2           \\ \hline
+    P3        & 9           & 0           & 2           \\ \hline
+    P4        & 2           & 2           & 2           \\ \hline
+    P5        & 4           & 3           & 3           \\ \hline
+    \end{tabular}
+\end{table}
+
+\noindent Aktuálisan \textcolor{red}{foglalt} (2. lépés)
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{} & \textbf{E1}        & \textbf{E2}        & \textbf{E3}        \\ \hline
+    P1        & \textcolor{red}{0} & \textcolor{red}{1} & \textcolor{red}{0} \\ \hline
+    P2        & \textcolor{red}{3} & \textcolor{red}{0} & \textcolor{red}{2} \\ \hline
+    P3        & \textcolor{red}{3} & \textcolor{red}{0} & \textcolor{red}{2} \\ \hline
+    P4        & \textcolor{red}{2} & \textcolor{red}{1} & \textcolor{red}{1} \\ \hline
+    P5        & \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{2} \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item Biztonságos ez az állapot?
+    \item 3. lépés: \textcolor{purple}{igény} = \textcolor{yellow}{max igény} -- \textcolor{red}{foglalt}
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+    \textbf{Max} & \textbf{E1}        & \textbf{E2}        & \textbf{E3}        & \textbf{Foglal} & \textbf{E1}        & \textbf{E2}        & \textbf{E3}        & \textbf{igény} & \textbf{E1}          & \textbf{E2}          & \textbf{E3}          \\ \hline
+    P1           & \textcolor{yellow}{7} & \textcolor{yellow}{5} & \textcolor{yellow}{3} & P1              & \textcolor{red}{0} & \textcolor{red}{1} & \textcolor{red}{0} & P1             & \textcolor{purple}{7} & \textcolor{purple}{4} & \textcolor{purple}{3} \\ \hline
+    P2           & \textcolor{yellow}{3} & \textcolor{yellow}{2} & \textcolor{yellow}{2} & P2              & \textcolor{red}{3} & \textcolor{red}{0} & \textcolor{red}{2} & P2             & \textcolor{purple}{0} & \textcolor{purple}{2} & \textcolor{purple}{0} \\ \hline
+    P3           & \textcolor{yellow}{9} & \textcolor{yellow}{0} & \textcolor{yellow}{2} & P3              & \textcolor{red}{3} & \textcolor{red}{0} & \textcolor{red}{2} & P3             & \textcolor{purple}{6} & \textcolor{purple}{0} & \textcolor{purple}{0} \\ \hline
+    P4           & \textcolor{yellow}{2} & \textcolor{yellow}{2} & \textcolor{yellow}{2} & P4              & \textcolor{red}{2} & \textcolor{red}{1} & \textcolor{red}{1} & P4             & \textcolor{purple}{0} & \textcolor{purple}{1} & \textcolor{purple}{1} \\ \hline
+    P5           & \textcolor{yellow}{4} & \textcolor{yellow}{3} & \textcolor{yellow}{3} & P5              & \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{2} & P5             & \textcolor{purple}{4} & \textcolor{purple}{3} & \textcolor{purple}{1} \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item 4. lépés: szabad erőforrások számának meghatározása:
+    \item E1: 10-\textcolor{red}{8}=\textcolor{green}{2}, E2: 5-\textcolor{red}{2}=\textcolor{green}{3}, E3: 7-\textcolor{red}{7}=\textcolor{green}{0}
+    \item a készlet vektorban: (\textcolor{green}{2,3,0})
+    \item 5. lépés: a \textcolor{green}{készletből} kielégíthető valamelyik folyamat \textcolor{purple}{igénye}?
+    \item igény <= készlet?
+    \item P2 folyamat ilyen (\textcolor{purple}{0,2,0} <= \textcolor{green}{2,3,0})
+    \item 6. lépés: P2-t lefuttatjuk
+    \item P2 lefutása után az általa eddig foglalt erőforrások felszabadulnak: (\textcolor{red}{3,0,2})
+    \item 7. lépés: új készlet: (\textcolor{green}{2,3,0}) + (\textcolor{red}{3,0,2}) = (\textcolor{green}{5,3,2})
+    \item 8. lépés: ha még van folyamat, vissza az 5. lépésre
+    \item 5. lépés: készlet (\textcolor{green}{5,3,2}) \textcolor{purple}{igény} kielégíthető-e?
+    \item P5 (\textcolor{purple}{4,3,1}) folyamat ilyen
+    \item 6. lépés: P5-t (\textcolor{red}{0,0,2}) lefuttatjuk
+    \item 7. lépés: új készlet: (\textcolor{green}{5,3,2}) + (\textcolor{red}{0,0,2}) = (\textcolor{green}{5,3,4})
+    \item 8. lépés: ha még van folyamat, vissza az 5. lépésre
+    \item 5. lépés: készletből (\textcolor{green}{5,3,4}) \textcolor{purple}{igény} kielégíthető-e?
+    \item P4 (\textcolor{purple}{0,1,1}) folyamat ilyen
+    \item 6. lépés: P4-t (\textcolor{red}{2,1,1}) lefuttatjuk.
+    \item 7. lépés: új készlet: (\textcolor{green}{7,4,5}).
+    \item 5. lépés: P1(\textcolor{red}{0,1,0}) lefuthat. (Igény: 7,4,3 <= 7,4,5)
+    \item 7. lépés: (\textcolor{green}{7,5,5}),
+    \item 5. lépés: P3(\textcolor{purple}{6,0,0}) igény lefuttat. (\textcolor{red}{3,0,2}) új készlet:
+    \item 7. lépés (\textcolor{green}{10,5,7})
+    \item 8. lépés: találtunk 1 sorrendet, amely elkerüli a \textcolor{red}{holtpontot}, \textcolor{green}{biztonságos} állapotban vagyunk.
+\end{itemize}
