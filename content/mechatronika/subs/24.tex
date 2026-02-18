@@ -1,1 +1,57 @@
 \subsection{Egy adott, tanult példa (fogaskerékhajtómű, fogaskerék-fogasléc) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}
+
+\noindent \textbf{Fogaskerék-hajtómű:}
+
+% [Diagram: Fogaskerék-hajtómű felépítése]
+
+\begin{itemize}
+    \item \textbf{struktúragráf:}
+\end{itemize}
+
+% [Diagram: Fogaskerék-hajtómű struktúragráfja]
+
+\begin{itemize}
+    \item akkor lehet a kapcsolt kétpólus oldalait redukálni, ha:
+    \begin{itemize}
+        \item veszteségmentes: $P_{\text{be}} = P_{\text{ki}}$, előjelkonvenció miatt $P_{\text{be}} + P_{\text{ki}} = 0$
+        \item lineáris, statikus rendszer - algebrai egyenletekkel leírható
+    \end{itemize}
+    \item \textbf{fizikai összefüggések a kapcsolóegyenlethez:}
+    \begin{itemize}
+        \item $d\pi = pz \to d = \frac{p}{\pi}z$
+        \item a kerületi sebességek: $v_T = \Omega_1 r_1 = \Omega_2 r_2 \to \Omega_1 = \frac{r_2}{r_1}\Omega_2 = \frac{z_2}{z_1}\Omega_2 = i \Omega_2$
+        \item nyomaték: $M = fr \to \left. \begin{matrix} M_1 = f_T r_1 \\ M_2 = -f_T r_2 \end{matrix} \right\} M_1 = -\frac{r_1}{r_2} M_2 = -\frac{1}{i} M_2$
+    \end{itemize}
+\end{itemize}
+
+% [Diagram: Fogaskerék geometria]
+% [Diagram: Kapcsolódó fogaskerekek sebességvektorai]
+
+\begin{itemize}
+    \item ezek lesznek a kapcsolóegyenleteink, így az impedanciahálózat:
+\end{itemize}
+
+% [Diagram: Fogaskerék-hajtómű impedanciahálózata]
+
+\begin{itemize}
+    \item \textbf{redukált impedanciák:}
+    $$ Z_{\text{forg1}} = \frac{\Omega_1}{M_1} = \frac{i \Omega_2}{\frac{1}{i} M_2} = i^2 \frac{\Omega_2}{M_2} = i^2 Z_{\text{forg2}} $$
+\end{itemize}
+
+\noindent \textbf{Fogaskerék -- fogasléc:}
+
+% [Diagram: Fogaskerék-fogasléc felépítése]
+
+\begin{itemize}
+    \item \textbf{struktúragráf:}
+\end{itemize}
+
+% [Diagram: Fogaskerék-fogasléc struktúragráfja]
+
+\begin{itemize}
+    \item \textbf{fizikai összefüggés:}
+    $$ \Omega_g = \frac{1}{r} v_T, \quad M = -r f_T $$
+    \item \textbf{így az impedanciahálózatunk:}
+\end{itemize}
+
+% [Diagram: Fogaskerék-fogasléc impedanciahálózata]
