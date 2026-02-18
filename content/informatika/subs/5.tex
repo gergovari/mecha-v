@@ -1,1 +1,83 @@
 \subsection{Algoritmusok. Bejárás, keresés, rendezés. Algoritmusok bonyolultsága. Rekurzió.}
+
+\noindent \textbf{Eljárások, algoritmusok:}
+\begin{itemize}
+    \item emberi nyelven megfogalmazott feladat, cselekménysorozat
+    \item megoldási eljárás (,,algoritmus jelölt”), program írható
+    \item egy megoldási eljárás akkor \textbf{algoritmus}, ha \textbf{bármilyen} bemenet esetén \textbf{véges számú lépés} után eredményt kapunk (A Turing-gép megáll)
+    \item az algoritmusra nem létezik formális matematikai definíció
+\end{itemize}
+
+\noindent \textbf{Algoritmusok bonyolultsága:}
+\begin{itemize}
+    \item ha tudjuk, hogy egy problémára létezik algoritmus, meg kell vizsgálni a megvalósíthatóságát: a bemenetek számának függvényében a tárhely és lépésszám (számítási idő) szükségletet: bonyolultságot – határértékszámítás
+    \item konstans:
+    \begin{itemize}
+        \item az algoritmus futási ideje állandó marad az input méretétől függetlenül
+        \item $O(1)$
+        \item pl. a tömb egy adott elemének lekérése
+    \end{itemize}
+    \item logaritmikus:
+    \begin{itemize}
+        \item az algoritmus futási ideje logaritmikusan növekszik az input méretével
+        \item $O(\log N)$
+        \item pl. bináris keresés rendezett tömbben: $O(\log_2 N)$
+    \end{itemize}
+    \item lineáris:
+    \begin{itemize}
+        \item az algoritmus futási ideje lineárisan növekszik az input méretével
+        \item $O(N)$
+        \item pl. egy elem keresése N elemű tömbben: $O(N)$
+    \end{itemize}
+    \item polinomiális:
+    \begin{itemize}
+        \item az algoritmus futási ideje polinomiálisan (exponenciálisan) növekszik az input méretével
+        \item $O(N^2)$
+        \item pl. bubble sort algoritmus: $O(N^2)$
+    \end{itemize}
+    \item faktoriális:
+    \begin{itemize}
+        \item az algoritmus futási ideje faktoriálisan növekszik az input méretével
+        \item $O(N!)$
+        \item pl. egy N elemű sorozat összes permutációjának előállítása: $O(N!)$
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Bejárás:} \\
+Adott adattárolókat különböző módon lehet bejárni, azaz minden elemükhöz hozzáférni, melyeknek más-más komplexitásuk lehet
+\begin{itemize}
+    \item tömb: mivel az adatok egymás után helyezkednek el a memóriában, végig csak egyesével kell növelni a pointert, komplexitás: $O(n)$
+    \item kapcsolt lista: szintén lineáris bonyolultság: $O(n)$
+    \item fa: rekurzióval
+\end{itemize}
+
+\noindent \textbf{Keresés:} \\
+Adott értékű elemet keresünk az adattárolóban, ezt többféle módon lehet attól függően, hogy az adott adattároló rendezett-e vagy sem
+\begin{itemize}
+    \item tömb: alapvetően lineáris komplexitású: $O(n)$
+    \item ha rendezett a tömb, akkor lehet intervallumfelezéssel keresni, így a bináris keresés komplexitása logaritmikus: $O(\log_2 n)$
+    \item a kapcsolt listában szintén lineáris komplexitással lehet keresni: $O(n)$
+\end{itemize}
+
+\noindent \textbf{Rendezés:}
+\begin{itemize}
+    \item tömbök rendezése lehetséges többféle módon: a legalapabb, leglassabb $O(n^2)$ komplexitású a bubble sort
+    \item lehet quick sort algoritmust is alkalmazni, mely egy rekurzívan alkalmazott függvény
+    \item az intervallumot mindig két új intervallumra osztja és az elemeket besorolja a megfelelő intervallumba (ezek diszjunkt halmazok)
+    \item rekurzívan meghívja magát
+    \item egészen addig ismétlődik, amíg 1-1 elem nem marad az összes részhalmazban
+    \item átlagos komplexitása: $O(n \cdot \log(n))$, a legrosszabb eset: $O(n^2)$
+\end{itemize}
+
+\noindent \textbf{Rekurzió:}
+\begin{itemize}
+    \item a műveletet saját magával definiáljuk
+    \item pl. faktoriális rekurzióval:
+    \begin{itemize}
+        \item $0! = 1$
+        \item ha n nem 0, akkor $n! = n \cdot (n-1)!$
+    \end{itemize}
+    \item a rekurzív algoritmus saját magát indítja újra működés közben, a veremtár segítségével
+    \item szükség van valamilyen kilépési feltételre, különben megtelik a veremtár
+    \item fa adatszerkezet bejárása csak rekurzióval lehetséges
+\end{itemize}
