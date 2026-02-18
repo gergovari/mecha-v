@@ -1,1 +1,137 @@
-\subsection{A lineáris idő invariáns (LTI) rendszerek diszkrét idejű állapottér modell felhasználásával, előre tartó Euler módszer segítésével vezesse le a folytonos idejű lineáris idő invariáns (LTI) rendszerek állapottér modellt!}
+\typeout{DEBUG: Including 9.tex}
+\subsection{Lineáris időinvariáns rendszerek diszkrét idejű állapottér modellje:}
+\begin{align*}
+    (1.) \quad \underline{x}[k+1] &= \underline{\underline{A_d}} \, \underline{x}[k] + \underline{\underline{B_d}} \, \underline{u}[k] \\
+    (2.) \quad \underline{y}[k] &= \underline{\underline{C_d}} \, \underline{x}[k] + \underline{\underline{D_d}} \, \underline{u}[k]
+\end{align*}
+
+\begin{itemize}
+    \item az (1.)-es egyenletben vonjunk ki mindkét oldalból $\underline{x}[k]$-t (az előretartó Euler miatt):
+    $$ \underline{x}[k+1] - \underline{x}[k] = \underline{\underline{A_d}} \, \underline{x}[k] + \underline{\underline{B_d}} \, \underline{u}[k] - \underline{x}[k] $$
+    
+    \item összevonás után osszunk le $\Delta t$-vel:
+    $$ \frac{\underline{x}[k+1] - \underline{x}[k]}{\Delta t} = \frac{(\underline{\underline{A_d}} - \underline{\underline{I}}) \, \underline{x}[k] + \underline{\underline{B_d}} \, \underline{u}[k]}{\Delta t} $$
+    
+    \item a folytonos idejű $t_k$ diszkrét időben a k-adik időpillanatot jelenti, így tudunk helyettesíteni:
+    $$ \frac{\underline{x}(t_{k+1}) - \underline{x}(t_k)}{\Delta t} = \frac{(\underline{\underline{A_d}} - \underline{\underline{I}}) \, \underline{x}(t_k) + \underline{\underline{B_d}} \, \underline{u}(t_k)}{\Delta t} $$
+    
+    \item szétbontva:
+    $$ \frac{\underline{x}(t_{k+1}) - \underline{x}(t_k)}{\Delta t} = \frac{1}{\Delta t} (\underline{\underline{A_d}} - \underline{\underline{I}}) \, \underline{x}(t_k) + \frac{1}{\Delta t} \underline{\underline{B_d}} \, \underline{u}(t_k) $$
+    
+    \item vegyük a kifejezés határértékét, ha $\Delta t \to 0$:
+    \begin{align*}
+        \underline{\dot{x}}(t) &= \underline{\underline{A}} \, \underline{x}(t) + \underline{\underline{B}} \, \underline{u}(t) \\
+        \underline{y}(t) &= \underline{\underline{C}} \, \underline{x}(t) + \underline{\underline{D}} \, \underline{u}(t)
+    \end{align*}
+
+    \item diszkrét idejű állapottér modell hatásvázlata:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex]
+            \node [coordinate] (input) {};
+            \node [coordinate, right=1cm of input] (split_in) {};
+             
+            % Upper path (Output eqn)
+            \node [draw, rectangle, right=1cm of split_in, yshift=1.5cm, minimum height=2em, minimum width=2.5em] (Dd) {$\underline{\underline{D_d}}$};
+             
+            % Lower path (State eqn)
+            \node [draw, rectangle, right=1cm of split_in, minimum height=2em, minimum width=2.5em] (Bd) {$\underline{\underline{B_d}}$};
+            \node [draw, circle, right=1cm of Bd, minimum size=6mm, inner sep=0pt] (sum1) {};
+            \draw (sum1.north west) -- (sum1.south east);
+            \draw (sum1.north east) -- (sum1.south west);
+            
+            \node [draw, rectangle, right=1cm of sum1, minimum height=2em, minimum width=2.5em] (zinv) {$z^{-1}$};
+            \node [coordinate, right=0.5cm of zinv] (branch_x) {};
+             
+            \node [draw, rectangle, right=1cm of branch_x, minimum height=2em, minimum width=2.5em] (Cd) {$\underline{\underline{C_d}}$};
+            
+            \node [draw, circle, right=1cm of Cd, yshift=1.5cm, minimum size=6mm, inner sep=0pt] (sum2) {};
+            \draw (sum2.north west) -- (sum2.south east);
+            \draw (sum2.north east) -- (sum2.south west);
+            
+            \node [coordinate, right=1cm of sum2] (output) {};
+            
+            % Initial split
+            \draw [thick] (input) -- node [above] {$\underline{u}[k]$} (split_in);
+            \fill (split_in) circle (2pt);
+            
+            % To Dd
+            \draw [->, thick] (split_in) |- (Dd);
+            \draw [->, thick] (Dd) -- (sum2);
+            
+            % To Bd
+            \draw [->, thick] (split_in) -- (Bd);
+            \draw [->, thick] (Bd) -- (sum1);
+            \draw [->, thick] (sum1) -- node [above] {$\underline{x}[k+1]$} (zinv);
+            \draw [thick] (zinv) -- node [above] {$\underline{x}[k]$} (branch_x);
+            \fill (branch_x) circle (2pt);
+            
+            \draw [->, thick] (branch_x) -- (Cd);
+            \draw [->, thick] (Cd) -| (sum2);
+            \draw [->, thick] (sum2) -- node [above] {$\underline{y}[k]$} (output);
+            
+            % Feedback Ad
+            \node [draw, rectangle, below=1cm of zinv, minimum height=2em, minimum width=2.5em] (Ad) {$\underline{\underline{A_d}}$};
+            \draw [->, thick] (branch_x) |- (Ad);
+            \draw [->, thick] (Ad) -| (sum1);
+            
+        \end{tikzpicture}
+    \end{figure}
+
+    \item folytonos idejű állapottér modell hatásvázlata:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex]
+            \node [coordinate] (input) {};
+            \node [coordinate, right=1cm of input] (split_in) {};
+             
+            % Upper path (Output eqn)
+            \node [draw, rectangle, right=1cm of split_in, yshift=1.5cm, minimum height=2em, minimum width=2.5em] (D) {$\underline{\underline{D}}$};
+             
+            % Lower path (State eqn)
+            \node [draw, rectangle, right=1cm of split_in, minimum height=2em, minimum width=2.5em] (B) {$\underline{\underline{B}}$};
+            \node [draw, circle, right=1cm of B, minimum size=6mm, inner sep=0pt] (sum1) {};
+            \draw (sum1.north west) -- (sum1.south east);
+            \draw (sum1.north east) -- (sum1.south west);
+            
+            \node [draw, rectangle, right=1cm of sum1, minimum height=2em, minimum width=2.5em] (int) {$\int$};
+            \node [coordinate, right=0.5cm of int] (branch_x) {};
+             
+            \node [draw, rectangle, right=1cm of branch_x, minimum height=2em, minimum width=2.5em] (C) {$\underline{\underline{C}}$};
+            
+            \node [draw, circle, right=1cm of C, yshift=1.5cm, minimum size=6mm, inner sep=0pt] (sum2) {};
+            \draw (sum2.north west) -- (sum2.south east);
+            \draw (sum2.north east) -- (sum2.south west);
+            
+            \node [coordinate, right=1cm of sum2] (output) {};
+            
+            % Initial split
+            \draw [thick] (input) -- node [above] {$\underline{u}(t)$} (split_in);
+            \fill (split_in) circle (2pt);
+            
+            % To D
+            \draw [->, thick] (split_in) |- (D);
+            \draw [->, thick] (D) -- (sum2);
+            
+            % To B
+            \draw [->, thick] (split_in) -- (B);
+            \draw [->, thick] (B) -- (sum1);
+            \draw [->, thick] (sum1) -- node [above] {$\underline{\dot{x}}(t)$} (int);
+            \draw [thick] (int) -- node [above] {$\underline{x}(t)$} (branch_x);
+            \fill (branch_x) circle (2pt);
+            
+            \draw [->, thick] (branch_x) -- (C);
+            \draw [->, thick] (C) -| (sum2);
+            \draw [->, thick] (sum2) -- node [above] {$\underline{y}(t)$} (output);
+            
+            % Feedback A
+            \node [draw, rectangle, below=1cm of int, minimum height=2em, minimum width=2.5em] (A) {$\underline{\underline{A}}$};
+            \draw [->, thick] (branch_x) |- (A);
+            \draw [->, thick] (A) -| (sum1);
+            
+        \end{tikzpicture}
+    \end{figure}
+
+    \item így a mátrixok:
+    $$ \underline{\underline{A}} = \frac{1}{\Delta t} (\underline{\underline{A_d}} - \underline{\underline{I}}), \quad \underline{\underline{B}} = \frac{1}{\Delta t} \underline{\underline{B_d}}, \quad \underline{\underline{C}} = \underline{\underline{C_d}}, \quad \underline{\underline{D}} = \underline{\underline{D_d}} $$
+\end{itemize}
