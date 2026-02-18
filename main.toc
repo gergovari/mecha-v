@@ -18,45 +18,45 @@
 \contentsline {subsection}{\numberline {1.12}Mutassa be, hogy az átviteli mátrix hogyan származtatható a lineáris idő invariáns (LTI) rendszerek folytonos idejű állapottér modellből!}{15}{}%
 \contentsline {subsection}{\numberline {1.13}Ismertesse az egytárolós arányos tag súly és átmeneti függvényeit! Válaszában térjen ki az időállandó fogalmára!}{16}{}%
 \contentsline {subsection}{\numberline {1.14}Ismertesse az kéttárolós arányos tag súly és átmeneti függvényeit! Válaszában térjen ki a minőségi jellemzőkre!}{18}{}%
-\contentsline {subsection}{\numberline {1.15}Vezesse le a lineáris idő invariáns (LTI) rendszerek folytonos idejű állapottér modelljének megoldását Laplace transzformáció segítségével!}{19}{}%
-\contentsline {subsection}{\numberline {1.16}Mutassa be a lineáris idő invariáns (LTI) rendszerek esetén folytonos idejű állapottér modell rendszermátrixának sajátértékei és a rendszer átviteli függvényének pólusai közötti összefüggést!}{20}{}%
-\contentsline {subsection}{\numberline {1.17}Ismertesse a frekvencia-átviteli függvény fogalmát, illetve annak megjelenítési módjait (Bode diagram)!}{21}{}%
-\contentsline {subsection}{\numberline {1.18}Vezesse le a Fourier sorfejtésének alakja komplex alakját!}{22}{}%
-\contentsline {subsection}{\numberline {1.19}A Fourier sorfejtés miként általánosítható nem periodikus (lecsengő) függvényekre? Ismertesse a Fourier transzformáció származtatását!}{23}{}%
-\contentsline {subsection}{\numberline {1.20}Ismertesse a következő fogalmakat (adja meg a definícióját és rövid értelmezését): extenzív és intenzív fizikai mennyiségek, átmenő és keresztváltozók, energiatárolók (átmenő és keresztváltozóval) és disszipatív elemek (kétpólusok), csatolt kétpólus elem (transzformátor és girátor)!}{24}{}%
-\contentsline {subsection}{\numberline {1.21}Adja meg az villamos rendszer (kapcsolt elektromechanikai), haladó és forgómozgású mechanikai rendszerek és az áramlástechnikai (pneumatikus és hidraulikai) rendszerek koncentrált paraméterű leírása esetén az átmenő és keresztváltozó típusát, valamint az energiatárolókat (amennyiben léteznek) és disszipatív elemeket.}{25}{}%
-\contentsline {subsection}{\numberline {1.22}Mutassa be, milyen módszerekkel határozható meg a kereszt illetve átmenő változók értékei különféle források figyelembevétele esetén!}{26}{}%
-\contentsline {subsection}{\numberline {1.23}Egy adott, tanult példa (egyenáramú motor) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{27}{}%
-\contentsline {subsection}{\numberline {1.24}Egy adott, tanult példa (fogaskerékhajtómű, fogaskerék-fogasléc) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{28}{}%
-\contentsline {subsection}{\numberline {1.25}Egy adott, tanult példa (hidraulikus és pneumatikus munkahenger) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{29}{}%
-\contentsline {subsection}{\numberline {1.26}Egy adott, tanult példa (golyósorsó és vonóelem) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{30}{}%
-\contentsline {section}{\numberline {2}Informatika}{31}{}%
-\contentsline {subsection}{\numberline {2.1}A számítástudomány alapjai. Turing gép. Eljárások, algoritmusok.}{31}{}%
-\contentsline {subsection}{\numberline {2.2}A számítógép architektúrák alapjai. Boole függvények. Logikai kapuk. Kombinációs és szekvenciális logikai hálózatok. Tárolók: S-R, J-K, D.}{32}{}%
-\contentsline {subsection}{\numberline {2.3}A számítógép felépítése. Memóriák. CPU részei. Utasítás ciklus. Szubrutinhívás. Interrupt. Közvetlen memória hozzáférés.}{33}{}%
-\contentsline {subsection}{\numberline {2.4}Adatszerkezetek. Tömbök, kapcsolt listák, gráf, fa, verem, sor.}{34}{}%
-\contentsline {subsection}{\numberline {2.5}Algoritmusok. Bejárás, keresés, rendezés. Algoritmusok bonyolultsága. Rekurzió.}{35}{}%
-\contentsline {subsection}{\numberline {2.6}Az adatbázisok alapjai. Adatmodellezés. Kapcsolatok típusai. Relációs adatbázismodell. Relációk jellemzői. A relációs algebra műveletei. SQL alapok, lekérdezések.}{36}{}%
-\contentsline {subsection}{\numberline {2.7}Az operációs rendszer céljai, feladatai. Folyamatok kommunikációja. Ütemezési algoritmusok az operációs rendszerben. Termelő-fogyasztó probléma. Postaláda kezelés. Szemaforok.}{37}{}%
-\contentsline {subsection}{\numberline {2.8}Holtpont az operációs rendszerben. Holtpont kezelése. Holtpont észlelése. Holtpont megelőzés. Bankár algoritmus.}{38}{}%
-\contentsline {subsection}{\numberline {2.9}Shannon hírközlési modellje. Forráskódolás, prefix kód.}{39}{}%
-\contentsline {subsection}{\numberline {2.10}Hálózati kommunikáció, OSI/ISO modell. Hálózati elsőbbségi elvek. Az interneten használt kommunikációs protokollok. IP cím, maszkolás, DNS rendszer.}{40}{}%
-\contentsline {subsection}{\numberline {2.11}Az objektum fogalma, objektum-orientált elvek. Az osztály fogalma. Struktúrák. Tagfüggvények. Konstruktor. Destruktor. Statikus tagok. Barátság, friend függvények.}{41}{}%
-\contentsline {subsection}{\numberline {2.12}Operátorok túlterhelése az objektum orientált programozásban. C++ IO, new, delete operátorok túlterhelésének szabályai. Osztály hierarchiák.}{42}{}%
-\contentsline {subsection}{\numberline {2.13}Öröklődés, egységbe zárás az objektum-orientált programozásban. Protected osztálytagok. Kompozíció. Aggregáció. Többszörös öröklődés.}{43}{}%
-\contentsline {subsection}{\numberline {2.14}Polimorfizmus az objektum-orientált programozásban. Virtuális alaposztályok. Abstract osztály. Általánosított osztályok.}{44}{}%
-\contentsline {subsection}{\numberline {2.15}Standard Template Library a C++-ban. Tárolók. Bejárók. Algoritmusok. Függvényobjektumok.}{45}{}%
-\contentsline {subsection}{\numberline {2.16}Fuzzy halmazok alapjai, műveletek fuzzy halmazokon.}{46}{}%
-\contentsline {subsection}{\numberline {2.17}Fuzzy következtető módszer, defuzzifikációs módszerek.}{47}{}%
-\contentsline {subsection}{\numberline {2.18}Aggregációs operátorok, általános hatványközép, OWA.}{48}{}%
-\contentsline {subsection}{\numberline {2.19}A .net rendszer részei: GC, CIL, assembly-k. Esemény vezérelt programok felépítése windows alatt.}{49}{}%
-\contentsline {subsection}{\numberline {2.20}Grafikus adattárolás (vektor, raszter), alkatrész modellezési módszerek.}{50}{}%
-\contentsline {subsection}{\numberline {2.21}3D->2D vetítési algoritmusok, a window-viewport transzformáció.}{51}{}%
-\contentsline {subsection}{\numberline {2.22}Görbe közelítési módszerek: természetes spline, Bezier, Catmull-Rom görbék.}{52}{}%
-\contentsline {subsection}{\numberline {2.23}Láthatóság, árnyalás, megvilágítás, színmodellek, anyagmodellek.}{53}{}%
-\contentsline {subsection}{\numberline {2.24}Képfeldolgozás, konvolúció, élkeresés, szegmentálás, alakfelismerés.}{54}{}%
-\contentsline {subsection}{\numberline {2.25}Neurális hálózatok alapjai, a Perceptron, a Perceptron tanítása.}{55}{}%
-\contentsline {subsection}{\numberline {2.26}Felügyelt és felügyelet nélküli tanulás. Mesterséges neurális hálózatok.}{56}{}%
-\contentsline {subsection}{\numberline {2.27}Evolúciós algoritmusok, evolúció stratégiák, genetikus programozás.}{57}{}%
-\contentsline {subsection}{\numberline {2.28}Az "M" nyelv (Matlab) jellegzetességei: változók, vektorok és mátrixok, feltételes végrehajtás, ciklusok, számtani sorozatok, függvény definíció, diagram rajzolás.}{58}{}%
-\contentsline {subsection}{\numberline {2.29}Ismertesse az alábbi, mechatronikában tanult elvek programmal történő megvalósítását: állapotgép, ARMA modell.}{59}{}%
+\contentsline {subsection}{\numberline {1.15}Vezesse le a lineáris idő invariáns (LTI) rendszerek folytonos idejű állapottér modelljének megoldását Laplace transzformáció segítségével!}{20}{}%
+\contentsline {subsection}{\numberline {1.16}Mutassa be a lineáris idő invariáns (LTI) rendszerek esetén folytonos idejű állapottér modell rendszermátrixának sajátértékei és a rendszer átviteli függvényének pólusai közötti összefüggést!}{21}{}%
+\contentsline {subsection}{\numberline {1.17}Ismertesse a frekvencia-átviteli függvény fogalmát, illetve annak megjelenítési módjait (Bode diagram)!}{22}{}%
+\contentsline {subsection}{\numberline {1.18}Vezesse le a Fourier sorfejtésének alakja komplex alakját!}{23}{}%
+\contentsline {subsection}{\numberline {1.19}A Fourier sorfejtés miként általánosítható nem periodikus (lecsengő) függvényekre? Ismertesse a Fourier transzformáció származtatását!}{24}{}%
+\contentsline {subsection}{\numberline {1.20}Ismertesse a következő fogalmakat (adja meg a definícióját és rövid értelmezését): extenzív és intenzív fizikai mennyiségek, átmenő és keresztváltozók, energiatárolók (átmenő és keresztváltozóval) és disszipatív elemek (kétpólusok), csatolt kétpólus elem (transzformátor és girátor)!}{25}{}%
+\contentsline {subsection}{\numberline {1.21}Adja meg az villamos rendszer (kapcsolt elektromechanikai), haladó és forgómozgású mechanikai rendszerek és az áramlástechnikai (pneumatikus és hidraulikai) rendszerek koncentrált paraméterű leírása esetén az átmenő és keresztváltozó típusát, valamint az energiatárolókat (amennyiben léteznek) és disszipatív elemeket.}{26}{}%
+\contentsline {subsection}{\numberline {1.22}Mutassa be, milyen módszerekkel határozható meg a kereszt illetve átmenő változók értékei különféle források figyelembevétele esetén!}{27}{}%
+\contentsline {subsection}{\numberline {1.23}Egy adott, tanult példa (egyenáramú motor) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{28}{}%
+\contentsline {subsection}{\numberline {1.24}Egy adott, tanult példa (fogaskerékhajtómű, fogaskerék-fogasléc) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{29}{}%
+\contentsline {subsection}{\numberline {1.25}Egy adott, tanult példa (hidraulikus és pneumatikus munkahenger) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{30}{}%
+\contentsline {subsection}{\numberline {1.26}Egy adott, tanult példa (golyósorsó és vonóelem) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}{31}{}%
+\contentsline {section}{\numberline {2}Informatika}{32}{}%
+\contentsline {subsection}{\numberline {2.1}A számítástudomány alapjai. Turing gép. Eljárások, algoritmusok.}{32}{}%
+\contentsline {subsection}{\numberline {2.2}A számítógép architektúrák alapjai. Boole függvények. Logikai kapuk. Kombinációs és szekvenciális logikai hálózatok. Tárolók: S-R, J-K, D.}{33}{}%
+\contentsline {subsection}{\numberline {2.3}A számítógép felépítése. Memóriák. CPU részei. Utasítás ciklus. Szubrutinhívás. Interrupt. Közvetlen memória hozzáférés.}{34}{}%
+\contentsline {subsection}{\numberline {2.4}Adatszerkezetek. Tömbök, kapcsolt listák, gráf, fa, verem, sor.}{35}{}%
+\contentsline {subsection}{\numberline {2.5}Algoritmusok. Bejárás, keresés, rendezés. Algoritmusok bonyolultsága. Rekurzió.}{36}{}%
+\contentsline {subsection}{\numberline {2.6}Az adatbázisok alapjai. Adatmodellezés. Kapcsolatok típusai. Relációs adatbázismodell. Relációk jellemzői. A relációs algebra műveletei. SQL alapok, lekérdezések.}{37}{}%
+\contentsline {subsection}{\numberline {2.7}Az operációs rendszer céljai, feladatai. Folyamatok kommunikációja. Ütemezési algoritmusok az operációs rendszerben. Termelő-fogyasztó probléma. Postaláda kezelés. Szemaforok.}{38}{}%
+\contentsline {subsection}{\numberline {2.8}Holtpont az operációs rendszerben. Holtpont kezelése. Holtpont észlelése. Holtpont megelőzés. Bankár algoritmus.}{39}{}%
+\contentsline {subsection}{\numberline {2.9}Shannon hírközlési modellje. Forráskódolás, prefix kód.}{40}{}%
+\contentsline {subsection}{\numberline {2.10}Hálózati kommunikáció, OSI/ISO modell. Hálózati elsőbbségi elvek. Az interneten használt kommunikációs protokollok. IP cím, maszkolás, DNS rendszer.}{41}{}%
+\contentsline {subsection}{\numberline {2.11}Az objektum fogalma, objektum-orientált elvek. Az osztály fogalma. Struktúrák. Tagfüggvények. Konstruktor. Destruktor. Statikus tagok. Barátság, friend függvények.}{42}{}%
+\contentsline {subsection}{\numberline {2.12}Operátorok túlterhelése az objektum orientált programozásban. C++ IO, new, delete operátorok túlterhelésének szabályai. Osztály hierarchiák.}{43}{}%
+\contentsline {subsection}{\numberline {2.13}Öröklődés, egységbe zárás az objektum-orientált programozásban. Protected osztálytagok. Kompozíció. Aggregáció. Többszörös öröklődés.}{44}{}%
+\contentsline {subsection}{\numberline {2.14}Polimorfizmus az objektum-orientált programozásban. Virtuális alaposztályok. Abstract osztály. Általánosított osztályok.}{45}{}%
+\contentsline {subsection}{\numberline {2.15}Standard Template Library a C++-ban. Tárolók. Bejárók. Algoritmusok. Függvényobjektumok.}{46}{}%
+\contentsline {subsection}{\numberline {2.16}Fuzzy halmazok alapjai, műveletek fuzzy halmazokon.}{47}{}%
+\contentsline {subsection}{\numberline {2.17}Fuzzy következtető módszer, defuzzifikációs módszerek.}{48}{}%
+\contentsline {subsection}{\numberline {2.18}Aggregációs operátorok, általános hatványközép, OWA.}{49}{}%
+\contentsline {subsection}{\numberline {2.19}A .net rendszer részei: GC, CIL, assembly-k. Esemény vezérelt programok felépítése windows alatt.}{50}{}%
+\contentsline {subsection}{\numberline {2.20}Grafikus adattárolás (vektor, raszter), alkatrész modellezési módszerek.}{51}{}%
+\contentsline {subsection}{\numberline {2.21}3D->2D vetítési algoritmusok, a window-viewport transzformáció.}{52}{}%
+\contentsline {subsection}{\numberline {2.22}Görbe közelítési módszerek: természetes spline, Bezier, Catmull-Rom görbék.}{53}{}%
+\contentsline {subsection}{\numberline {2.23}Láthatóság, árnyalás, megvilágítás, színmodellek, anyagmodellek.}{54}{}%
+\contentsline {subsection}{\numberline {2.24}Képfeldolgozás, konvolúció, élkeresés, szegmentálás, alakfelismerés.}{55}{}%
+\contentsline {subsection}{\numberline {2.25}Neurális hálózatok alapjai, a Perceptron, a Perceptron tanítása.}{56}{}%
+\contentsline {subsection}{\numberline {2.26}Felügyelt és felügyelet nélküli tanulás. Mesterséges neurális hálózatok.}{57}{}%
+\contentsline {subsection}{\numberline {2.27}Evolúciós algoritmusok, evolúció stratégiák, genetikus programozás.}{58}{}%
+\contentsline {subsection}{\numberline {2.28}Az "M" nyelv (Matlab) jellegzetességei: változók, vektorok és mátrixok, feltételes végrehajtás, ciklusok, számtani sorozatok, függvény definíció, diagram rajzolás.}{59}{}%
+\contentsline {subsection}{\numberline {2.29}Ismertesse az alábbi, mechatronikában tanult elvek programmal történő megvalósítását: állapotgép, ARMA modell.}{60}{}%
