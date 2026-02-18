@@ -2,8 +2,8 @@
 
 \noindent \textbf{Villamos rendszer:}
 \begin{itemize}
-    \item $\phi: i$ -- áramerősség [A]
-    \item $\chi: u$ -- feszültség [V]
+    \item $\phi$: $i$ -- áramerősség [A]
+    \item $\chi$: $u$ -- feszültség [V]
     \item energiatárolók:
     \begin{itemize}
         \item[] $ E_\chi = \int Q du = \int C u du = \frac{1}{2} C u^2 $
@@ -24,16 +24,13 @@
     \end{itemize}
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_elec_tetrahedron.png}
-\end{figure}
+% [Villamos rendszer diagram helye]
 
 \newpage
 \noindent \textbf{Mechanikai haladó:}
 \begin{itemize}
-    \item $\phi: f$ -- erő [N]
-    \item $\chi: v$ -- sebesség [m/s]
+    \item $\phi$: $f$ -- erő [N]
+    \item $\chi$: $v$ -- sebesség [m/s]
     \item energiatárolók:
     \begin{itemize}
         \item[] $ E_\chi = \int I dv = \int m v dv = \frac{1}{2} m v^2 $
@@ -54,15 +51,12 @@
     \end{itemize}
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_mech_trans_tetrahedron.png}
-\end{figure}
+% [Mechanikai haladó diagram helye]
 
 \noindent \textbf{Mechanikai forgó:}
 \begin{itemize}
-    \item $\phi: M$ -- nyomaték [Nm]
-    \item $\chi: \omega$ -- szögsebesség [rad/s]
+    \item $\phi$: $M$ -- nyomaték [Nm]
+    \item $\chi$: $\omega$ -- szögsebesség [rad/s]
     \item energiatárolók:
     \begin{itemize}
         \item[] $ E_\chi = \int \pi d\omega = \int J \omega d\omega = \frac{1}{2} J \omega^2 $
@@ -85,16 +79,13 @@
 
 \noindent $\dot{\pi} = M$ \hfill $[J] = \text{kgm}^2$ \hfill $[k] = \frac{\text{Nm}}{\text{rad}}$ \hfill \textcolor{red}{3D-ben szögvektor NEM létezik!} \hfill $[\varphi] = \text{rad}$
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_21_mech_rot_tetrahedron.png}
-\end{figure}
+% [Mechanikai forgó diagram helye]
 
 \newpage
 \noindent \textbf{Áramlástechnikai:}
 \begin{itemize}
-    \item $\phi: q_v$ -- tömegáram/térfogatáram
-    \item $\chi: p_{12}$ -- nyomás
+    \item $\phi$: $q_v$ -- tömegáram/térfogatáram
+    \item $\chi$: $p_{12}$ -- nyomás
     \item energiatárolók:
     \begin{itemize}
         \item[] fluid kapacitás: $q_v = C_f \frac{dp_{12}}{dt}$
@@ -113,10 +104,7 @@
     \end{itemize}
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.35\textwidth]{res/imgs/mecha_21_fluid_tetrahedron.png}
-\end{figure}
+% [Áramlástechnikai diagram helye]
 \noindent nem igazán használt [q?]
 
 \noindent \textbf{hidraulikus rendszer kapacitás:}
@@ -128,17 +116,15 @@
     \fbox{$q_v = \frac{A}{\rho g} \frac{dp_{12}}{dt}$} \quad hidraulikus kapacitás $C_f$
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_21_pipe.png}
-\end{figure}
+% [Hidraulikus cső diagram helye]
 
-\begin{center}
-\begin{tabular}{c|c|c}
-    & Pneumatikus & Hidraulikus \\
-    \hline
-    kapacitás & $C_f = \frac{V}{\kappa p_1}$ & $C_f = \frac{A}{\rho g}$ \\
-    induktivitás & nincs & $L_f = \frac{\rho l}{A}$ \\
-    disszipatív elem & $R_f$ & $R_f$
-\end{tabular}
-\end{center}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c}
+        & Pneumatikus & Hidraulikus \\
+        \hline
+        kapacitás & $C_f = \frac{V}{\kappa p_1}$ & $C_f = \frac{A}{\rho g}$ \\
+        induktivitás & nincs & $L_f = \frac{\rho l}{A}$ \\
+        disszipatív elem & $R_f$ & $R_f$
+    \end{tabular}
+\end{table}
