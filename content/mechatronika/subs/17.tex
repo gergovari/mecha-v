@@ -37,3 +37,40 @@ $$ A_r \to P_r = A_r^2 $$
 $$ B = \lg(P_r) = \lg(A_r^2) \ [B] \text{ (bel)} $$
 $$ B = 10 \lg(P_r) \ [dB] \text{ (decibel)} $$
 $$ B = 10 \lg(A_r^2) = 20 \lg(A_r) \ [dB] $$
+
+\noindent \textbf{Diagramok:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/imgs/mecha_17_bode_axis.png}
+\end{figure}
+
+\begin{itemize}
+    \item a frekvencia-átviteli függvény szorzattagokra bontható
+    \item a diagram ezeknek a tagoknak a diagramjának az összegzésével kapható meg, bizonyítás:
+    \begin{itemize}
+        \item komplex szám másik alakja: $W(j\omega) = re^{i\varphi}$
+        \item szorzatokra bontható: $W(j\omega) = W_1(j\omega)W_2(j\omega)$
+        \item $W(j\omega) = r_1 e^{i\varphi_1} r_2 e^{i\varphi_2} = r_1 r_2 e^{i(\varphi_1 + \varphi_2)}$
+        \item $\lg(r_1 r_2) = \lg(r_1) + \lg(r_2)$
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Az alapelemek (általános alak):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/mecha_17_general_tf.png}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Arányos tag:} $W(s) = K$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_prop_tag.png}
+    \end{figure}
+
+    \item \textbf{Deriváló tag:} $W(s) = s \to W(j\omega) = j\omega$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_deriv_tag.png}
+    \end{figure}
+\end{itemize}
