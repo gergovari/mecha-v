@@ -1,1 +1,150 @@
 \subsection{Az operációs rendszer céljai, feladatai. Folyamatok kommunikációja. Ütemezési algoritmusok az operációs rendszerben. Termelő-fogyasztó probléma. Postaláda kezelés. Szemaforok.}
+
+\noindent \textbf{Operációs rendszer:}
+\begin{itemize}
+    \item egy program (rendszer), amely közvetítő szerepet játszik a számítógép felhasználója és a számítógép hardvere között
+    \item felhasználói programok végrehajtása, felhasználói feladatmegoldás könnyítése
+    \item a számítógép rendszer használatának kényelmesebbé tétele
+    \item a számítógép hardver kihasználásának hatékonyabbá tétele
+    \item koordinálja és vezérli a hardver erőforrások különböző felhasználók különböző programjai által történő használatát
+    \item \textbf{alkalmazói-programok:} hogyan legyenek felhasználva a rendszer erőforrások a felhasználók számítási problémáinak megoldásához
+    \item felhasználók: emberek, gépek, más számítógépek
+    \item részei:
+    \begin{itemize}
+        \item Kernel
+        \item Shell
+        \item Utility-k
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Kernel:}
+\begin{itemize}
+    \item memória rezidens főprogram
+    \item folyamat kezelés
+    \item memória kezelés
+    \item háttértár kezelés
+    \item I/O kezelés
+    \item fájl kezelés
+    \item védelmi rendszer
+    \item hálózat elérés támogatása
+\end{itemize}
+
+\noindent \textbf{Folyamat kezelés:}
+\begin{itemize}
+    \item folyamat: egy végrehajtás alatt lévő program
+    \item erőforrásokra van szüksége
+    \item operációs rendszer feladata:
+    \begin{itemize}
+        \item folyamat létrehozása, törlése
+        \item folyamat felfüggesztése, újraindítása (multitaszk)
+        \item eszközök biztosítása a folyamatok szinkronizációjához, kommunikációjához
+    \end{itemize}
+    \item folyamat általában műveletek végrehajtása meghatározott sorrendben
+    \item folyamat elkezdődik és befejeződik
+    \item a következő részművelet végrehajtása akkor kezdődhet, ha az előző befejeződött
+    \item op. rsz. több folyamatból áll
+    \item hatékonyabb erőforrás kihasználás
+    \item feladat végrehajtás gyorsítása
+    \item többféle feladat egyidejű végrehajtása
+\end{itemize}
+
+\noindent \textbf{Folyamatok típusai:}
+\begin{itemize}
+    \item független: egymás működését nem befolyásolják
+    \item versengő: nem ismerik egymást, de közös erőforrásokon kell osztozzanak
+    \item együttműködő: ismerik egymást, együtt dolgoznak egy feladat megoldásán, információt cserélnek
+\end{itemize}
+
+\noindent Több egymással párhuzamosan futó folyamat gyakran kommunikál közösen használt memóriaterületek segítségével. Ezek a területek nem érhetők el egyidejűleg a folyamatok számára. Az egyidejű hozzáférés kizárása \textbf{szemaforok} (bináris, nem bináris) segítségével történik.
+
+\noindent \textbf{Termelő-fogyasztó probléma:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/info_7_prod_cons.png}
+\end{figure}
+
+\begin{itemize}
+    \item a közös adatterületet egyszerre csak egy folyamat használhatja
+    \item kölcsönös kizárás esete nem csak közös memória esetén lép fel (pl. nyomtató közös használata)
+\end{itemize}
+
+\noindent \textbf{Megoldás: vezérlés szemafor segítségével:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/info_7_semaphore_solution.png}
+\end{figure}
+
+\begin{itemize}
+    \item mielőtt egy folyamat elkezdené használni az erőforrást, ellenőriznie kell, hogy az szabad-e
+    \item csak akkor kezdheti használni, ha a szemafor szabadot jelzett, egyébként vár
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{res/imgs/info_7_semaphore_flow.png}
+\end{figure}
+
+\begin{itemize}
+    \item kritikus szekció, kritikus szakasz, kritikus régió
+    \item oszthatatlan művelet: \textcolor{red}{P primitív}, \textcolor{green}{V primitív}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{res/imgs/info_7_pv_primitives.png}
+\end{figure}
+
+\begin{itemize}
+    \item P primitív: foglaltra állítás
+    \item V primitív: szabadra állítás
+\end{itemize}
+
+\noindent \textbf{Postaláda kezelés:}
+\begin{itemize}
+    \item postaláda: olyan közös adatterület, ahová egynél több üzenet írható
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{res/imgs/info_7_mailbox.png}
+\end{figure}
+
+\begin{itemize}
+    \item újabb szemaforok a vezérléshez:
+    \begin{itemize}
+        \item Tele
+        \item Üres
+    \end{itemize}
+    \item ezekben egész számot tárolunk
+    \item 3 db szemafor a vezérléshez:
+    \begin{itemize}
+        \item S: kölcsönös kizárást megvalósító szemafor (0 = foglalt, 1 = szabad)
+        \item Tele: tele helyek száma, nem bináris
+        \item Üres: üres helyek száma, nem bináris
+    \end{itemize}
+    \item \textcolor{red}{P primitív:} a paraméterül kapott szemafor értékének eggyel csökkentése (,,foglalt”)
+    \item \textcolor{green}{V primitív:} a paraméterül kapott szemafor értékének eggyel növelése (,,szabad”)
+\end{itemize}
+
+\noindent \textbf{Pszeudokód:}
+\begin{multicols}{2}
+\begin{itemize}
+    \item[] \textbf{Termelő:}
+    \item P(Üres);
+    \item P(S);
+    \item Írás a memóriába;
+    \item V(S);
+    \item V(Tele);
+\end{itemize}
+\columnbreak
+\begin{itemize}
+    \item[] \textbf{Fogyasztó:}
+    \item P(Tele);
+    \item P(S);
+    \item Olvasás a memóriából;
+    \item V(S);
+    \item V(Üres);
+\end{itemize}
+\end{multicols}
