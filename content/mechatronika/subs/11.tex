@@ -1,1 +1,15 @@
 \subsection{Igazolja a Dirac impulzus és az egységugrás függvény Laplace transzformáltjait!}
+
+\noindent \textbf{Dirac impulzus:}
+\begin{itemize}
+    \item végtelen nagy impulzus végtelen kicsi idő alatt
+    $$ \delta(t, \tau) = \begin{cases} 0, \text{ ha } t \neq \tau \\ \infty, \text{ ha } t = \tau \end{cases} $$
+    \item MOGI -- rendszertechnika jegyzet: 3.15:
+    $$ \int_{-\infty}^\infty \delta(t) dt = 1 $$
+    \item a Dirac impulzus Laplace-transzformáltja:
+    $$ \mathcal{L}\{\delta(t)\} = \int_0^\infty \delta(t) e^{-st} dt = e^{-s \cdot 0} = 1 $$
+\end{itemize}
+
+\noindent \textbf{Egységugrás:}
+$$ \varepsilon(t) = \begin{cases} 0, \text{ ha } t < 0 \\ 1, \text{ ha } t \geq 0 \end{cases} $$
+$$ \mathcal{L}\{\varepsilon(t)\} = \int_0^\infty \varepsilon(t) e^{-st} dt = \int_0^\infty 1 \cdot e^{-st} dt = \left[ -\frac{1}{s} e^{-st} \right]_0^\infty = 0 - \left( -\frac{1}{s} e^0 \right) = \frac{1}{s} $$
