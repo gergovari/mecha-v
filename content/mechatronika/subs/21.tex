@@ -26,3 +26,52 @@
     \centering
     \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_elec_tetrahedron.png}
 \end{figure}
+
+\newpage
+\noindent \textbf{Mechanikai haladó:}
+\begin{itemize}
+    \item $\Phi$: $f$ -- erő [N]
+    \item $\chi$: $v$ -- sebesség [m/s]
+    \item \textbf{energiatárolók:}
+    $$ E_\chi = \int I dv = \int m v dv = \frac{1}{2} m v^2 $$
+    $$ E_\Phi = \int f dx = \int kx dx = \frac{1}{2} k x^2 $$
+    \item \textbf{disszipatív elem:}
+    \begin{itemize}
+        \item viszkózus csillapítási tényező
+        \item $f = bv$
+        \item $[b] = \text{Ns/m}$
+    \end{itemize}
+    \item \textbf{további elemek:}
+    \begin{itemize}
+        \item $I$ -- lendület [Ns] = [kg m/s]
+        \item $x$ -- elmozdulás [m]
+        \item $k$ -- rugómerevség [N/m]
+        \item $m$ -- tömeg [kg]
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_mech_trans_tetrahedron.png}
+\end{figure}
+
+\noindent \textbf{Mechanikai forgó:}
+\begin{itemize}
+    \item $\Phi$: $M$ -- nyomaték [Nm]
+    \item $\chi$: $\omega$ -- szögsebesség [rad/s]
+    \item \textbf{energiatárolók:}
+    $$ E_\chi = \int \pi d\omega = \int J \omega d\omega = \frac{1}{2} J \omega^2 $$
+    $$ E_\Phi = \int M d\varphi = \int k \varphi d\varphi = \frac{1}{2} k \varphi^2 $$
+    \item \textbf{disszipatív elem:}
+    \begin{itemize}
+        \item viszkózus csillapítási tényező
+        \item $M = B\omega$
+        \item $[B] = \text{Nms/rad}$
+    \end{itemize}
+    \item \textbf{további elemek:}
+    \begin{itemize}
+        \item $\pi$ -- perdület [Nms]
+        \item $\varphi$ -- szögelfordulás [rad]
+        \item $k$ -- torziós rugómerevség [Nm/rad]
+    \end{itemize}
+\end{itemize}
