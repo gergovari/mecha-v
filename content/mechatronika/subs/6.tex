@@ -1,1 +1,32 @@
 \subsection{Ismertess diszkrét rendszerek z eltolási operátorral való képzését! Írja fel az ARMA-alakból az impulzusátviteli függvény képzését!}
+
+\noindent \textbf{Eltolási operátor - z:}
+\begin{itemize}
+    \item egy adatot a jövőbe tol, ezt nem lehet mindig megvalósítani (csak egy múltbeli adatot tudunk a saját jövőjébe tolni), de az inverzének a megvalósítása könnyű
+    \item az eltolási operátor inverze egy időkésleltető elem:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex, thick]
+            \node [coordinate] (input) {};
+            \node [draw, rectangle, right=1cm of input, minimum height=2em, minimum width=2em] (delay) {$\frac{1}{z}$};
+            \node [coordinate, right=1cm of delay] (output) {};
+
+            \draw [->] (input) -- node [above] {$x[k]$} (delay);
+            \draw [->] (delay) -- node [above] {$x[k-1]$} (output);
+        \end{tikzpicture}
+    \end{figure}
+    \item az eltolási operátor alkalmazása:
+    \begin{align*}
+        x[k+i] &= z^i x[k] \\
+        z^{-i} x[k+i] &= x[k] \\
+        z^{-i} x[k] &= x[k-i]
+    \end{align*}
+    \item az ARMA-modell algebrai alakja:
+    $$ y[k] = \sum_{i=0}^{r} b_{di} u[k-i] - \sum_{i=1}^{n} a_{di} y[k-i] $$
+    \item ARMA-modell az eltolási operátorral:
+    $$ y[k] = \sum_{i=0}^{r} z^{-i} b_{di} u[k] - \sum_{i=1}^{n} z^{-i} a_{di} y[k] $$
+    \item átrendezve:
+    $$ \sum_{i=0}^{n} z^{-i} a_{di} y[k] = \sum_{i=0}^{r} z^{-i} b_{di} u[k] \quad a_{d0}=1 $$
+    \item be- és kimeneti összefüggés eltolási operátorral, ahol $w(z)$ az impulzus átviteli függvény:
+    $$ y(z) = \frac{\sum_{i=0}^{r} z^{-i} b_{di}}{\sum_{i=0}^{n} z^{-i} a_{di}} u(z) = w(z) u(z) \quad a_{d0}=1 $$
+\end{itemize}
