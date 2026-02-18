@@ -1,2 +1,56 @@
 \subsection{Ismertesse az alábbi fogalmakat: linearitás, statikus/dinamikus rendszer, időinvariáns/idővariáns rendszer, folytonos/diszkrét idejű rendszer, koncentrált/elosztott paraméterű modell!}
-asdasd
+
+\noindent \textbf{Linearitás:}
+\begin{itemize}
+    \item érvényes a szuperpozíció elve
+    \item matematikai szemmel 2 feltétel:
+          \begin{itemize}
+              \item számmal szorzás
+              \item hatások összege
+          \end{itemize}
+    \item ha a rendszer $u_i$ gerjesztésre $y_i$ választ ad és $u_j$ gerjesztésre $y_j$ választ ad, akkor $u_i$ és $u_j$ lineáris kombinációjára $y_i$ és $y_j$ lineáris kombinációját adja
+          $$u = \lambda_i u_i + \lambda_j u_j \rightarrow y = \lambda_i y_i + \lambda_j y_j$$
+    \item nem linearitás feloldása: munkaponti linearizálás
+\end{itemize}
+
+\noindent \textbf{Statikus/dinamikus rendszer:}
+\begin{itemize}
+    \item statikus:
+          \begin{itemize}
+              \item bármely pillanatban a bemenő jelek pillanatnyi értékei meghatározzák az adott pillanatban kimenő jelek értékeit – pl. lámpa fel-le kapcsolva
+          \end{itemize}
+    \item dinamikus:
+          \begin{itemize}
+              \item valós fizikai rendszerek működésének időbeli lefolyását is leírják, jellemzően idő szerinti differenciálegyenletek segítségével – pl. rezgéstani példák
+              \item memória jelleggel rendelkeznek
+          \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Időinvariáns/idővariáns rendszer:}
+\begin{itemize}
+    \item ha a rendszer $u(t)$ bemenetre $y(t)$ kimenetet ad és $u(t-\tau)$ bemenetre $y(t-\tau)$ kimenetet ad, akkor a rendszer időinvariáns – pl. fékrendszer: ahogy melegszik, változik a súrlódás
+    \item „ma, holnap és két év múlva is ugyanúgy viselkedik”
+\end{itemize}
+
+\noindent \textbf{Folytonos/diszkrét idejű rendszer:}
+\begin{itemize}
+    \item folytonos idejű:
+          \begin{itemize}
+              \item $u(t)$ és $y(t)$ egy vizsgált $[T_a, T_b] \subseteq \mathbb{R}$ időintervallumban minden időpontban értelmezve van: $t \in [T_a, T_b] \subseteq \mathbb{R}$
+          \end{itemize}
+    \item diszkrét idejű:
+          \begin{itemize}
+              \item $u(t)$ és $y(t)$ csak diszkrét $t = T_k, k \in \mathbb{N}, t \in \{..., T_{-k}, ..., T_{-1}, T_0, T_1, ..., T_k, ...\}$ időpontok sorozatában van értelmezve, ahol: $T_{k-1} < T_k < T_{k+1}$
+              \item általában $T_k = k \cdot T_s$, ahol $T_s$ a mintavételezési idő
+              \item $u[k] := u(T_k)$
+              \item $y[k] := y(T_k)$
+          \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Koncentrált/elosztott paraméterű modell:}
+\begin{itemize}
+    \item koncentrált paraméterű leírás:
+          \begin{itemize}
+              \item a vizsgált valós fizikai rendszer összefüggéseit azok jellegétől függően egy adott térrészben összegezzük, vagy kiátlagoljuk, és egyetlen egyenlettel helyettesítjük
+          \end{itemize}
+\end{itemize}

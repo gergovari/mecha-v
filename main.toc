@@ -3,6 +3,10 @@
 \contentsline {subsection}{\numberline {1.1}Hasonlítsa össze a vezérlést és a szabályozást: a hatáslánc jellege, zavarjelekkel szembeni ellenállás, a mért mennyiség fajtája, reakció idő, illetve az irányításhoz felhasznált eszközök költsége szerint!}{1}{}%
 \contentsline {subsection}{\numberline {1.2}Ismertesse az alábbi fogalmakat: linearitás, statikus/dinamikus rendszer, időinvariáns/idővariáns rendszer, folytonos/diszkrét idejű rendszer, koncentrált/elosztott paraméterű modell!}{2}{}%
 \contentsline {subsection}{\numberline {1.3}Hasonlítsa össze a rendszereket a leírt állapotváltozók (dimenzió) száma (véges/végtelen), valamint annak diszkrét/folytonos jellege szerint!}{3}{}%
+\contentsline {paragraph}{A rendszer dimenziója:}{3}{}%
+\contentsline {paragraph}{Diszkrét/folytonos jelleg:}{3}{}%
+\contentsline {paragraph}{Diszkrét idejű folytonos értékű rendszer:}{3}{}%
+\contentsline {paragraph}{Folytonos idejű folytonos értékű rendszer:}{3}{}%
 \contentsline {subsection}{\numberline {1.4}Írja fel a diszkrét idejű állapottér modell általános algebrai alakját, magyarázó ábrával szemléltesse! Ismertesse az összefüggésben szereplő együtthatók szerepét!}{4}{}%
 \contentsline {subsection}{\numberline {1.5}Írja fel a diszkrét rendszerek be-kimeneti modellezését reprezentáló ARMA-alakját!}{5}{}%
 \contentsline {subsection}{\numberline {1.6}Ismertess diszkrét rendszerek z eltolási operátorral való képzését! Írja fel az ARMA-alakból az impulzusátviteli függvény képzését!}{6}{}%
