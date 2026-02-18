@@ -1,1 +1,27 @@
 \subsection{Vezesse le a lineáris idő invariáns (LTI) rendszerek folytonos idejű állapottér modelljének megoldását Laplace transzformáció segítségével!}
+
+\begin{itemize}
+    \item $u(t)$ bemenet, $y(t)$ kimenet, valamint az őket összekapcsoló folytonos idejű matematikai modell
+    \item Laplace transzformációt végzünk
+    \item $U(s)$ bemenet, $Y(s)$ kimenet, valamint az őket összekapcsoló Laplace tartománybeli matematikai modell
+    \item $W(s)$ átviteli függvényt kirendezzük, $U(s)$-sel szorozzuk
+    \item Inverz Laplace transzformáció
+    \begin{itemize}
+        \item ismert elemekre bontás, melyeknek ismerjük az inverz Laplace transzformáltját
+        \item parciális törtekre bontás
+        \item polinomosztás -- ha a nevező és a számláló fokszáma azonos
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Példa:}
+\begin{itemize}
+    \item az állapottérmodellünk egy $\dot{x}(t)$ differenciálegyenlet, $x(0)$ kezdeti értékkel
+    \item Laplace transzformáljuk:
+    $$ \mathcal{L}\{\dot{x}(t)\} = sX(s) - x(0) $$
+    \item fejezzük ki $X(s)$-t:
+    $$ X(s) = \dots $$
+    \item behelyettesítjük a kezdeti értékeket, illetve a többi megadott adatot
+    \item inverz Laplace transzformáljuk:
+    $$ x(t) = \mathcal{L}^{-1}\{X(s)\} = \dots $$
+    \item megkapjuk a megoldást
+\end{itemize}
