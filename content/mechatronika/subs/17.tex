@@ -73,4 +73,32 @@ $$ B = 10 \lg(A_r^2) = 20 \lg(A_r) \ [dB] $$
         \centering
         \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_deriv_tag.png}
     \end{figure}
+
+    \item \textbf{integráló tag:} $W(s) = \frac{1}{s} \to W(j\omega) = \frac{1}{j\omega} = -j\frac{1}{\omega}$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_integ_tag.png}
+    \end{figure}
+
+    \item \textbf{tiszta pólus:} $W(s) = \frac{1}{1+sT} \to W(j\omega) = \frac{1-j\omega T}{1+\omega^2 T^2}$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{res/imgs/mecha_17_real_pole.png}
+    \end{figure}
+
+    \item \textbf{tiszta zérus:} $W(s) = 1 + sT \to W(j\omega) = 1 + j\omega T$
+    \begin{itemize}
+        \item tiszta pólus esetén kapott eredmények tükrözése y tengelyre
+    \end{itemize}
+
+    \item \textbf{komplex póluspár:} $W(s) = \frac{\omega_n^2}{s^2+2\zeta\omega_n s + \omega_n^2} \to W(j\omega) = \frac{\omega_n^2}{-\omega^2+2\zeta\omega_n \omega j + \omega_n^2}$
+    $$ W(j\omega) = \frac{1}{1 - \frac{\omega^2}{\omega_n^2} + \frac{2\zeta\omega j}{\omega_n}} $$
+    \begin{itemize}
+        \item frekvenciahányados: $\lambda = \frac{\omega}{\omega_n}$
+    \end{itemize}
+    $$ W(j\omega) = \frac{1 - \lambda^2 - 2\zeta\lambda j}{((1 - \lambda^2)^2 + 4\zeta^2\lambda^2)^2} $$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{res/imgs/mecha_17_complex_pole.png}
+    \end{figure}
 \end{itemize}
