@@ -1,0 +1,16 @@
+\newcounter{questionNum}
+\newcommand{\loopQuestions}[1]{%
+    \IfFileExists{content/#1/subs/\thequestionNum.tex}{%
+        \input{content/#1/subs/\thequestionNum.tex}%
+        \stepcounter{questionNum}%
+        % Check if the NEXT file exists
+        \IfFileExists{content/#1/subs/\thequestionNum.tex}{%
+            \newpage
+            \loopQuestions{#1}% Recurse with the parameter
+        }{}%
+    }{}%
+}
+\newcommand{\inputSubs}[1]{%
+    \setcounter{questionNum}{1}% Always start at 1
+    \loopQuestions{#1}% Start the loop
+}
