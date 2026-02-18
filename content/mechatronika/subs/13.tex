@@ -1,1 +1,41 @@
 \subsection{Ismertesse az egytárolós arányos tag súly és átmeneti függvényeit! Válaszában térjen ki az időállandó fogalmára!}
+
+\noindent \textbf{Arányos egytárolós tag -- PT1:}
+$$ W(s) = \frac{A}{s-p_1} = \frac{K}{1+sT} $$
+
+\noindent \textbf{Arányos egytárolós tag súlyfüggvénye:}
+\begin{itemize}
+    \item az egységimpulzusra ($\delta(t)$-re) adott válasz
+    \item $u(t) = \delta(t) \rightarrow U(s) = 1$
+    $$ Y(s) = W(s)U(s) = \frac{K}{1+sT} \cdot 1 $$
+    \item a kérdés: $y(t) = w(t) = ?$
+    $$ y(t) = w(t) = \frac{K}{T} \mathcal{L}^{-1} \left\{ \frac{1}{s + \frac{1}{T}} \right\} = \frac{K}{T} e^{-\frac{t}{T}} \varepsilon(t) $$
+    \item grafikusan ábrázolva:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_13_weight_func.png}
+    \end{figure}
+\end{itemize}
+
+\noindent \textbf{Arányos egytárolós tag átmeneti függvénye:}
+\begin{itemize}
+    \item egységugrásra ($\varepsilon(t)$-re) adott válasz
+    \item $u(t) = \varepsilon(t) \rightarrow U(s) = 1/s$
+    $$ Y(s) = W(s)U(s) = \frac{K}{1+sT} \frac{1}{s} $$
+    \item a kérdés: $y(t) = v(t) = ?$
+    $$ y(t) = v(t) = \mathcal{L}^{-1} \left\{ \frac{K}{(1+sT)s} \right\} = K \mathcal{L}^{-1} \left\{ \frac{1}{T(s+\frac{1}{T})s} \right\} = \frac{K}{T} \mathcal{L}^{-1} \left\{ \frac{A}{s} + \frac{B}{s + \frac{1}{T}} \right\} $$
+    $$ A = T, \quad B = -T $$
+    $$ v(t) = K \mathcal{L}^{-1} \left\{ \frac{1}{s} - \frac{1}{s + \frac{1}{T}} \right\} = K \left( 1 - e^{-\frac{t}{T}} \right) \varepsilon(t) $$
+    \item grafikusan ábrázolva:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_13_step_func.png}
+    \end{figure}
+\end{itemize}
+
+\noindent \textbf{Az időállandó fogalma ($T$):}
+\begin{itemize}
+    \item Az az idő, amely alatt a rendszer válasza az egységugrásra eléri a végérték ($K$) $63.2\%$-át ($1-1/e$).
+    \item A súlyfüggvény értéke $t=T$ időpillanatban a kezdőérték $36.8\%$-ára ($1/e$) csökken.
+    \item A rendszer beállási ideje kb. $3T$ ($95\%$) vagy $5T$ ($99\%$).
+\end{itemize}
