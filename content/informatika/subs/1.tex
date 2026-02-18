@@ -1,1 +1,48 @@
-\subsection{A számítástudomány alapjai. Turing gép. Eljárások, algoritmusok.}
+\subsection{Mutassa be a Turing-gép felépítését és működését! Definiálja az eljárás (algoritmus) fogalmát!}
+
+\noindent \textbf{Elméleti számítástudomány:} matematikai \\
+\textbf{Számítástechnika:} elméleti és gyakorlati megvalósítás, technológia
+
+\noindent \textbf{Turing gép:} elméleti „számítógép”. Részei:
+\begin{itemize}
+    \item \textbf{végtelen, cellákra osztott szalag}
+    \begin{itemize}
+        \item egy cellában lehet szimbólum, vagy lehet üres
+        \item az adatok, műveletek, illetve eredmények cellái véges számúak, ezeken túl a szalag üres
+    \end{itemize}
+    \item \textbf{Író/olvasó fej:}
+    \begin{itemize}
+        \item egyszerre egy cellával foglalkozik
+        \item írhat, olvashat, törölhet
+        \item a szalagon jobbra/balra lépkedhet (változtatás nélkül)
+    \end{itemize}
+    \item \textbf{Vezérlőegység:}
+    \begin{itemize}
+        \item állapotai számozva
+        \item véges állapot (véges állapotú automata)
+        \item helyettesítési táblázat adja meg a működést
+        \begin{itemize}
+            \item állapot + művelet + adat $\to$ új állapot + eredmény + fejmozgás
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Turing gép:}
+\begin{itemize}
+    \item matematikailag 5-10 elemből álló szabályhalmaz
+    \item informatikailag:
+    \begin{itemize}
+        \item szalag = memória
+        \item vezérlőegység = CPU
+        \item fej = busz
+    \end{itemize}
+    \item alkalmas rekurzióra $\to$ veremtár (stack)
+\end{itemize}
+
+\noindent \textbf{Eljárások, algoritmusok:}
+\begin{itemize}
+    \item emberi nyelven megfogalmazott feladat, cselekménysorozat
+    \item megoldási eljárás (,,algoritmus jelölt”), program írható
+    \item egy megoldási eljárás akkor \textbf{algoritmus}, ha \textbf{bármilyen} bemenet esetén \textbf{véges számú lépés} után eredményt kapunk (A Turing-gép megáll)
+    \item az algoritmusra nem létezik formális matematikai definíció
+\end{itemize}
