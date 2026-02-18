@@ -66,6 +66,10 @@ $$ y(z)(w_1(z) + w_2(z))u_1(z) = w_e(z)u_1(z) $$
         \centering
         \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_01_neg_feedback.png}
     \end{figure}
+    $$ x_{\text{előre}}(z) = u_1(z) - x_{\text{hátra}}(z) = u_1(z) - w_2(z)y_1(z) $$
+    $$ y_1(z) = x_{\text{előre}}(z)w_1(z) \rightarrow x_{\text{előre}}(z) = \frac{y_1(z)}{w_1(z)} $$
+    $$ y_1(z) = u_1(z)w_1(z) - w_2(z)w_1(z)y_1(z) $$
+    $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 + w_1(z)w_2(z)} $$
     
     \item pozitív visszacsatolás:
     \begin{figure}[H]
@@ -74,7 +78,7 @@ $$ y(z)(w_1(z) + w_2(z))u_1(z) = w_e(z)u_1(z) $$
     \end{figure}
     \begin{itemize}
         \item a negatív visszacsatoláshoz hasonlóan levezethető, az eredmény:
-        $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 + w_1(z)w_2(z)} $$
+        $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 - w_1(z)w_2(z)} $$
     \end{itemize}
     \item elágazási pont áthelyezése a tag mögé:
     \begin{figure}[H]
