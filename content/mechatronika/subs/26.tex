@@ -1,1 +1,59 @@
-\subsection{Egy adott, tanult példa (golyósorsó és vonóelem) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}
+\subsection{Egy adott, tanult példa (golyóorsó, vonóelem) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Milyen feltételek teljesülése esetén és hogyan lehet csatolt kétpólus elemmel összekapcsolt rendszereket egy oldalra redukálni? Válaszában térjen ki a rendszerek közötti átjárásokat biztosító fizikai összefüggésekre is!}
+
+\noindent \textbf{Golyóorsó:}
+
+% [Diagram: Golyóorsó felépítése]
+
+\begin{itemize}
+    \item \textbf{fizikai összefüggés:} amíg az orsó egy teljes fordulatot ($2\pi$ radián) megtesz, addig az anya $h$-t halad rajta: $\varphi = \frac{2\pi}{h}x \to \frac{d}{dt} \to \omega = \frac{2\pi}{h}v$
+    \item akkor lehet a kapcsolt kétpólus oldalait redukálni, ha:
+    \begin{itemize}
+        \item veszteségmentes: $P_{\text{be}} = P_{\text{ki}}$, előjelkonvenció miatt $P_{\text{be}} + P_{\text{ki}} = 0$
+        \item lineáris, statikus rendszer -- algebrai egyenletekkel leírható
+    \end{itemize}
+    \item \textbf{így a transzformátor kapcsolóegyenletei:}
+    $$ \omega = \frac{2\pi}{h}v, \quad M = (-) \frac{h}{2\pi}f $$
+    \item \textbf{struktúragráf:}
+\end{itemize}
+
+% [Diagram: Golyóorsó struktúragráfja]
+
+\begin{itemize}
+    \item \textbf{impedanciahálózat:}
+\end{itemize}
+
+% [Diagram: Golyóorsó impedanciahálózata]
+
+\begin{itemize}
+    \item \textbf{impedanciák redukálása:}
+    $$ Z_{\text{forgó}} = \frac{\Omega}{M} = \left( \frac{2\pi}{h} \right)^2 \frac{v}{f} = \left( \frac{2\pi}{h} \right)^2 Z_{\text{haladó}} $$
+\end{itemize}
+
+\newpage
+
+\noindent \textbf{Vonóelem:}
+
+% [Diagram: Vonóelem felépítése - egyszerű]
+% [Diagram: Vonóelem felépítése - rugalmas ágak]
+
+\begin{itemize}
+    \item \textbf{fizikai összefüggés:}
+    \item de mivel az ágaknak van rugómerevségük, muszáj két transzformátorral dolgozni: $\Omega_1 = \frac{1}{r_1}v_1$, majd $v_2 = r_2 \Omega_2$
+    \item a húzott ág rugómerevségét megkülönböztetjük a tehetetlentől, de ezek a struktúragráfon összevonhatók: $k_e = k_T + k_{\text{sz}}$ (párhuzamos rugók eredője)
+    \item \textbf{struktúragráf:}
+\end{itemize}
+
+% [Diagram: Vonóelem struktúragráfja]
+
+\begin{itemize}
+    \item $v_m$-et közelítsük $v_{k2}$-vel
+    \item így lesz egy eredő rugómerevségünk: $k_3$ párhuzamosan van kötve soros $k_1$ és $k_2$-vel
+    \item \textbf{impedanciahálózat:}
+\end{itemize}
+
+% [Diagram: Vonóelem impedanciahálózata]
+
+\begin{itemize}
+    \item \textbf{impedanciák redukálása:}
+    $$ Z_{\text{haladó}} = \frac{r\Omega}{\frac{1}{r} M} = r^2 Z_{\text{forgó}} $$
+\end{itemize}
