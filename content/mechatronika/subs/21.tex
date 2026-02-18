@@ -75,3 +75,55 @@
         \item $k$ -- torziós rugómerevség [Nm/rad]
     \end{itemize}
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{res/imgs/mecha_21_mech_rot_tetrahedron.png}
+\end{figure}
+
+\newpage
+\noindent \textbf{Áramlástechnikai:}
+\begin{itemize}
+    \item $\Phi$: $q_v$ -- tömegáram/térfogatáram
+    \item $\chi$: $p_{12}$ -- nyomás
+    \item \textbf{energiatárolók:}
+    \begin{itemize}
+        \item fluid kapacitás: $q_v = C_f \frac{dp_{12}}{dt}$
+        \item fluid induktivitás: $q_v = \int_{T_1}^{T_2} \frac{1}{L_f} p dt$
+    \end{itemize}
+    \item \textbf{disszipatív elem:}
+    \begin{itemize}
+        \item fluid ellenállás
+        \item $q_v = \frac{1}{R_f} p_{12}$
+    \end{itemize}
+    \item \textbf{áramlástechnikai (fluid) rendszerek:}
+    \begin{itemize}
+        \item hidraulikus: nem összenyomható közeg
+        \item pneumatikus: összenyomható közeg, légköri nyomásnál nagyobb nyomás
+        \item akusztikus: összenyomható közeg, légköri nyomás
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{res/imgs/mecha_21_fluid_tetrahedron.png}
+\end{figure}
+
+\noindent \textbf{Hidraulikus rendszer kapacitás (nyitott tartály):}
+\begin{itemize}
+    \item tápnyomás: $p_t = \rho g h$
+    \item beáramlás: $q_v = \frac{dV}{dt} = A v \to V = A h \to \frac{dV}{dt} = A \frac{dh}{dt}$
+    $$ \frac{dp}{dt} = \rho g \frac{dh}{dt} \to \frac{dp}{dt} = \rho g \frac{1}{A} \frac{dV}{dt} $$
+    $$ q_v = \frac{A}{\rho g} \frac{dp_{12}}{dt} \implies C_f = \frac{A}{\rho g} $$
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_21_pipe.png}
+\end{figure}
+
+\noindent \textbf{Paraméterek összehasonlítása:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{res/imgs/mecha_21_fluid_params.png}
+\end{figure}
