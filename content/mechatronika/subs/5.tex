@@ -22,86 +22,108 @@
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}[auto, node distance=1.5cm, >=latex, thick]
-        % Input u[k]
+    \begin{tikzpicture}[auto, >=latex, thick]
+        % Define styles
+        \tikzstyle{block} = [draw, rectangle, minimum height=1.5em, minimum width=1.5em]
+        \tikzstyle{sum} = [draw, rectangle, minimum height=2em, minimum width=1.5em]
+        \tikzstyle{container} = [draw, rectangle, inner sep=0.3cm]
+
+        % Input
         \node [coordinate] (input) {};
-        \node [coordinate, right=1.5cm of input] (split_u) {};
         
-        % MA subsystem (top part)
-        \node [draw, rectangle, right=1.5cm of split_u] (bd0) {$b_{d0}$};
+        % Split point for u[k]
+        \node [coordinate, right=2cm of input] (split_u) {};
         
-        \node [draw, rectangle, below=0.8cm of split_u] (uk1) {$u[k-1]$};
-        \node [draw, rectangle, below=0.1cm of uk1] (uk2) {$u[k-2]$};
-        \node [below=0.1cm of uk2] (ukdots) {$\vdots$};
-        \node [draw, rectangle, below=0.1cm of ukdots] (ukr) {$u[k-r]$};
+        % b_d0 block (top)
+        \node [block, right=1.5cm of split_u] (bd0) {$b_{d0}$};
         
-        \node [draw, rectangle, right=1.5cm of uk1] (bd1) {$b_{d1}$};
-        \node [draw, rectangle, right=1.5cm of uk2] (bd2) {$b_{d2}$};
-        \node [draw, rectangle, right=1.5cm of ukr] (bdr) {$b_{dr}$};
+        % Shift Register U (box with content)
+        \node [below=1cm of split_u, align=left] (shiftU_content) {
+            $u[k-1]$ \\[0.3cm]
+            $u[k-2]$ \\[0.3cm]
+            $\vdots$ \\[0.3cm]
+            $u[k-r]$
+        };
+        \node [container, fit=(shiftU_content)] (shiftU) {};
         
-        % Summation MA
-        \node [draw, rectangle, right=2cm of bd1, minimum height=3cm] (sumMA) {$\Sigma$};
+        % Arrows into Shift Register U
+        \draw [->] (split_u) -- (shiftU.north);
         
-        % Arrows MA
-        \draw [->] (input) -- node [above] {$u[k]$} (split_u) -- (bd0);
-        \draw [->] (split_u) -- (uk1);
-        \draw [->] (uk1) -- (bd1);
-        \draw [->] (uk2) -- (bd2);
-        \draw [->] (ukr) -- (bdr);
+        % Coefficient blocks b_d
+        % We manually position them relative to the lines in the shift register for alignment
+        % It's easier to define coordinates relative to shiftU_content
+        \node [block, right=1.5cm of shiftU_content.north east, anchor=west, yshift=-0.3cm] (bd1) {$b_{d1}$};
+        \node [block, right=1.5cm of shiftU_content.east, anchor=west, yshift=0.3cm] (bd2) {$b_{d2}$}; % Approx
+        \node [block, right=1.5cm of shiftU_content.south east, anchor=west, yshift=0.3cm] (bdr) {$b_{dr}$};
         
-        \draw [->] (bd0) -| (sumMA.130);
+        % Connect Shift U to b blocks
+        % Using specific anchors on the content node if possible, or manual offsets
+        \draw [->] (shiftU.north east) ++(0,-0.6cm) -- (bd1.west); 
+        \draw [->] (shiftU.north east) ++(0,-1.4cm) -- (bd2.west);
+        \draw [->] (shiftU.south east) ++(0,0.6cm) -- (bdr.west);
+
+        % Sum MA
+        \node [sum, right=1.5cm of bd2] (sumMA) {$\Sigma$};
+        \node [above=0.1cm of sumMA] {összegző};
+        
+        \draw [->] (bd0) -| (sumMA.north);
         \draw [->] (bd1) -- (sumMA.160);
-        \draw [->] (bd2) -- (sumMA.185);
+        \draw [->] (bd2) -- (sumMA.180);
         \draw [->] (bdr) -- (sumMA.230);
         
-        % Output Summation
-        \node [draw, rectangle, right=1cm of sumMA, minimum height=1cm] (sumOut) {$\Sigma$};
-        \node [coordinate, right=1.5cm of sumOut] (output) {};
-        
-        \draw [->] (sumMA) -- (sumOut);
-        \draw [->] (sumOut) -- node [above] {$y[k]$} (output);
-        
-        % AR subsystem (bottom part)
-        \node [coordinate, right=0.5cm of sumOut] (split_y) {};
-        
-        \node [draw, rectangle, below=3.5cm of uk1] (yk1) {$y[k-1]$};
-        \node [draw, rectangle, below=0.1cm of yk1] (yk2) {$y[k-2]$};
-        \node [below=0.1cm of yk2] (ykdots) {$\vdots$};
-        \node [draw, rectangle, below=0.1cm of ykdots] (ykn) {$y[k-n]$};
-        
-        \node [draw, rectangle, right=1.5cm of yk1] (ad1) {$a_{d1}$};
-        \node [draw, rectangle, right=1.5cm of yk2] (ad2) {$a_{d2}$};
-        \node [draw, rectangle, right=1.5cm of ykn] (adn) {$a_{dn}$};
-        
-        % Summation AR (negative)
-        \node [draw, rectangle, right=2cm of ad1, minimum height=3cm] (sumAR) {$-\Sigma$};
-        
-        % Arrows AR
-        \draw [->] (output) -- ++(0, -7.5) -| (yk1); % Feedback loop approximate placement
-        \path (output) -- ++(0, -7.5) coordinate (feedback_bottom);
-        \draw [->] (feedback_bottom) -| (yk1); % Rerouting properly
-        % Let's try a cleaner feedback path
-        \draw [->] (split_y) |- ($(ykn.south) + (0, -0.5)$) -- (ykn.south); % Not quite right, need to feed into shift register top
-        
-        % Redoing feedback path
-        \draw [->] (split_y) |- ($(yk1.north) + (0, 0.5)$) -- (yk1.north);
+        % Global Input Line
+        \draw [->] (input) -- node [above] {$u[k]$} (split_u) -- (bd0);
 
-        \draw [->] (yk1) -- (ad1);
-        \draw [->] (yk2) -- (ad2);
-        \draw [->] (ykn) -- (adn);
+        % Final Sum
+        \node [sum, below right=1cm and 1cm of sumMA] (sumFinal) {$\Sigma$};
+        \draw [->] (sumMA) -| (sumFinal.130);
+        
+        % Output
+        \node [coordinate, right=2cm of sumFinal] (output) {};
+        \draw [->] (sumFinal) -- node [above] {$y[k]$} (output);
+        
+        % Feedback path point
+        \node [coordinate, right=0.5cm of sumFinal] (split_y) {};
+        
+        % Shift Register Y (bottom)
+        \node [below=4cm of shiftU_content, align=left] (shiftY_content) {
+            $y[k-1]$ \\[0.3cm]
+            $y[k-2]$ \\[0.3cm]
+            $\vdots$ \\[0.3cm]
+            $y[k-n]$
+        };
+        \node [container, fit=(shiftY_content)] (shiftY) {};
+        
+        % Feedback arrow
+        \draw [->] (split_y) |- (shiftY.north);
+        
+        % Coefficient blocks a_d
+        \node [block, right=1.5cm of shiftY_content.north east, anchor=west, yshift=-0.3cm] (ad1) {$a_{d1}$};
+        \node [block, right=1.5cm of shiftY_content.east, anchor=west, yshift=0.3cm] (ad2) {$a_{d2}$};
+        \node [block, right=1.5cm of shiftY_content.south east, anchor=west, yshift=0.3cm] (adn) {$a_{dn}$};
+        
+        % Connect Shift Y to a blocks
+        \draw [->] (shiftY.north east) ++(0,-0.6cm) -- (ad1.west);
+        \draw [->] (shiftY.north east) ++(0,-1.4cm) -- (ad2.west);
+        \draw [->] (shiftY.south east) ++(0,0.6cm) -- (adn.west);
+        
+        % Sum AR (negative)
+        \node [sum, right=1.5cm of ad2] (sumAR) {$-\Sigma$};
+        \node [below=0.1cm of sumAR] {összegző};
         
         \draw [->] (ad1) -- (sumAR.160);
-        \draw [->] (ad2) -- (sumAR.185);
+        \draw [->] (ad2) -- (sumAR.180);
         \draw [->] (adn) -- (sumAR.230);
         
-        \draw [->] (sumAR) -| (sumOut);
+        % Connect Sum AR to Final Sum
+        \draw [->] (sumAR) -| (sumFinal.230);
         
         % Labels
-        \node [above right=0.1cm of bd0] {MA alrendszer};
-        \node [below right=0.1cm of adn] {AR alrendszer};
-        \node [below=0.1cm of ykn] {léptető memória};
-        \node [above=0.1cm of sumMA] {összegző};
-        \node [below=0.1cm of sumAR] {összegző};
+        \node [right=0.5cm of bd0] {MA alrendszer};
+        \node [right=0.5cm of adn] {AR alrendszer};
+        \node [below=0.1cm of shiftY] {léptető memória};
 
+        % Include library for fit if not already loaded (usually useful, but standard node works too)
+        % Using simple rectangle draw instead of fit library if not sure, but 'fit' is standard TikZ
     \end{tikzpicture}
 \end{figure}
