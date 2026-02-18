@@ -20,7 +20,7 @@
     \end{itemize}
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}
+        \begin{tikzpicture}[>=latex]
             \begin{axis}[
                 width=6cm, height=4cm,
                 axis lines=middle,
@@ -29,6 +29,9 @@
                 ymin=0, ymax=1.5,
                 xtick={-2,-1,0,1,2},
                 ytick={1},
+                axis line style={->},
+                every axis x label/.style={at={(ticklabel* cs:1.0)}, anchor=west},
+                every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south},
             ]
                 \addplot[black, thick, ycomb, mark=*] coordinates {(-2,0) (-1,0) (0,1) (1,0) (2,0)};
             \end{axis}
@@ -45,17 +48,20 @@
     \end{itemize}
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}
+        \begin{tikzpicture}[>=latex]
             \begin{axis}[
                 width=6cm, height=4cm,
                 axis lines=middle,
                 xlabel=$k$, ylabel={$\varepsilon[k]$},
-                xmin=-2.5, xmax=2.5,
+                xmin=-2.5, xmax=3.5,
                 ymin=0, ymax=1.5,
-                xtick={-2,-1,0,1,2},
+                xtick={-2,-1,0,1,2,3},
                 ytick={1},
+                axis line style={->},
+                every axis x label/.style={at={(ticklabel* cs:1.0)}, anchor=west},
+                every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south},
             ]
-                \addplot[black, thick, ycomb, mark=*] coordinates {(-2,0) (-1,0) (0,1) (1,1) (2,1)};
+                \addplot[green, thick, dashed, ycomb, mark=o, mark options={solid, black, thick}] coordinates {(-2,0) (-1,0) (0,1) (1,1) (2,1) (3,1)};
             \end{axis}
         \end{tikzpicture}
     \end{figure}
@@ -80,32 +86,43 @@
     
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}
+        \begin{tikzpicture}[>=latex]
             \begin{axis}[
                 width=8cm, height=5cm,
                 axis lines=middle,
-                xlabel=$K$, ylabel=\empty,
-                xmin=0, xmax=6,
+                xmin=-1, xmax=6,
                 ymin=0, ymax=1.5,
                 xtick={1, 5},
                 xticklabels={$i$, $K$},
-                ytick=\empty
+                ytick=\empty,
+                axis line style={->},
+                xlabel style={anchor=west}
             ]
-                % u[k] impulses (schematic representation)
-                \addplot[black!30, thin, ycomb, mark=o] coordinates {(1,0.5) (2,0.6) (3,0.4) (4,0.3) (5,0.4)};
-                
-                % Highlighted impulse at i
-                \draw[dashed, green!60!black] (axis cs:1,0) -- (axis cs:1,1.2) node[above, black] {$u[i]$};
+                % u[k] label on Y axis? No, the image has u[k] and w[k] labels floating
+                \node at (axis cs:-0.5, 1.4) {$u[k]$};
+                \node at (axis cs:-0.2, 1.4) {$w[k]$};
+                \draw[->] (axis cs:-0.2, 1.3) -- (axis cs:-0.2, 0.1); % Vertical arrow for axes? No, axis lines are already there.
+
+                % Plot points
+                \addplot[green, dashed, thin, ycomb, mark=o, mark options={solid, black}] coordinates {
+                    (1,0.5) (2,0.6) (3,0.4) (4,0.3) (5,0.4)
+                };
                 
                 % Labels
-                \node at (axis cs:0.5, 1) {$u[k]$};
-                \node at (axis cs:1.2, 0.9) {$w[k]$};
+                \node[above] at (axis cs:1, 0.5) {$u[i]$};
                 
-                % Arrows indicating contribution
-                \draw[->] (axis cs:1,0.5) -- (axis cs:1.5,0.7) node[right, font=\scriptsize] {$u[i]w[0]$};
-                \draw[->] (axis cs:2,0.6) -- (axis cs:2.5,0.8) node[right, font=\scriptsize] {$u[i]w[1]$};
-                \node at (axis cs:3.5, 0.7) {$\dots$};
-                \draw[->] (axis cs:5,0.4) -- (axis cs:4.5,0.6) node[left, font=\scriptsize] {$u[i]w[K-i]$};
+                % Arrows and text
+                \node[above right, font=\scriptsize] (lbl0) at (axis cs:1.2, 0.8) {$u[i]w[0]$};
+                \draw[->, gray] (lbl0) -- (axis cs:1.05, 0.55);
+                
+                \node[above right, font=\scriptsize] (lbl1) at (axis cs:2.2, 0.9) {$u[i]w[1]$};
+                \draw[->, gray] (lbl1) -- (axis cs:2.05, 0.65);
+                
+                \node at (axis cs:3.5, 0.8) {$\dots$};
+                
+                \node[above right, font=\scriptsize] (lblK) at (axis cs:5.0, 0.6) {$u[i]w[K-i]$};
+                \draw[->, gray] (lblK) -- (axis cs:5.05, 0.45);
+
             \end{axis}
         \end{tikzpicture}
     \end{figure}
