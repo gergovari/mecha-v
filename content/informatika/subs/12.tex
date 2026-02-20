@@ -1,1 +1,99 @@
-\subsection{Operátorok túlterhelése az objektum orientált programozásban. C++ IO, new, delete operátorok túlterhelésének szabályai. Osztály hierarchiák.}
+\subsection{Operátorok túlterhelése (egy-, és kétoperandusú, értékadó, new, delete, I/O). Osztály hierarchiák.}
+
+\noindent \textbf{Operátorok:}
+\begin{itemize}
+    \item osztályhoz tudunk definiálni olyan műveletsort (metódust), mely valamely operátor (műveleti jel) hatására megy végbe
+    \item ezt a metódust operator overload-nak nevezzük
+    \item az operator metódus neve operator és a műveleti jel, amit definiálunk
+    \item nem átdefiniálható:
+    \begin{itemize}
+        \item \texttt{::} hatókör operátor
+        \item \texttt{.} tag kiválasztás
+        \item \texttt{.*} tag kiválasztás pointerrel
+        \item \texttt{?:} háromoperandusú
+        \item \texttt{sizeof()} objektum mérete
+        \item \texttt{typeid()} objektum típusa
+    \end{itemize}
+    \item nem lehet általunk definiált műveleti jelet használni
+    \item egyoperandusúból nem lehet kétoperandusút csinálni (a++ -ból a++2 -t)
+    \item \textbf{Kétoperandusú operátor túlterhelése:}
+    \begin{itemize}
+        \item pl \texttt{+}, \texttt{-}, \texttt{/}, \texttt{*}, \texttt{\&}, \texttt{|}
+        \item tagfüggvénnyel: a bal oldali operandus az osztály maga, a jobb oldali a függvény paraméter:
+\begin{minted}{cpp}
+osztaly operator+(const osztaly& jobb);
+\end{minted}
+        \item barát függvénnyel: a barát függvénynek két paramétere van, a két operandus, először a bal, majd a jobb oldali:
+\begin{minted}{cpp}
+friend osztaly operator-(const osztaly&egyik, const osztaly&masik);
+\end{minted}
+        \item kommutatív műveletet megadni a sorrend megadása miatt csak barát függvénnyel lehet:
+\begin{minted}{cpp}
+friend complex operator*(const complex& c, const double a); // c*a
+friend complex operator*(const double a, const complex& c); // a*c
+\end{minted}
+    \end{itemize}
+    \item \textbf{Egyoperandusú operátor túlterhelése:}
+    \item pl. \texttt{++}
+    \item állhat az operandus előtt (előtag) és után (utótag)
+    \item előtagot tagfüggvénnyel paraméter nélkül, baráttal egy paraméterrel terhelünk túl:
+\begin{minted}{cpp}
+osztaly operator ++(); // ++osztalyként lesz meghívva
+friend osztaly operator++(const osztaly& o);
+\end{minted}
+    \item utótagnál egy plusz int típusú dummy paraméterrel jelezzük az utótagot:
+\begin{minted}{cpp}
+osztaly operator ++(int dummy); // osztaly++-ként lesz meghívva
+friend osztaly operator++(const osztaly& o, int dummy);
+\end{minted}
+    \item \textbf{Értékadó operátor túlterhelése:}
+    \begin{itemize}
+        \item kell, ha a fordító által biztosított gyári adatterület lemásoló nem megfelelő
+        \item ha másoló konstruktor kellett, ez is kell
+        \item típusra mutató referenciát kell visszaadni
+\begin{minted}{cpp}
+osztaly& operator=(const osztaly& masik);
+\end{minted}
+    \end{itemize}
+    \item \textbf{New operátor túlterhelése:}
+    \begin{itemize}
+        \item a new operátor void* visszatérő értékkel, size\_t első paraméterrel írandó:
+\begin{minted}{cpp}
+void * operator new(size_t n);
+\end{minted}
+    \end{itemize}
+    \item \textbf{Delete operátor túlterhelése:}
+    \begin{itemize}
+        \item a delete operátor túlterhelése két paraméterrel írandó: az első a törlendő példányra mutató void*, a második a méret:
+\begin{minted}{cpp}
+void operator delete(void *p, size_t n);
+\end{minted}
+    \end{itemize}
+    \item \textbf{I/O operátorok túlterhelése:}
+    \begin{itemize}
+        \item ahhoz, hogy az osztályunkat rá lehessen küldeni a cout-ra, a cout-hoz készítenünk kell egy \texttt{operator<<()} függvényt
+        \item cout-hoz nem tudunk tagfüggvényt írni (valaki már megírta az osztályt), így célszerű barát függvényt írni
+        \item nem a \texttt{cin} és \texttt{cout}-hoz írjunk barát függvényt, hanem az \texttt{istream}-hez és \texttt{ostream}-hez, így fájlokhoz is jó lesz
+        \item az I/O operátorok túlterhelése csak stream-re mutató referenciát visszaadó függvény lehet
+        \item célszerű, ha az osztályunk barátja
+\begin{minted}{cpp}
+friend istream & operator>>(istream &is, osztaly& o); // cin-hez
+friend ostream & operator<<(ostream &os, const osztaly& o); // cout-hoz
+\end{minted}
+        \item ha barát, akkor az osztályban kell megírni a fejlécét
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Osztály hierarchiák:}
+\begin{itemize}
+    \item a leszármazottból újabb osztályok származtathatóak
+    \item felrajzolható az osztályok gráfja
+    \item a hierarchia megtervezése sok időt vesz igénybe
+    \item ez a lánc nem többszörös öröklődés:
+    \item ,,C''-nek ,,b'' közvetlen bázis osztálya, ,,a'' közvetett bázis osztálya
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/info_12_class_hierarchy.png}
+\end{figure}
