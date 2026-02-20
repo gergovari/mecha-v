@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{osztaly}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{kezdoadat}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{adat}\PYG{p}{(}\PYG{n}{kezdoadat}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\end{Verbatim}

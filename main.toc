@@ -41,22 +41,22 @@
 \contentsline {subsection}{\numberline {2.8}Holtpont az operációs rendszerben. Holtpont kezelése. Holtpont észlelése. Holtpont megelőzés. Bankár algoritmus.}{66}{}%
 \contentsline {subsection}{\numberline {2.9}Shannon hírközlési modellje. Forráskódolás, prefix kód.}{69}{}%
 \contentsline {subsection}{\numberline {2.10}Számítógép hálózatok. OSI modell. Hálózati eszközök. IP címzés. DNS.}{73}{}%
-\contentsline {subsection}{\numberline {2.11}Az objektum fogalma, objektum-orientált elvek. Az osztály fogalma. Struktúrák. Tagfüggvények. Konstruktor. Destruktor. Statikus tagok. Barátság, friend függvények.}{76}{}%
-\contentsline {subsection}{\numberline {2.12}Operátorok túlterhelése az objektum orientált programozásban. C++ IO, new, delete operátorok túlterhelésének szabályai. Osztály hierarchiák.}{77}{}%
-\contentsline {subsection}{\numberline {2.13}Öröklődés, egységbe zárás az objektum-orientált programozásban. Protected osztálytagok. Kompozíció. Aggregáció. Többszörös öröklődés.}{78}{}%
-\contentsline {subsection}{\numberline {2.14}Polimorfizmus az objektum-orientált programozásban. Virtuális alaposztályok. Abstract osztály. Általánosított osztályok.}{79}{}%
-\contentsline {subsection}{\numberline {2.15}Standard Template Library a C++-ban. Tárolók. Bejárók. Algoritmusok. Függvényobjektumok.}{80}{}%
-\contentsline {subsection}{\numberline {2.16}Fuzzy halmazok alapjai, műveletek fuzzy halmazokon.}{81}{}%
-\contentsline {subsection}{\numberline {2.17}Fuzzy következtető módszer, defuzzifikációs módszerek.}{82}{}%
-\contentsline {subsection}{\numberline {2.18}Aggregációs operátorok, általános hatványközép, OWA.}{83}{}%
-\contentsline {subsection}{\numberline {2.19}A .net rendszer részei: GC, CIL, assembly-k. Esemény vezérelt programok felépítése windows alatt.}{84}{}%
-\contentsline {subsection}{\numberline {2.20}Grafikus adattárolás (vektor, raszter), alkatrész modellezési módszerek.}{85}{}%
-\contentsline {subsection}{\numberline {2.21}3D->2D vetítési algoritmusok, a window-viewport transzformáció.}{86}{}%
-\contentsline {subsection}{\numberline {2.22}Görbe közelítési módszerek: természetes spline, Bezier, Catmull-Rohm görbék.}{87}{}%
-\contentsline {subsection}{\numberline {2.23}Láthatóság, árnyalás, megvilágítás, színmodellek, anyagmodellek.}{88}{}%
-\contentsline {subsection}{\numberline {2.24}Képfeldolgozás, konvolúció, élkeresés, szegmentálás, alakfelismerés.}{89}{}%
-\contentsline {subsection}{\numberline {2.25}Neurális hálózatok alapjai, a Perceptron, a Perceptron tanítása.}{90}{}%
-\contentsline {subsection}{\numberline {2.26}Felügyelt és felügyelet nélküli tanulás. Mesterséges neurális hálózatok.}{91}{}%
-\contentsline {subsection}{\numberline {2.27}Evolúciós algoritmusok, evolúció stratégiák, genetikus programozás.}{92}{}%
-\contentsline {subsection}{\numberline {2.28}Az "M" nyelv (Matlab) jellegzetességei: változók, vektorok és mátrixok, feltételes végrehajtás, ciklusok, számtani sorozatok, függvény definíció, diagram rajzolás.}{93}{}%
-\contentsline {subsection}{\numberline {2.29}Ismertesse az alábbi, mechatronikában tanult elvek programmal történő megvalósítását: állapotgép, ARMA modell.}{94}{}%
+\contentsline {subsection}{\numberline {2.11}Objektum orientált elvek: egységbe zárás, adatrejtés, öröklődés, sokalakúság. Osztály, példány, üzenet, metódus. Konstruktor, destruktor. Statikus adattagok és tagfüggvények. Friend mechanizmus.}{76}{}%
+\contentsline {subsection}{\numberline {2.12}Operátorok túlterhelése az objektum orientált programozásban. C++ IO, new, delete operátorok túlterhelésének szabályai. Osztály hierarchiák.}{79}{}%
+\contentsline {subsection}{\numberline {2.13}Öröklődés, egységbe zárás az objektum-orientált programozásban. Protected osztálytagok. Kompozíció. Aggregáció. Többszörös öröklődés.}{80}{}%
+\contentsline {subsection}{\numberline {2.14}Polimorfizmus az objektum-orientált programozásban. Virtuális alaposztályok. Abstract osztály. Általánosított osztályok.}{81}{}%
+\contentsline {subsection}{\numberline {2.15}Standard Template Library a C++-ban. Tárolók. Bejárók. Algoritmusok. Függvényobjektumok.}{82}{}%
+\contentsline {subsection}{\numberline {2.16}Fuzzy halmazok alapjai, műveletek fuzzy halmazokon.}{83}{}%
+\contentsline {subsection}{\numberline {2.17}Fuzzy következtető módszer, defuzzifikációs módszerek.}{84}{}%
+\contentsline {subsection}{\numberline {2.18}Aggregációs operátorok, általános hatványközép, OWA.}{85}{}%
+\contentsline {subsection}{\numberline {2.19}A .net rendszer részei: GC, CIL, assembly-k. Esemény vezérelt programok felépítése windows alatt.}{86}{}%
+\contentsline {subsection}{\numberline {2.20}Grafikus adattárolás (vektor, raszter), alkatrész modellezési módszerek.}{87}{}%
+\contentsline {subsection}{\numberline {2.21}3D->2D vetítési algoritmusok, a window-viewport transzformáció.}{88}{}%
+\contentsline {subsection}{\numberline {2.22}Görbe közelítési módszerek: természetes spline, Bezier, Catmull-Rohm görbék.}{89}{}%
+\contentsline {subsection}{\numberline {2.23}Láthatóság, árnyalás, megvilágítás, színmodellek, anyagmodellek.}{90}{}%
+\contentsline {subsection}{\numberline {2.24}Képfeldolgozás, konvolúció, élkeresés, szegmentálás, alakfelismerés.}{91}{}%
+\contentsline {subsection}{\numberline {2.25}Neurális hálózatok alapjai, a Perceptron, a Perceptron tanítása.}{92}{}%
+\contentsline {subsection}{\numberline {2.26}Felügyelt és felügyelet nélküli tanulás. Mesterséges neurális hálózatok.}{93}{}%
+\contentsline {subsection}{\numberline {2.27}Evolúciós algoritmusok, evolúció stratégiák, genetikus programozás.}{94}{}%
+\contentsline {subsection}{\numberline {2.28}Az "M" nyelv (Matlab) jellegzetességei: változók, vektorok és mátrixok, feltételes végrehajtás, ciklusok, számtani sorozatok, függvény definíció, diagram rajzolás.}{95}{}%
+\contentsline {subsection}{\numberline {2.29}Ismertesse az alábbi, mechatronikában tanult elvek programmal történő megvalósítását: állapotgép, ARMA modell.}{96}{}%

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{osztaly}\PYG{+w}{ }\PYG{n}{o3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{30}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// ha csak 1 paraméter van, így is lehet.}
+\PYG{k}{explicit}\PYG{+w}{ }\PYG{n}{osztaly}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{adat}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{adat}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{adat}\PYG{p}{;}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

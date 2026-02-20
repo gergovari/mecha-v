@@ -1,1 +1,161 @@
-\subsection{Az objektum fogalma, objektum-orientált elvek. Az osztály fogalma. Struktúrák. Tagfüggvények. Konstruktor. Destruktor. Statikus tagok. Barátság, friend függvények.}
+\subsection{Objektum orientált elvek: egységbe zárás, adatrejtés, öröklődés, sokalakúság. Osztály, példány, üzenet, metódus. Konstruktor, destruktor. Statikus adattagok és tagfüggvények. Friend mechanizmus.}
+
+\noindent \textbf{Objektum orientált elvek:}
+\begin{itemize}
+    \item egységbe zárás (encapsulation)
+    \item adatrejtés (data hiding)
+    \item öröklődés (inheritance)
+    \item sokalakúság (polymorphism)
+\end{itemize}
+
+\noindent \textbf{Egységbe zárás:}
+\begin{itemize}
+    \item objektum: az adatok (változók) és az azokon dolgozó programrészletek (függvények) egy helyen szerepeljenek
+    \item c++ -ban struct kibővítve függvényekkel $\rightarrow$ class (osztály)
+    \item az osztály tartalmaz
+    \begin{itemize}
+        \item adattagokat (tulajdonságok)
+        \item tagfüggvényeket (metódus)
+        \begin{itemize}
+            \item belső, külső kifejtés (külsőnél hatókör operátor -- ,,::")
+        \end{itemize}
+    \end{itemize}
+    \item tagfüggvény a this$\rightarrow$ pointeren keresztül éri el a példány adatait
+\end{itemize}
+
+\noindent \textbf{Adatrejtés:}
+\begin{itemize}
+    \item probléma: a kódban lévő változók szabadon változtathatóak értékadással, hibás tartalom előfordulhat
+    \item megoldás: adatrejtés
+    \item az osztály tagjait csak az osztály tagfüggvényei érik el
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/imgs/info_11_data_hiding.png}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{módosítók (három féle elérés módosító):}
+    \begin{itemize}
+        \item private: csak az osztály tagfüggvényei érik el
+        \item public: a külvilág is eléri (adatrejtés sérült)
+        \item protected: csak az osztály és annak leszármazottjai érik el
+    \end{itemize}
+    \item a módosító addig érvényes, míg egy másik felül nem írja
+    \item class esetén a private az előre bekapcsolt
+    \item struct esetén a public
+    \item szokásos metódusok: getter, setter
+    \begin{itemize}
+        \item csak így hívjuk őket, konvenció
+        \item set beállít, get kiolvas
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{Öröklődés:}
+\begin{itemize}
+    \item egy osztály felhasználható arra, hogy egy új, leszármazott osztályt hozzunk létre belőle
+    \item hierarchia alakítható ki
+    \item leszármazottban benne van az ősosztály összes adattagja és metódusa
+    \item plusz adattagokkal és metódusokkal bővíthető
+    \item adattagot, metódust törölni nem lehet
+\end{itemize}
+
+\noindent \textbf{Sokalakúság:}
+\begin{itemize}
+    \item az örökléssel létrehozott osztály máshogy viselkedhet, mint az ősosztály
+    \item megvalósítás: ugyanolyan nevű és paraméterű metódust tartalmaz, a törzsében más utasításokkal
+\end{itemize}
+
+\noindent \textbf{Konstruktor:}
+\begin{itemize}
+    \item a példány adatainak inicializálását végzi
+    \item nincs típusa
+    \item neve ugyanaz, mint az osztálynak
+    \item lehet overload-ja (mert egy függvény)
+    \item ha nem írjuk meg, a fordító biztosít 2 konstruktort:
+    \begin{itemize}
+        \item alapméretezett üres
+        \item másoló
+    \end{itemize}
+    \item statikus példány is meghívja
+    \item ha a konstruktor egyik paraméterét úgy hívjuk, mint valamelyik adattag, akkor a this$\rightarrow$ pointer segít az adattag elérésben
+\begin{minted}{cpp}
+osztaly(int adat) { this->adat = adat; }
+\end{minted}
+    \item ha a konstruktorban csak kezdeti értékmegadás van paraméterből, akkor egyszerűsíthető:
+\begin{minted}{cpp}
+osztaly(int kezdoadat) : adat(kezdoadat) {}
+\end{minted}
+    \item ilyenkor is ki kell írni a függvény törzsét! \{\}, különben úgy érzi, hogy nincs kifejtve
+    \item lehet abban az esetben is használni, ha ugyanúgy hívjuk az adattagot, mint a paramétert:
+\begin{minted}{cpp}
+osztaly(int adat): adat(adat) {}
+\end{minted}
+    \item ha egy paramétere van a konstruktornak, értékadásként is lehet írni, de ez letiltható az explicit szóval:
+\begin{minted}{cpp}
+osztaly o3 = 30; // ha csak 1 paraméter van, így is lehet.
+explicit osztaly(int adat) { this->adat = adat; }
+\end{minted}
+    \item másoló konstruktor:
+    \item új példányt hoz létre már létező példányból úgy, hogy az adatterületet a megadott példányéból másolja le
+    \item ahhoz, hogy ne változtassa az egyik dinamikus adattagot tartalmazó osztály változtatása a másik dinamikus adattagot tartalmazóosztályt, referenciákkal kell megírni a másoló konstruktort
+\end{itemize}
+
+\noindent \textbf{Destruktor:}
+\begin{itemize}
+    \item példány törlésekor biztosítja, hogy a példány ne hagyjon memóriaszemetet maga után
+    \item alapvetően biztosítja a fordító, de ha a konstruktorba dinamikus memóriafoglalás volt, meg kell írni, felszabadítva az ott lefoglalt memóriát
+    \item neve ugyanaz, mint az osztálynak
+    \item nincs típusa
+    \item nincs paramétere
+    \item neve előtt egy $\sim$ jelzi, hogy destruktor
+    \item nem célszerű kézzel hívni
+    \item statikus példány az őt tartalmazó blokk záró kapcsosánál szűnik meg, dinamikus a delete-nél
+\end{itemize}
+
+\noindent \textbf{Statikus adattagok:}
+\begin{itemize}
+    \item értéke minden példányban ugyanaz
+    \item memóriában is csak egyszer szerepel
+    \item file szinten és példányban is megadható
+    \item akkor is létezik, ha egyetlen példány sincs az osztályból
+    \item statikus tag elérése osztály::tag
+    \item :: a névtér operátor
+\end{itemize}
+
+\begin{minted}{cpp}
+class atvalto
+{
+    static double mm;
+public:
+    static double inchtomm(double inch)
+    {
+        return atvalto::mm * inch;
+    }
+};
+
+double atvalto::mm = 25.4; // mm/inch
+
+int main()
+{
+    double inch,mm;
+    cout << "Hany inch a bicikli kerek atmeroje? ";
+    cin >> inch;
+    mm = atvalto::inchtomm(inch);
+    cout << "vagyis " << mm << " mn" << endl;
+}
+\end{minted}
+
+\noindent \textbf{Barátság, friend függvények:}
+\begin{itemize}
+    \item kibúvót jelent az adatrejtés elve alól
+    \item a barátait mindig az osztály válogatja meg, nem a barátok döntik el
+    \item a barátként definiált függvény, vagy osztály függvénye eléri az adatokat
+    \item 3 féle barátság definiálható:
+    \begin{itemize}
+        \item egy külső, önálló függvény
+        \item egy másik osztály
+        \item egy másik osztály valamelyik metódusa
+    \end{itemize}
+\end{itemize}
