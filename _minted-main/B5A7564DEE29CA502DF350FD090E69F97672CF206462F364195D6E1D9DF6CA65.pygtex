@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{friend}\PYG{+w}{ }\PYG{n}{istream}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{k}{operator}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{p}{(}\PYG{n}{istream}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{is}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{osztaly}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{o}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// cin\PYGZhy{}hez}
+\PYG{k}{friend}\PYG{+w}{ }\PYG{n}{ostream}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{k}{operator}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{p}{(}\PYG{n}{ostream}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{os}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{osztaly}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{o}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// cout\PYGZhy{}hoz}
+\end{Verbatim}

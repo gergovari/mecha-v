@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{osztaly}\PYG{+w}{ }\PYG{k}{operator}\PYG{+w}{ }\PYG{o}{++}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// ++osztalyként lesz meghívva}
+\PYG{k}{friend}\PYG{+w}{ }\PYG{n}{osztaly}\PYG{+w}{ }\PYG{k}{operator}\PYG{o}{++}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{osztaly}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{o}\PYG{p}{);}
+\end{Verbatim}
