@@ -1,1 +1,206 @@
 \subsection{Öröklődés, egységbe zárás az objektum-orientált programozásban. Protected osztálytagok. Kompozíció. Aggregáció. Többszörös öröklődés.}
+
+\textbf{Öröklődés:}
+\begin{itemize}
+    \item egy osztály felhasználható arra, hogy egy új, leszármazott osztályt hozzunk létre belőle
+    \item hierarchia alakítható ki
+    \item leszármazottban benne van az ősosztály összes adattagja és metódusa
+    \item plusz adattagokkal és metódusokkal bővíthető
+    \item adattagot, metódust törölni nem lehet
+    \item ősben lévő kód újrahasznosul, nem kell újra megírni
+    \item az ős változtatása benne lesz a leszármazottban is
+    \item a meglévő kód bővíthető és változtatható is
+    \item \texttt{protected} tagok: maradjon meg az adatrejtés elve, de a leszármazottak el tudják érni az ős adatait
+    \item öröklődnek:
+    \begin{itemize}
+        \item metódusok, adattagok, operátorok
+    \end{itemize}
+    \item nem öröklődnek:
+    \begin{itemize}
+        \item konstruktorok
+        \item destruktorok
+        \item barát függvények
+        \item túlterhelt = operátor
+    \end{itemize}
+\end{itemize}
+
+\textbf{Sokalakúság:}
+\begin{itemize}
+    \item az örökléssel létrehozott osztály máshogy viselkedhet, mint az ősosztály
+    \item megvalósítás: ugyanolyan nevű és paraméterű metódust tartalmaz, a törzsében más utasításokkal
+\end{itemize}
+
+\textbf{Egységbe zárás:}
+\begin{itemize}
+    \item objektum: az adatok (változók) és az azokon dolgozó programrészletek (függvények) egy helyen szerepeljenek
+    \item c++ -ban \texttt{struct} kibővítve függvényekkel -> \texttt{class} (osztály)
+    \item az osztály tartalmaz
+    \begin{itemize}
+        \item adattagokat (tulajdonságok)
+        \item tagfüggvényeket (metódus)
+        \begin{itemize}
+            \item belső, külső kifejtés (külsőnél hatókör operátor -- ,,\texttt{::}'')
+        \end{itemize}
+    \end{itemize}
+    \item tagfüggvény a \texttt{this->} pointeren keresztül éri el a példány adatait
+\end{itemize}
+
+\textbf{Adatrejtés:}
+\begin{itemize}
+    \item probléma: a kódban lévő változók szabadon változtathatóak értékadással, hibás tartalom előfordulhat
+    \item megoldás: adatrejtés
+    \item az osztály tagjait csak az osztály tagfüggvényei érik el
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{temp-exercises/informatika/13/d1.png}
+\end{figure}
+
+\begin{itemize}
+    \item módosítók (három féle elérés módosító):
+    \begin{itemize}
+        \item \texttt{private}: csak az osztály tagfüggvényei érik el
+        \item \texttt{public}: a külvilág is eléri (adatrejtés sérült)
+        \item \texttt{protected}: csak az osztály és annak leszármazottjai érik el
+    \end{itemize}
+    \item a módosító addig érvényes, míg egy másik felül nem írja
+    \item \texttt{class} esetén a \texttt{private} az előre bekapcsolt
+    \item \texttt{struct} esetén a \texttt{public}
+    \item szokásos metódusok: getter, setter
+    \begin{itemize}
+        \item csak így hívjuk őket, konvenció
+        \item \texttt{set} beállít, \texttt{get} kiolvas
+    \end{itemize}
+\end{itemize}
+
+\textbf{Kompozíció:}
+\begin{itemize}
+    \item ha egy osztályban statikus adattagként egy másik osztály szerepel
+    \item a másik osztály példánya önállóan nem létezik, csak az első osztály példányában van
+\end{itemize}
+
+\begin{minipage}{0.6\textwidth}
+\begin{minted}{cpp}
+struct p2d // nem kell public:
+{
+    double x, y;
+};
+struct p3d_komp
+{
+    p2d p2; // kompozíció: statikus adattagja van
+    double z; // plusz adattag
+};
+\end{minted}
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{temp-exercises/informatika/13/d2.png}
+\end{minipage}
+
+\begin{itemize}
+    \item példányosítás és használat:
+\end{itemize}
+
+\begin{minted}{cpp}
+p3d_komp p3k;
+p3k.p2.x = 0;
+p3k.p2.y = 1;
+p3k.z = 2;
+\end{minted}
+
+\begin{itemize}
+    \item az \texttt{x} és \texttt{y} adattagok előtt kell a beépített osztály neve (\texttt{p2})
+    \item a beépített osztályból nem kell önálló példány
+\end{itemize}
+
+\textbf{Aggregáció:}
+\begin{itemize}
+    \item ha egy osztályban külső adattagként (pointerrel, vagy referenciával) másik osztályra hivatkozás szerepel
+    \item a másik osztály példányának önállóan léteznie kell, csak akkor tudunk rá mutató referenciát/pointert megadni
+\end{itemize}
+
+\begin{minipage}{0.6\textwidth}
+\begin{minted}{cpp}
+struct p3d_aggr
+{
+    p2d *p2; // aggregáció: külső adatra hivatkozás
+    double z;
+};
+\end{minted}
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{temp-exercises/informatika/13/d3.png}
+\end{minipage}
+
+\begin{itemize}
+    \item példányosítás és használat:
+\end{itemize}
+
+\begin{minipage}{0.6\textwidth}
+\begin{minted}{cpp}
+    p3d_aggr p3a;
+    p2d p2p; // önálló 2d-s pont
+    p2p.x = 3;
+    p2p.y = 4; // meglévő pont címe kell!
+    p3a.p2 = &p2p; // így kap értéket a pointer.
+    p3a.z = 5;
+\end{minted}
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{temp-exercises/informatika/13/d4.png}
+\end{minipage}
+
+\begin{itemize}
+    \item ha \texttt{p3a} dinamikus példány lett volna, akkor kitörlése után \texttt{p2p} még létezne
+    \item \texttt{p3a}-ban a \texttt{p2.x} és \texttt{p2.y} változtatása \texttt{p2p}-t is változtatja
+\end{itemize}
+
+\textbf{Többszörös öröklődés:}
+\begin{itemize}
+    \item multiple inheritance
+    \item öröklődés típusmódosítói:
+    \begin{itemize}
+        \item \texttt{public} öröklődés:
+        \begin{itemize}
+            \item \texttt{public} -> \texttt{public}
+            \item \texttt{protected} -> \texttt{protected}
+            \item \texttt{private} -> nem elérhető
+        \end{itemize}
+        \item \texttt{protected}/\texttt{private} öröklődés
+        \begin{itemize}
+            \item \texttt{public} -> \texttt{protected}/\texttt{private}
+            \item \texttt{protected} -> \texttt{protected}/\texttt{private}
+            \item \texttt{private} -> nem elérhető
+        \end{itemize}
+        \item ha nem írjuk ki, akkor az öröklődés típusa \texttt{private} lesz
+    \end{itemize}
+    \item ha a leszármazott osztály másképp viselkedik, mint az ős: polimorfizmus
+    \item egy leszármazottnak több őse is lehet: \mintinline{cpp}{class e : a, d { };}
+    \item c++ -ban a jele a vessző:
+    \item ha módosító van, mindkét ős elé ki kell írni
+    \item ha az ősökben azonos nevű tagok szerepelnek, akkor a leszármazottban a fordító nem tudja, melyikről van szó
+    \item ilyenkor a hatókör operátor segít \texttt{::}
+    \item legyen az örökösnek is ugyanolyan nevű adattagja:
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+\begin{minted}{cpp}
+class a
+{ public: int i; };
+class b
+{ public: int i; };
+class c : public a, public b
+{ public: int i; // ez kicsit túlzó hülyeség
+};
+cOsztalyuDuplanOroklodottPeldany.a::i = 1;
+cOsztalyuDuplanOroklodottPeldany.b::i = 2;
+cOsztalyuDuplanOroklodottPeldany.i = 3;
+\end{minted}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{temp-exercises/informatika/13/d5.png}
+\end{minipage}

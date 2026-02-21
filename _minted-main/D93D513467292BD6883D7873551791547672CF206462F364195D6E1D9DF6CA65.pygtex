@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{p3d\PYGZus{}aggr}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{p2d}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{p2}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// aggregáció: külső adatra hivatkozás}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

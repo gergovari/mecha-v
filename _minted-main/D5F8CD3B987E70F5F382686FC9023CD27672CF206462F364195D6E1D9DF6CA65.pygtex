@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{n}{p3d\PYGZus{}aggr}\PYG{+w}{ }\PYG{n}{p3a}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{p2d}\PYG{+w}{ }\PYG{n}{p2p}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// önálló 2d\PYGZhy{}s pont}
+\PYG{+w}{    }\PYG{n}{p2p}\PYG{p}{.}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{p2p}\PYG{p}{.}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// meglévő pont címe kell!}
+\PYG{+w}{    }\PYG{n}{p3a}\PYG{p}{.}\PYG{n}{p2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{p2p}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// így kap értéket a pointer.}
+\PYG{+w}{    }\PYG{n}{p3a}\PYG{p}{.}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}
+\end{Verbatim}

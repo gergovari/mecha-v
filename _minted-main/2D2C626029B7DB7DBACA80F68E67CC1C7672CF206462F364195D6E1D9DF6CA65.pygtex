@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{p2d}\PYG{+w}{ }\PYG{c+c1}{// nem kell public:}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{p3d\PYGZus{}komp}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{p2d}\PYG{+w}{ }\PYG{n}{p2}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// kompozíció: statikus adattagja van}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// plusz adattag}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

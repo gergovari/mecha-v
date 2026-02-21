@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{a}
+\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{k}{public}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}\PYG{+w}{ }\PYG{p}{\PYGZcb{};}
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{b}
+\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{k}{public}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}\PYG{+w}{ }\PYG{p}{\PYGZcb{};}
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{c}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{k}{public}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{public}\PYG{+w}{ }\PYG{n}{b}
+\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{k}{public}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// ez kicsit túlzó hülyeség}
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{cOsztalyuDuplanOroklodottPeldany}\PYG{p}{.}\PYG{n}{a}\PYG{o}{::}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{cOsztalyuDuplanOroklodottPeldany}\PYG{p}{.}\PYG{n}{b}\PYG{o}{::}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{cOsztalyuDuplanOroklodottPeldany}\PYG{p}{.}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}
+\end{Verbatim}
