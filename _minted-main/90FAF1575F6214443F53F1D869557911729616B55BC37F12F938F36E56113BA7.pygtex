@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{f}\PYG{p}{=}\PYG{n+nb}{fopen}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}d2.txt\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{} r: olvasás, w: írás, f a file \PYGZdq{}kezelő\PYGZdq{}, int}
+\PYG{n+nb}{disp}\PYG{p}{(}\PYG{n}{f}\PYG{p}{);}
+\PYG{n}{adatok}\PYG{p}{=}\PYG{n+nb}{fscanf}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}\PYGZpc{}f \PYGZpc{}f \PYGZpc{}f\PYGZbs{}n\PYGZsq{}}\PYG{p}{,[}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{n}{inf}\PYG{p}{]);}\PYG{+w}{ }\PYG{c}{\PYGZpc{} 3 adat van a sorban, összes sor olvas}
+\PYG{n}{xyz}\PYG{p}{=}\PYG{n}{adatok}\PYG{o}{\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} \PYGZsq{} a transzponáltja}
+\PYG{n+nb}{fclose}\PYG{p}{(}\PYG{n}{f}\PYG{p}{);}
+\PYG{n}{x}\PYG{p}{=}\PYG{n}{adatok}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,:)}\PYG{o}{\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} adatok 1. sora x vektorba, transzponálva}
+\PYG{n}{y}\PYG{p}{=}\PYG{n}{adatok}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,:)}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{z}\PYG{p}{=}\PYG{n}{adatok}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,:)}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\end{Verbatim}

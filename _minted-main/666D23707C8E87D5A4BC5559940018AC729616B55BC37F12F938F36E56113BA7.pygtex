@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{figure}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} ábra window}
+\PYG{n+nb}{clf}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} grafika törlése}
+\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{on}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} minden plot ugyanoda}
+\PYG{n}{x}\PYG{p}{=}\PYG{l+m+mf}{0.1}\PYG{p}{:}\PYG{l+m+mf}{0.1}\PYG{p}{:}\PYG{l+m+mi}{4}\PYG{o}{*}\PYG{n+nb}{pi}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} kezd:növekmény:vég}
+\PYG{n}{y1}\PYG{p}{=}\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y1}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}green\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{y2}\PYG{p}{=}\PYG{n+nb}{sin}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{o}{./}\PYG{n}{x}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} elemenkénti osztás}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y2}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}blue\PYGZsq{}}\PYG{p}{);}
+\end{Verbatim}

@@ -1,1 +1,46 @@
 \subsection{Aggregációs operátorok, általános hatványközép, OWA.}
+
+\textbf{Aggregációs operátorok:}
+\begin{itemize}
+    \item Az aggregációs operátor \textbf{több adatból} (lehet több fuzzy halmaz is) \textbf{egy adatot} (fuzzy halmazt) állít elő.
+    \item Az operátor neve legyen $h$, az adatok $a_1, a_2, \dots , a_n$. Fuzzy halmazoknál $0 \le a_n \le 1$.
+    \item Axiómák:
+    \begin{enumerate}
+        \item $h(0,0,0\dots) = 0$, $h(1,1,1\dots) = 1$.
+        \item Ha $a_i$ és $b_n$-re $a_i \le b_i$ minden elemre, akkor $h(a_1, a_2, \dots , a_n) \le h(b_1, b_2, \dots , b_n)$ (monotonitás).
+        \item h folytonos függvény.
+        \item h szimmetrikus minden argumentumában, $h(a_1, a_2 \dots a_n) = h(a_{p(1)}, a_{p(2)}, \dots a_{p(n)})$ (nem számít az elemek sorrendje).
+        \item h idempotens, vagyis $h(a, a, a \dots a) = a$. (ebből adódik az 1-es).
+    \end{enumerate}
+    \item Az axiómákból következik, hogy
+    \begin{equation*}
+        \min(a_1, a_2, \dots a_n) \le h(a_1, a_2, \dots a_n) \le \max(a_1, a_2, \dots a_n).
+    \end{equation*}
+    \item Az aggregációs operátorok egyik fajtája az átlagoló operátorok. (,,Átlag'' tavaly ilyenkor a számtani közép volt).
+    \item Általános (hatvány)közép:
+    \begin{equation*}
+        h_\alpha = \left( \frac{a_1^\alpha + \dots a_n^\alpha}{n} \right)^{1/\alpha}
+    \end{equation*}
+    \item $\alpha \neq 0$, és ha $\alpha < 0$, akkor $\prod_{i=1}^n a_i \neq 0$.
+\end{itemize}
+
+\textbf{Általános hatványközép:}
+\begin{equation*}
+    h_\alpha = \left( \frac{a_1^\alpha + \dots a_n^\alpha}{n} \right)^{1/\alpha}
+\end{equation*}
+\begin{itemize}
+    \item $\alpha=1$ esetén számtani közép
+    \item $\alpha=-1$ harmonikus közép
+    \item $\alpha \to 0$ geometriai közép
+    \item $\alpha=-\infty$ minimum
+    \item $\alpha=\infty$ maximum
+\end{itemize}
+
+\textbf{OWA operátor:}
+\begin{itemize}
+    \item Ordered Weight Averaging
+    \item legyen az $a_1, a_2, \dots a_n$ adatokhoz egy azonos méretű, súlyokat tartalmazó vektor $w_1, w_2, \dots w_n$
+    \item a súlyvektor elemeinek összege legyen 1 (a gyorsabb futás miatt)
+    \item rendezzük úgy $a_1, a_2, \dots a_n$ tömb elemeit a $b_1, b_2, \dots b_n$ tömbbe úgy, hogy az elemek csökkenő sorrendben legyenek: $b_1 \ge b_2 \ge \dots \ge b_n$
+    \item ekkor a $h(a_1, a_2, \dots a_n) = w_1 b_1 + w_2 b_2 + \dots + w_n b_n$ képlettel megadott operátor neve OWA lesz
+\end{itemize}
