@@ -1,15 +1,36 @@
-\subsection{Igazolja a Dirac impulzus és az egységugrás függvény Laplace transzformáltjait!}
+\subsection{Mutassa be a lineáris időinvariáns (LTI) rendszerek esetén folytonos idejű állapottér modell rendszermátrixának sajátértékei és a rendszer átviteli függvényének pólusai közötti összefüggést!}
 
-\noindent \textbf{Dirac impulzus:}
-\begin{itemize}
-    \item végtelen nagy impulzus végtelen kicsi idő alatt
-    $$ \delta(t, \tau) = \begin{cases} 0, \text{ ha } t \neq \tau \\ \infty, \text{ ha } t = \tau \end{cases} $$
-    \item MOGI -- rendszertechnika jegyzet: 3.15:
-    $$ \int_{-\infty}^\infty \delta(t) dt = 1 $$
-    \item a Dirac impulzus Laplace-transzformáltja:
-    $$ \mathcal{L}\{\delta(t)\} = \int_0^\infty \delta(t) e^{-st} dt = e^{-s \cdot 0} = 1 $$
-\end{itemize}
+\noindent \textit{Ez a fejezet mesterséges intelligencia segítségével készült.}
 
-\noindent \textbf{Egységugrás:}
-$$ \varepsilon(t) = \begin{cases} 0, \text{ ha } t < 0 \\ 1, \text{ ha } t \geq 0 \end{cases} $$
-$$ \mathcal{L}\{\varepsilon(t)\} = \int_0^\infty \varepsilon(t) e^{-st} dt = \int_0^\infty 1 \cdot e^{-st} dt = \left[ -\frac{1}{s} e^{-st} \right]_0^\infty = 0 - \left( -\frac{1}{s} e^0 \right) = \frac{1}{s} $$
+Egy folytonos idejű, lineáris időinvariáns (LTI) rendszer állapottér modellje:
+\begin{align*}
+    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) \\
+    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t)
+\end{align*}
+ahol $\mathbf{A}$ a rendszermátrix, $\mathbf{B}$ a bemeneti mátrix, $\mathbf{C}$ a kimeneti mátrix és $\mathbf{D}$ a közvetlen csatolási mátrix.
+
+Végezzük el a Laplace-transzformációt zérus kezdeti feltételek mellett ($\mathbf{x}(0) = \mathbf{0}$):
+\begin{align*}
+    s\mathbf{x}(s) &= \mathbf{A}\mathbf{x}(s) + \mathbf{B}\mathbf{u}(s) \quad \implies \quad (s\mathbf{I} - \mathbf{A})\mathbf{x}(s) = \mathbf{B}\mathbf{u}(s) \\
+    \mathbf{y}(s) &= \mathbf{C}\mathbf{x}(s) + \mathbf{D}\mathbf{u}(s)
+\end{align*}
+
+Az első egyenletből kifejezve az állapotvektort:
+$$ \mathbf{x}(s) = (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{u}(s) $$
+
+Behelyettesítve a kimeneti egyenletbe:
+$$ \mathbf{y}(s) = \left[ \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} \right] \mathbf{u}(s) $$
+
+Az átviteli függvény mátrix tehát:
+$$ \mathbf{H}(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} $$
+
+Tudjuk, hogy az inverz mátrix a következőképpen számítható ki:
+$$ (s\mathbf{I} - \mathbf{A})^{-1} = \frac{\text{adj}(s\mathbf{I} - \mathbf{A})}{\det(s\mathbf{I} - \mathbf{A})} $$
+
+Az átviteli függvény pólusai azok az $s$ értékek, ahol a nevező zérus, azaz:
+$$ \det(s\mathbf{I} - \mathbf{A}) = 0 $$
+
+Ez pontosan az $\mathbf{A}$ rendszermátrix karakterisztikus egyenlete. Az egyenlet megoldásai az $\mathbf{A}$ mátrix sajátértékei ($\lambda_i$).
+
+\textbf{Összefüggés:}
+Az LTI rendszer átviteli függvényének pólusai megegyeznek a rendszermátrix sajátértékeivel (feltéve, hogy a rendszer minimálrealizáció, azaz nem történik pólus-zérus kiejtés az állapotváltozók közötti irányíthatatlanság vagy megfigyelhetetlenség miatt). Ez az összefüggés alapvető a rendszer stabilitásának vizsgálatánál: a rendszer akkor és csak akkor aszimptotikusan stabil, ha az $\mathbf{A}$ mátrix összes sajátértékének valós része negatív.

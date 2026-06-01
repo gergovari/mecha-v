@@ -1,129 +1,113 @@
-\subsection{Írja fel a diszkrét rendszerek be-kimeneti modellezését reprezentáló ARMA-alakját!}
+\subsection{Adott két diszkrét idejű átviteli függvény. Vezesse le az eredő átviteli függvény összefüggését, ha a két átviteli függvény sorba, párhuzamosan, illetve visszacsatolva (pozitív és negatív) kapcsolódik egymáshoz. Mutassa be, a hatásvázlat átalakításának szabályait (elágazási pont áthelyezése tag mögé és tag elé, illetve összegzési pont áthelyezése tag mögé és tag elé)!}
 
-\noindent \textbf{ARMA-alak:}
+\noindent \textbf{Hatásvázlat:}
 \begin{itemize}
-    \item diszkrét idejű rendszer:
+    \item rendszer működését lehet ábrázolni
+    \item bal oldalt a bemenet(ek), jobb oldalt kimenet(ek)
+    \item grafikus úton kapunk átviteli függvényt
+    \item nyíl irányával jelezzük a jel haladási irányát
+    \item műveletek:
     \begin{itemize}
-        \item $u(t)$ és $y(t)$ csak diszkrét $t = T_k, k \in \mathbb{N}, t \in \{..., T_{-k}, ..., T_{-1}, T_0, T_1, ..., T_k, ...\}$ időpontok sorozatában van értelmezve, ahol: $T_{k-1} < T_k < T_{k+1}$
-        \item általában $T_k = k \cdot T_s$, ahol $T_s$ a mintavételezési idő
-        \item $u[k] := u[T_k]$
-        \item $y[k] := y[T_k]$
+        \item elágazás
+        \item összegzés (negatív esetén az érintett negyed besatírozása)
     \end{itemize}
-    \item AutoRegresszív Mozgó Átlag
-    \item AR – az $y[k]$ kimenő jel korábbi értékei hogyan hatnak vissza a kimenő jel aktuális értékeire
-    \item MA – az $u[k]$ bemenő jel korábbi értékei (mozgó átlaga) milyen hatással bírnak az aktuális kimenetre
-    \item mi a bemenő és kimenő jel összefüggésének felírására használjuk
-    \item előnyös, mert közvetlenül látszik a memória jelleg, mely léptető (shift) memóriával valósítható meg
-    \item általános alak:
-    $$ \sum_{i=0}^{n} a_{di} y[k-i] = \sum_{i=0}^{r} b_{di} u[k-i] $$
-    \item ezt átrendezve a kimenet új értékének számítása:
-    $$ y[k] = \sum_{i=0}^{r} b_{di} u[k-i] - \sum_{i=1}^{n} a_{di} y[k-i] \text{, ahol } a_{d0} = 1 \text{: az } y[k] \text{ együtthatója} $$
+    \item az impulzus átviteli függvényeket blokkban ábrázoljuk
 \end{itemize}
 
+\noindent \textbf{Sorba kapcsolás:}
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}[auto, >=latex, thick]
-        % Define styles
-        \tikzstyle{block} = [draw, rectangle, minimum height=1.5em, minimum width=1.5em]
-        \tikzstyle{sum} = [draw, rectangle, minimum height=2em, minimum width=1.5em]
-        \tikzstyle{container} = [draw, rectangle, inner sep=0.3cm]
-
-        % Input
+    \begin{tikzpicture}[auto, node distance=2cm, >=latex]
         \node [coordinate] (input) {};
-        
-        % Split point for u[k]
-        \node [coordinate, right=2cm of input] (split_u) {};
-        
-        % b_d0 block (top)
-        \node [block, right=1.5cm of split_u] (bd0) {$b_{d0}$};
-        
-        % Shift Register U (box with content)
-        \node [below=1cm of split_u, align=left] (shiftU_content) {
-            $u[k-1]$ \\[0.3cm]
-            $u[k-2]$ \\[0.3cm]
-            $\vdots$ \\[0.3cm]
-            $u[k-r]$
-        };
-        \node [container, fit=(shiftU_content)] (shiftU) {};
-        
-        % Arrows into Shift Register U
-        \draw [->] (split_u) -- (shiftU.north);
-        
-        % Coefficient blocks b_d
-        % We manually position them relative to the lines in the shift register for alignment
-        % It's easier to define coordinates relative to shiftU_content
-        \node [block, right=1.5cm of shiftU_content.north east, anchor=west, yshift=-0.3cm] (bd1) {$b_{d1}$};
-        \node [block, right=1.5cm of shiftU_content.east, anchor=west, yshift=0.3cm] (bd2) {$b_{d2}$}; % Approx
-        \node [block, right=1.5cm of shiftU_content.south east, anchor=west, yshift=0.3cm] (bdr) {$b_{dr}$};
-        
-        % Connect Shift U to b blocks
-        % Using specific anchors on the content node if possible, or manual offsets
-        \draw [->] (shiftU.north east) ++(0,-0.6cm) -- (bd1.west); 
-        \draw [->] (shiftU.north east) ++(0,-1.4cm) -- (bd2.west);
-        \draw [->] (shiftU.south east) ++(0,0.6cm) -- (bdr.west);
+        \node [draw, rectangle, right=1.5cm of input, minimum height=2em, minimum width=3em, thick] (w1) {$\mathbf{w_1(z)}$};
+        \node [draw, rectangle, right=1.5cm of w1, minimum height=2em, minimum width=3em, thick] (w2) {$\mathbf{w_2(z)}$};
+        \node [coordinate, right=1.5cm of w2] (output) {};
 
-        % Sum MA
-        \node [sum, right=1.5cm of bd2] (sumMA) {$\Sigma$};
-        \node [above=0.1cm of sumMA] {összegző};
-        
-        \draw [->] (bd0) -| (sumMA.north);
-        \draw [->] (bd1) -- (sumMA.160);
-        \draw [->] (bd2) -- (sumMA.180);
-        \draw [->] (bdr) -- (sumMA.230);
-        
-        % Global Input Line
-        \draw [->] (input) -- node [above] {$u[k]$} (split_u) -- (bd0);
-
-        % Final Sum
-        \node [sum, below right=1cm and 1cm of sumMA] (sumFinal) {$\Sigma$};
-        \draw [->] (sumMA) -| (sumFinal.130);
-        
-        % Output
-        \node [coordinate, right=2cm of sumFinal] (output) {};
-        \draw [->] (sumFinal) -- node [above] {$y[k]$} (output);
-        
-        % Feedback path point
-        \node [coordinate, right=0.5cm of sumFinal] (split_y) {};
-        
-        % Shift Register Y (bottom)
-        \node [below=4cm of shiftU_content, align=left] (shiftY_content) {
-            $y[k-1]$ \\[0.3cm]
-            $y[k-2]$ \\[0.3cm]
-            $\vdots$ \\[0.3cm]
-            $y[k-n]$
-        };
-        \node [container, fit=(shiftY_content)] (shiftY) {};
-        
-        % Feedback arrow
-        \draw [->] (split_y) |- (shiftY.north);
-        
-        % Coefficient blocks a_d
-        \node [block, right=1.5cm of shiftY_content.north east, anchor=west, yshift=-0.3cm] (ad1) {$a_{d1}$};
-        \node [block, right=1.5cm of shiftY_content.east, anchor=west, yshift=0.3cm] (ad2) {$a_{d2}$};
-        \node [block, right=1.5cm of shiftY_content.south east, anchor=west, yshift=0.3cm] (adn) {$a_{dn}$};
-        
-        % Connect Shift Y to a blocks
-        \draw [->] (shiftY.north east) ++(0,-0.6cm) -- (ad1.west);
-        \draw [->] (shiftY.north east) ++(0,-1.4cm) -- (ad2.west);
-        \draw [->] (shiftY.south east) ++(0,0.6cm) -- (adn.west);
-        
-        % Sum AR (negative)
-        \node [sum, right=1.5cm of ad2] (sumAR) {$-\Sigma$};
-        \node [below=0.1cm of sumAR] {összegző};
-        
-        \draw [->] (ad1) -- (sumAR.160);
-        \draw [->] (ad2) -- (sumAR.180);
-        \draw [->] (adn) -- (sumAR.230);
-        
-        % Connect Sum AR to Final Sum
-        \draw [->] (sumAR) -| (sumFinal.230);
-        
-        % Labels
-        \node [right=0.5cm of bd0] {MA alrendszer};
-        \node [right=0.5cm of adn] {AR alrendszer};
-        \node [below=0.1cm of shiftY] {léptető memória};
-
-        % Include library for fit if not already loaded (usually useful, but standard node works too)
-        % Using simple rectangle draw instead of fit library if not sure, but 'fit' is standard TikZ
+        \draw [->, thick] (input) -- node [above] {$u_1(z)$} (w1);
+        \draw [->, thick] (w1) -- (w2);
+        \draw [->, thick] (w2) -- node [above] {$y_1(z)$} (output);
     \end{tikzpicture}
 \end{figure}
+$$ u_1(z) \cdot w_1(z) \cdot w_2(z) = y_1(z) $$
+
+\noindent \textbf{Párhuzamosan kapcsolás:}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[auto, node distance=2cm, >=latex]
+        \node [coordinate] (input) {};
+        \node [coordinate, right=1cm of input] (branch) {};
+        
+        \node [draw, rectangle, above right=0.5cm and 1cm of branch, minimum height=2em, minimum width=3em] (w1) {$w_1(z)$};
+        \node [draw, rectangle, below right=0.5cm and 1cm of branch, minimum height=2em, minimum width=3em] (w2) {$w_2(z)$};
+        
+        \node [draw, circle, right=4cm of branch, inner sep=0pt, minimum size=6mm] (sum) {};
+        \draw (sum.north west) -- (sum.south east);
+        \draw (sum.north east) -- (sum.south west);
+        
+        \node [coordinate, right=1cm of sum] (output) {};
+
+        \draw [thick] (input) -- node [above] {$u_1[z]$} (branch);
+        \draw [->, thick] (branch) |- (w1);
+        \draw [->, thick] (branch) |- (w2);
+        \draw [->, thick] (w1) -| node [near end, above] {$y_1[z]$} (sum);
+        \draw [->, thick] (w2) -| node [near end, below] {$y_2[z]$} (sum);
+        \draw [->, thick] (sum) -- node [above] {$y[z]$} (output);
+        
+        \fill (branch) circle (2pt);
+    \end{tikzpicture}
+\end{figure}
+$$ y(z) = y_1(z) + y_2(z) = w_1(z)u_1(z) + w_2(z)u_1(z) $$
+$$ y(z)(w_1(z) + w_2(z))u_1(z) = w_e(z)u_1(z) $$
+
+\noindent \textbf{Visszacsatolás, elágazási pontok, összegzési pontok:}
+\begin{itemize}
+    \item negatív visszacsatolást szoktunk leggyakrabban alkalmazni
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_01_neg_feedback.png}
+    \end{figure}
+    $$ x_{\text{előre}}(z) = u_1(z) - x_{\text{hátra}}(z) = u_1(z) - w_2(z)y_1(z) $$
+    $$ y_1(z) = x_{\text{előre}}(z)w_1(z) \rightarrow x_{\text{előre}}(z) = \frac{y_1(z)}{w_1(z)} $$
+    $$ y_1(z) = u_1(z)w_1(z) - w_2(z)w_1(z)y_1(z) $$
+    $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 + w_1(z)w_2(z)} $$
+    
+    \item pozitív visszacsatolás:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_02_pos_feedback.png}
+    \end{figure}
+    \begin{itemize}
+        \item a negatív visszacsatoláshoz hasonlóan levezethető, az eredmény:
+        $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 - w_1(z)w_2(z)} $$
+    \end{itemize}
+    \item elágazási pont áthelyezése a tag mögé:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_03_branch_after.png}
+    \end{figure}
+    \item elágazási pont áthelyezése a tag elé:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_04_branch_before.png}
+    \end{figure}
+    \item összegzési pont áthelyezése a tag mögé:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_05_sum_after.png}
+    \end{figure}
+    \item összegzési pont áthelyezése a tag elé:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_06_sum_before.png}
+    \end{figure}
+    \item elágazási pont áthelyezése összegzési pont elé:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_07_branch_before_sum.png}
+    \end{figure}
+    \item összegzési pont áthelyezése elágazási pont elé:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_08_sum_before_branch.png}
+    \end{figure}
+\end{itemize}

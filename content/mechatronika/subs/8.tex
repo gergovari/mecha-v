@@ -1,113 +1,15 @@
-\subsection{Adott két diszkrét idejű átviteli függvény. Vezesse le az eredő átviteli függvény összefüggését, ha a két átviteli függvény sorba, párhuzamosan, illetve visszacsatolva (pozitív és negatív) kapcsolódik egymáshoz. Mutassa be, a hatásvázlat átalakításának szabályait (elágazási pont áthelyezése tag mögé és tag elé, illetve összegzési pont áthelyezése tag mögé és tag elé)!}
+\subsection{Igazolja a Dirac impulzus, az egységugrás, valamint az exponenciális függvények Laplace transzformáltjait!}
 
-\noindent \textbf{Hatásvázlat:}
+\noindent \textbf{Dirac impulzus:}
 \begin{itemize}
-    \item rendszer működését lehet ábrázolni
-    \item bal oldalt a bemenet(ek), jobb oldalt kimenet(ek)
-    \item grafikus úton kapunk átviteli függvényt
-    \item nyíl irányával jelezzük a jel haladási irányát
-    \item műveletek:
-    \begin{itemize}
-        \item elágazás
-        \item összegzés (negatív esetén az érintett negyed besatírozása)
-    \end{itemize}
-    \item az impulzus átviteli függvényeket blokkban ábrázoljuk
+    \item végtelen nagy impulzus végtelen kicsi idő alatt
+    $$ \delta(t, \tau) = \begin{cases} 0, \text{ ha } t \neq \tau \\ \infty, \text{ ha } t = \tau \end{cases} $$
+    \item MOGI -- rendszertechnika jegyzet: 3.15:
+    $$ \int_{-\infty}^\infty \delta(t) dt = 1 $$
+    \item a Dirac impulzus Laplace-transzformáltja:
+    $$ \mathcal{L}\{\delta(t)\} = \int_0^\infty \delta(t) e^{-st} dt = e^{-s \cdot 0} = 1 $$
 \end{itemize}
 
-\noindent \textbf{Sorba kapcsolás:}
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[auto, node distance=2cm, >=latex]
-        \node [coordinate] (input) {};
-        \node [draw, rectangle, right=1.5cm of input, minimum height=2em, minimum width=3em, thick] (w1) {$\mathbf{w_1(z)}$};
-        \node [draw, rectangle, right=1.5cm of w1, minimum height=2em, minimum width=3em, thick] (w2) {$\mathbf{w_2(z)}$};
-        \node [coordinate, right=1.5cm of w2] (output) {};
-
-        \draw [->, thick] (input) -- node [above] {$u_1(z)$} (w1);
-        \draw [->, thick] (w1) -- (w2);
-        \draw [->, thick] (w2) -- node [above] {$y_1(z)$} (output);
-    \end{tikzpicture}
-\end{figure}
-$$ u_1(z) \cdot w_1(z) \cdot w_2(z) = y_1(z) $$
-
-\noindent \textbf{Párhuzamosan kapcsolás:}
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[auto, node distance=2cm, >=latex]
-        \node [coordinate] (input) {};
-        \node [coordinate, right=1cm of input] (branch) {};
-        
-        \node [draw, rectangle, above right=0.5cm and 1cm of branch, minimum height=2em, minimum width=3em] (w1) {$w_1(z)$};
-        \node [draw, rectangle, below right=0.5cm and 1cm of branch, minimum height=2em, minimum width=3em] (w2) {$w_2(z)$};
-        
-        \node [draw, circle, right=4cm of branch, inner sep=0pt, minimum size=6mm] (sum) {};
-        \draw (sum.north west) -- (sum.south east);
-        \draw (sum.north east) -- (sum.south west);
-        
-        \node [coordinate, right=1cm of sum] (output) {};
-
-        \draw [thick] (input) -- node [above] {$u_1[z]$} (branch);
-        \draw [->, thick] (branch) |- (w1);
-        \draw [->, thick] (branch) |- (w2);
-        \draw [->, thick] (w1) -| node [near end, above] {$y_1[z]$} (sum);
-        \draw [->, thick] (w2) -| node [near end, below] {$y_2[z]$} (sum);
-        \draw [->, thick] (sum) -- node [above] {$y[z]$} (output);
-        
-        \fill (branch) circle (2pt);
-    \end{tikzpicture}
-\end{figure}
-$$ y(z) = y_1(z) + y_2(z) = w_1(z)u_1(z) + w_2(z)u_1(z) $$
-$$ y(z)(w_1(z) + w_2(z))u_1(z) = w_e(z)u_1(z) $$
-
-\noindent \textbf{Visszacsatolás, elágazási pontok, összegzési pontok:}
-\begin{itemize}
-    \item negatív visszacsatolást szoktunk leggyakrabban alkalmazni
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_01_neg_feedback.png}
-    \end{figure}
-    $$ x_{\text{előre}}(z) = u_1(z) - x_{\text{hátra}}(z) = u_1(z) - w_2(z)y_1(z) $$
-    $$ y_1(z) = x_{\text{előre}}(z)w_1(z) \rightarrow x_{\text{előre}}(z) = \frac{y_1(z)}{w_1(z)} $$
-    $$ y_1(z) = u_1(z)w_1(z) - w_2(z)w_1(z)y_1(z) $$
-    $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 + w_1(z)w_2(z)} $$
-    
-    \item pozitív visszacsatolás:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_02_pos_feedback.png}
-    \end{figure}
-    \begin{itemize}
-        \item a negatív visszacsatoláshoz hasonlóan levezethető, az eredmény:
-        $$ \frac{y_1(z)}{u_1(z)} = \frac{w_1(z)}{1 - w_1(z)w_2(z)} $$
-    \end{itemize}
-    \item elágazási pont áthelyezése a tag mögé:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_03_branch_after.png}
-    \end{figure}
-    \item elágazási pont áthelyezése a tag elé:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_04_branch_before.png}
-    \end{figure}
-    \item összegzési pont áthelyezése a tag mögé:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_05_sum_after.png}
-    \end{figure}
-    \item összegzési pont áthelyezése a tag elé:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_06_sum_before.png}
-    \end{figure}
-    \item elágazási pont áthelyezése összegzési pont elé:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_07_branch_before_sum.png}
-    \end{figure}
-    \item összegzési pont áthelyezése elágazási pont elé:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_8_08_sum_before_branch.png}
-    \end{figure}
-\end{itemize}
+\noindent \textbf{Egységugrás:}
+$$ \varepsilon(t) = \begin{cases} 0, \text{ ha } t < 0 \\ 1, \text{ ha } t \geq 0 \end{cases} $$
+$$ \mathcal{L}\{\varepsilon(t)\} = \int_0^\infty \varepsilon(t) e^{-st} dt = \int_0^\infty 1 \cdot e^{-st} dt = \left[ -\frac{1}{s} e^{-st} \right]_0^\infty = 0 - \left( -\frac{1}{s} e^0 \right) = \frac{1}{s} $$

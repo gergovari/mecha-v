@@ -1,138 +1,49 @@
-\subsection{A lineáris idő invariáns (LTI) rendszerek diszkrét idejű állapottér modell felhasználásával, előre tartó Euler módszer segítésével vezesse le a folytonos idejű lineáris idő invariáns (LTI) rendszerek állapottér modellt!}
+\subsection{Ismertesse az egytárolós arányos tag súly és átmeneti függvényeit! Válaszában térjen ki az időállandó fogalmára!}
 
-\noindent \textbf{Lineáris időinvariáns rendszerek diszkrét idejű állapottér modellje:}
-\begin{align*}
-    (1.) \quad \underline{x}[k+1] &= \underline{\underline{A_d}} \, \underline{x}[k] + \underline{\underline{B_d}} \, \underline{u}[k] \\
-    (2.) \quad \underline{y}[k] &= \underline{\underline{C_d}} \, \underline{x}[k] + \underline{\underline{D_d}} \, \underline{u}[k]
-\end{align*}
+\noindent \textbf{Arányos egytárolós tag -- PT1:}
+$$ W(s) = \frac{A}{s-p_1} = \frac{K}{1+sT} $$
 
+\noindent \textbf{Arányos egytárolós tag súlyfüggvénye:}
 \begin{itemize}
-    \item az (1.)-es egyenletben vonjunk ki mindkét oldalból $\underline{x}[k]$-t (az előretartó Euler miatt):
-    $$ \underline{x}[k+1] - \underline{x}[k] = \underline{\underline{A_d}} \, \underline{x}[k] + \underline{\underline{B_d}} \, \underline{u}[k] - \underline{x}[k] $$
-    
-    \item összevonás után osszunk le $\Delta t$-vel:
-    $$ \frac{\underline{x}[k+1] - \underline{x}[k]}{\Delta t} = \frac{(\underline{\underline{A_d}} - \underline{\underline{I}}) \, \underline{x}[k] + \underline{\underline{B_d}} \, \underline{u}[k]}{\Delta t} $$
-    
-    \item a folytonos idejű $t_k$ diszkrét időben a k-adik időpillanatot jelenti, így tudunk helyettesíteni:
-    $$ \frac{\underline{x}(t_{k+1}) - \underline{x}(t_k)}{\Delta t} = \frac{(\underline{\underline{A_d}} - \underline{\underline{I}}) \, \underline{x}(t_k) + \underline{\underline{B_d}} \, \underline{u}(t_k)}{\Delta t} $$
-    
-    \item szétbontva:
-    $$ \frac{\underline{x}(t_{k+1}) - \underline{x}(t_k)}{\Delta t} = \frac{1}{\Delta t} (\underline{\underline{A_d}} - \underline{\underline{I}}) \, \underline{x}(t_k) + \frac{1}{\Delta t} \underline{\underline{B_d}} \, \underline{u}(t_k) $$
-    
-    \item vegyük a kifejezés határértékét, ha $\Delta t \to 0$:
-    \begin{align*}
-        \underline{\dot{x}}(t) &= \underline{\underline{A}} \, \underline{x}(t) + \underline{\underline{B}} \, \underline{u}(t) \\
-        \underline{y}(t) &= \underline{\underline{C}} \, \underline{x}(t) + \underline{\underline{D}} \, \underline{u}(t)
-    \end{align*}
-
-    \item diszkrét idejű állapottér modell hatásvázlata:
+    \item az egységimpulzusra ($\delta(t)$-re) adott válasz
+    \item $u(t) = \delta(t) \rightarrow U(s) = 1$
+    $$ Y(s) = W(s)U(s) = \frac{K}{1+sT} \cdot 1 $$
+    \item a kérdés: $y(t) = w(t) = ?$
+    $$ y(t) = w(t) = \frac{K}{T} \mathcal{L}^{-1} \left\{ \frac{1}{s + \frac{1}{T}} \right\} = \frac{K}{T} e^{-\frac{t}{T}} \varepsilon(t) $$
+    \item grafikusan ábrázolva:
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex]
-            \node [coordinate] (input) {};
-            \node [coordinate, right=1cm of input] (split_in) {};
-             
-            % Upper path (Output eqn)
-            \node [draw, rectangle, right=1cm of split_in, yshift=1.5cm, minimum height=2em, minimum width=2.5em] (Dd) {$\underline{\underline{D_d}}$};
-             
-            % Lower path (State eqn)
-            \node [draw, rectangle, right=1cm of split_in, minimum height=2em, minimum width=2.5em] (Bd) {$\underline{\underline{B_d}}$};
-            \node [draw, circle, right=1cm of Bd, minimum size=6mm, inner sep=0pt] (sum1) {};
-            \draw (sum1.north west) -- (sum1.south east);
-            \draw (sum1.north east) -- (sum1.south west);
-            
-            \node [draw, rectangle, right=1cm of sum1, minimum height=2em, minimum width=2.5em] (zinv) {$z^{-1}$};
-            \node [coordinate, right=0.5cm of zinv] (branch_x) {};
-             
-            \node [draw, rectangle, right=1cm of branch_x, minimum height=2em, minimum width=2.5em] (Cd) {$\underline{\underline{C_d}}$};
-            
-            \node [draw, circle, right=1cm of Cd, yshift=1.5cm, minimum size=6mm, inner sep=0pt] (sum2) {};
-            \draw (sum2.north west) -- (sum2.south east);
-            \draw (sum2.north east) -- (sum2.south west);
-            
-            \node [coordinate, right=1cm of sum2] (output) {};
-            
-            % Initial split
-            \draw [thick] (input) -- node [above] {$\underline{u}[k]$} (split_in);
-            \fill (split_in) circle (2pt);
-            
-            % To Dd
-            \draw [->, thick] (split_in) |- (Dd);
-            \draw [->, thick] (Dd) -- (sum2);
-            
-            % To Bd
-            \draw [->, thick] (split_in) -- (Bd);
-            \draw [->, thick] (Bd) -- (sum1);
-            \draw [->, thick] (sum1) -- node [above] {$\underline{x}[k+1]$} (zinv);
-            \draw [thick] (zinv) -- node [above] {$\underline{x}[k]$} (branch_x);
-            \fill (branch_x) circle (2pt);
-            
-            \draw [->, thick] (branch_x) -- (Cd);
-            \draw [->, thick] (Cd) -| (sum2);
-            \draw [->, thick] (sum2) -- node [above] {$\underline{y}[k]$} (output);
-            
-            % Feedback Ad
-            \node [draw, rectangle, below=1cm of zinv, minimum height=2em, minimum width=2.5em] (Ad) {$\underline{\underline{A_d}}$};
-            \draw [->, thick] (branch_x) |- (Ad);
-            \draw [->, thick] (Ad) -| (sum1);
-            
-        \end{tikzpicture}
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_13_weight_func.png}
     \end{figure}
+\end{itemize}
 
-    \item folytonos idejű állapottér modell hatásvázlata:
+\noindent \textbf{Arányos egytárolós tag átmeneti függvénye:}
+\begin{itemize}
+    \item egységugrásra ($\varepsilon(t)$-re) adott válasz
+    \item $u(t) = \varepsilon(t) \rightarrow U(s) = 1/s$
+    $$ Y(s) = W(s)U(s) = \frac{K}{1+sT} \frac{1}{s} $$
+    \item a kérdés: $y(t) = v(t) = ?$
+    $$ y(t) = v(t) = \mathcal{L}^{-1} \left\{ \frac{K}{(1+sT)s} \right\} = K \mathcal{L}^{-1} \left\{ \frac{1}{T(s+\frac{1}{T})s} \right\} = \frac{K}{T} \mathcal{L}^{-1} \left\{ \frac{A}{s} + \frac{B}{s + \frac{1}{T}} \right\} $$
+    $$ A = T, \quad B = -T $$
+    $$ v(t) = K \mathcal{L}^{-1} \left\{ \frac{1}{s} - \frac{1}{s + \frac{1}{T}} \right\} = K \left( 1 - e^{-\frac{t}{T}} \right) \varepsilon(t) $$
+    \item grafikusan ábrázolva:
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex]
-            \node [coordinate] (input) {};
-            \node [coordinate, right=1cm of input] (split_in) {};
-             
-            % Upper path (Output eqn)
-            \node [draw, rectangle, right=1cm of split_in, yshift=1.5cm, minimum height=2em, minimum width=2.5em] (D) {$\underline{\underline{D}}$};
-             
-            % Lower path (State eqn)
-            \node [draw, rectangle, right=1cm of split_in, minimum height=2em, minimum width=2.5em] (B) {$\underline{\underline{B}}$};
-            \node [draw, circle, right=1cm of B, minimum size=6mm, inner sep=0pt] (sum1) {};
-            \draw (sum1.north west) -- (sum1.south east);
-            \draw (sum1.north east) -- (sum1.south west);
-            
-            \node [draw, rectangle, right=1cm of sum1, minimum height=2em, minimum width=2.5em] (int) {$\int$};
-            \node [coordinate, right=0.5cm of int] (branch_x) {};
-             
-            \node [draw, rectangle, right=1cm of branch_x, minimum height=2em, minimum width=2.5em] (C) {$\underline{\underline{C}}$};
-            
-            \node [draw, circle, right=1cm of C, yshift=1.5cm, minimum size=6mm, inner sep=0pt] (sum2) {};
-            \draw (sum2.north west) -- (sum2.south east);
-            \draw (sum2.north east) -- (sum2.south west);
-            
-            \node [coordinate, right=1cm of sum2] (output) {};
-            
-            % Initial split
-            \draw [thick] (input) -- node [above] {$\underline{u}(t)$} (split_in);
-            \fill (split_in) circle (2pt);
-            
-            % To D
-            \draw [->, thick] (split_in) |- (D);
-            \draw [->, thick] (D) -- (sum2);
-            
-            % To B
-            \draw [->, thick] (split_in) -- (B);
-            \draw [->, thick] (B) -- (sum1);
-            \draw [->, thick] (sum1) -- node [above] {$\underline{\dot{x}}(t)$} (int);
-            \draw [thick] (int) -- node [above] {$\underline{x}(t)$} (branch_x);
-            \fill (branch_x) circle (2pt);
-            
-            \draw [->, thick] (branch_x) -- (C);
-            \draw [->, thick] (C) -| (sum2);
-            \draw [->, thick] (sum2) -- node [above] {$\underline{y}(t)$} (output);
-            
-            % Feedback A
-            \node [draw, rectangle, below=1cm of int, minimum height=2em, minimum width=2.5em] (A) {$\underline{\underline{A}}$};
-            \draw [->, thick] (branch_x) |- (A);
-            \draw [->, thick] (A) -| (sum1);
-            
-        \end{tikzpicture}
+        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_13_step_func.png}
     \end{figure}
+\end{itemize}
+\newpage
+\noindent \textbf{T és K változók az átmeneti függvénynél:}
+\begin{itemize}
+    \item K meghatározza, hogy hova konvergál a rendszer
+    \item T meghatározza, hogy mennyi idő alatt konvergál
+\end{itemize}
 
-    \item így a mátrixok:
-    $$ \underline{\underline{A}} = \frac{1}{\Delta t} (\underline{\underline{A_d}} - \underline{\underline{I}}), \quad \underline{\underline{B}} = \frac{1}{\Delta t} \underline{\underline{B_d}}, \quad \underline{\underline{C}} = \underline{\underline{C_d}}, \quad \underline{\underline{D}} = \underline{\underline{D_d}} $$
+\noindent \textbf{Időállandó fogalma:}
+\begin{itemize}
+    \item Az átviteli függvény időállandós alakjából s együtthatói, melyet az átviteli függvény gyöktényezős alakjából tudunk átalakítani
+    \item így az időállandó(k) a gyöktényezős alak – mely s-re nézve egy valós együtthatójú racionális törtfüggvény – \textbf{pólusai} valós részének reciprokának mínusz egyszerese:
+    $$ W(s) = \frac{b_r}{a_n} \frac{(s-z_1)(s-z_2) \dots (s-z_r)}{(s-p_1)(s-p_2) \dots (s-p_n)} $$
+    $$ W(s) = \underbrace{ \frac{b_r (-z_1)(-z_2) \dots (-z_r)}{a_n (-p_1)(-p_2) \dots (-p_n)} }_{\text{erősítés}} \frac{(1-\frac{1}{z_1}s)(1-\frac{1}{z_2}s) \dots (1-\frac{1}{z_r}s)}{(1-\frac{1}{p_1}s)(1-\frac{1}{p_2}s) \dots (1-\frac{1}{p_n}s)} $$
+    \item időállandók: $T_1 = -\frac{1}{p_1}, T_2 = -\frac{1}{p_2}, \dots, T_n = -\frac{1}{p_n}$
 \end{itemize}

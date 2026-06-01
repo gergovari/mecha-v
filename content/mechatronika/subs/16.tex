@@ -1,36 +1,147 @@
-\subsection{Mutassa be a lineáris idő invariáns (LTI) rendszerek esetén folytonos idejű állapottér modell rendszermátrixának sajátértékei és a rendszer átviteli függvényének pólusai közötti összefüggést!}
+\subsection{Adja meg az villamos rendszer (kapcsolt elektromechanikai), haladó és forgómozgású mechanikai rendszerek és az áramlástechnikai (pneumatikus és hidraulikai) rendszerek koncentrált paraméterű leírása esetén az átmenő és keresztváltozó típusát, valamint az energiatárolókat (amennyiben léteznek) és disszipatív elemeket.}
 
-\noindent \textit{Ez a fejezet mesterséges intelligencia segítségével készült.}
+\noindent \textbf{Villamos rendszer:}
+\begin{itemize}
+    \item $\phi$: $i$ -- áramerősség [A]
+    \item $\chi$: $u$ -- feszültség [V]
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] $ E_\chi = \int Q du = \int C u du = \frac{1}{2} C u^2 $
+        \item[] $ E_\phi = \int i d\phi_m = \int \frac{1}{L} \phi_m d\phi_m = \frac{1}{2L} \phi_m^2 = \frac{1}{2} L i^2 $
+    \end{itemize}
+    \item disszipatív elem:
+    \begin{itemize}
+        \item ellenállás
+        \item $i = \frac{1}{R} u$
+        \item $[R] = \Omega$
+    \end{itemize}
+    \item további elemek:
+    \begin{itemize}
+        \item L -- induktivitás [H]
+        \item C -- kapacitás [F]
+        \item $\phi_m$ -- mágneses fluxus [Wb] = [Vs]
+        \item Q -- töltés [C] = [As]
+    \end{itemize}
+\end{itemize}
 
-Egy folytonos idejű, lineáris időinvariáns (LTI) rendszer állapottér modellje:
-\begin{align*}
-    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) \\
-    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t)
-\end{align*}
-ahol $\mathbf{A}$ a rendszermátrix, $\mathbf{B}$ a bemeneti mátrix, $\mathbf{C}$ a kimeneti mátrix és $\mathbf{D}$ a közvetlen csatolási mátrix.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{res/imgs/mecha_21_elec_tetrahedron.png}
+\end{figure}
 
-Végezzük el a Laplace-transzformációt zérus kezdeti feltételek mellett ($\mathbf{x}(0) = \mathbf{0}$):
-\begin{align*}
-    s\mathbf{x}(s) &= \mathbf{A}\mathbf{x}(s) + \mathbf{B}\mathbf{u}(s) \quad \implies \quad (s\mathbf{I} - \mathbf{A})\mathbf{x}(s) = \mathbf{B}\mathbf{u}(s) \\
-    \mathbf{y}(s) &= \mathbf{C}\mathbf{x}(s) + \mathbf{D}\mathbf{u}(s)
-\end{align*}
+\newpage
+\noindent \textbf{Mechanikai haladó:}
+\begin{itemize}
+    \item $\phi$: $f$ -- erő [N]
+    \item $\chi$: $v$ -- sebesség [m/s]
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] $ E_\chi = \int I dv = \int m v dv = \frac{1}{2} m v^2 $
+        \item[] $ E_\phi = \int f dx = \int kx dx = \frac{1}{2} k x^2 $
+    \end{itemize}
+    \item disszipatív elem:
+    \begin{itemize}
+        \item viszkózus csillapítási tényező
+        \item $f = bv$
+        \item $[b] = \text{Ns/m}$
+    \end{itemize}
+    \item további elemek:
+    \begin{itemize}
+        \item I -- lendület [Ns] = [kg m/s]
+        \item x -- elmozdulás [m]
+        \item k -- rugómerevség [N/m]
+        \item m -- tömeg [kg]
+    \end{itemize}
+\end{itemize}
 
-Az első egyenletből kifejezve az állapotvektort:
-$$ \mathbf{x}(s) = (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{u}(s) $$
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_21_mech_trans_tetrahedron.png}
+\end{figure}
 
-Behelyettesítve a kimeneti egyenletbe:
-$$ \mathbf{y}(s) = \left[ \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} \right] \mathbf{u}(s) $$
+\noindent \textbf{Mechanikai forgó:}
+\begin{itemize}
+    \item $\phi$: $M$ -- nyomaték [Nm]
+    \item $\chi$: $\omega$ -- szögsebesség [rad/s]
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] $ E_\chi = \int \pi d\omega = \int J \omega d\omega = \frac{1}{2} J \omega^2 $
+        \item[] $ E_\phi = \int M d\varphi = \int k \varphi d\varphi = \frac{1}{2} k \varphi^2 $
+    \end{itemize}
+    \item disszipatív elem:
+    \begin{itemize}
+        \item viszkózus csillapítási tényező
+        \item $M = B\omega$
+        \item $[B] = \text{Nms/rad}$
+    \end{itemize}
+    \item további elemek:
+    \begin{itemize}
+        \item $\pi$ -- perdület [Nms]
+        \item $\varphi$ -- szögelfordulás [rad]
+        \item k -- torziós rugómerevség [Nm/rad]
+        \item J -- tehetetlenségi nyomaték [kgm$^2$]
+    \end{itemize}
+\end{itemize}
 
-Az átviteli függvény mátrix tehát:
-$$ \mathbf{H}(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} $$
+\noindent $\dot{\pi} = M$ \hfill $[J] = \text{kgm}^2$ \hfill $[k] = \frac{\text{Nm}}{\text{rad}}$ \hfill \textcolor{red}{3D-ben szögvektor NEM létezik!} \hfill $[\varphi] = \text{rad}$
 
-Tudjuk, hogy az inverz mátrix a következőképpen számítható ki:
-$$ (s\mathbf{I} - \mathbf{A})^{-1} = \frac{\text{adj}(s\mathbf{I} - \mathbf{A})}{\det(s\mathbf{I} - \mathbf{A})} $$
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_21_mech_rot_tetrahedron.png}
+\end{figure}
 
-Az átviteli függvény pólusai azok az $s$ értékek, ahol a nevező zérus, azaz:
-$$ \det(s\mathbf{I} - \mathbf{A}) = 0 $$
+\noindent \textbf{Áramlástechnikai:}
+\begin{itemize}
+    \item $\phi$: $q_v$ -- tömegáram/térfogatáram
+    \item $\chi$: $p_{12}$ -- nyomás
+    \item energiatárolók:
+    \begin{itemize}
+        \item[] fluid kapacitás: $q_v = C_f \frac{dp_{12}}{dt}$
+        \item[] fluid induktivitás: $q_v = \int_{T_1}^{T_2} \frac{1}{L_f} p dt$
+    \end{itemize}
+    \item disszipatív elem:
+    \begin{itemize}
+        \item fluid ellenállás
+        \item $q_v = \frac{1}{R_f} p_{12}$
+    \end{itemize}
+    \item áramlástechnikai (fluid) rendszerek:
+    \begin{itemize}
+        \item hidraulikus: nem összenyomható közeg
+        \item pneumatikus: összenyomható közeg, légköri nyomásnál nagyobb nyomás
+        \item akusztikus: összenyomható közeg, légköri nyomás
+    \end{itemize}
+\end{itemize}
 
-Ez pontosan az $\mathbf{A}$ rendszermátrix karakterisztikus egyenlete. Az egyenlet megoldásai az $\mathbf{A}$ mátrix sajátértékei ($\lambda_i$).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{res/imgs/mecha_21_fluid_tetrahedron.png}
+\end{figure}
+\noindent nem igazán használt [q?]
 
-\textbf{Összefüggés:}
-Az LTI rendszer átviteli függvényének pólusai megegyeznek a rendszermátrix sajátértékeivel (feltéve, hogy a rendszer minimálrealizáció, azaz nem történik pólus-zérus kiejtés az állapotváltozók közötti irányíthatatlanság vagy megfigyelhetetlenség miatt). Ez az összefüggés alapvető a rendszer stabilitásának vizsgálatánál: a rendszer akkor és csak akkor aszimptotikusan stabil, ha az $\mathbf{A}$ mátrix összes sajátértékének valós része negatív.
+\noindent \textbf{hidraulikus rendszer kapacitás:}
+
+\begin{minipage}[c]{0.7\textwidth}
+\begin{itemize}
+    \item nyitott tartály
+    \item tápnyomás: $p_t = \rho g h$
+    \item $q_v = \frac{dV}{dt} = A v \to V = A h \to \frac{dV}{dt} = A \frac{dh}{dt}$ \\
+    $\frac{dp}{dt} = \rho g \frac{dh}{dt} \to \frac{dp}{dt} = \rho g \frac{1}{A} \frac{dV}{dt} $ \\
+    \fbox{$q_v = \frac{A}{\rho g} \frac{dp_{12}}{dt}$} \quad hidraulikus kapacitás $C_f$
+\end{itemize}
+\end{minipage}
+\begin{minipage}[c]{0.28\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{res/imgs/mecha_21_pipe.png}
+\end{minipage}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c}
+        & Pneumatikus & Hidraulikus \\
+        \hline
+        kapacitás & $C_f = \frac{V}{\kappa p_1}$ & $C_f = \frac{A}{\rho g}$ \\
+        induktivitás & nincs & $L_f = \frac{\rho l}{A}$ \\
+        disszipatív elem & $R_f$ & $R_f$
+    \end{tabular}
+\end{table}

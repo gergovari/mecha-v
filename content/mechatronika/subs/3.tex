@@ -1,123 +1,257 @@
-\subsection{Hasonlítsa össze a rendszereket a leírt állapotváltozók (dimenzió) száma (véges/végtelen), valamint annak diszkrét/folytonos jellege szerint!}
+\subsection{Hasonlítsa össze a diszkrét idejű rendszerek leírására szolgáló matematikai modellek típusait (állapottér modell, ARMA modell, impulzusátviteli függvény)!}
 
-\paragraph{A rendszer dimenziója:}
+\textbf{Állapottér modell:}
+\noindent \textbf{Állapottér modell:}
 \begin{itemize}
-    \item a rendszer állapotváltozóinak száma
+    \item egyfajta matematikai modell
+    \item állapotváltozók segítségével
+    \item általános állapottér modell:
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto, >=latex, thick]
+            \node [draw, align=left, minimum height=2.5em] (block1) {Az állapot\\megváltoztatásának\\szabályai\\Memória jellegű};
+            \node [coordinate, left=1.5cm of block1] (input) {};
+            \node [coordinate, right=2cm of block1] (mid) {};
+            \node [draw, align=left, right=3cm of block1, minimum height=2.5em] (block2) {Memória nélküli\\leképezés};
+            \node [coordinate, right=1.5cm of block2] (output) {};
+
+            \draw [->] (input) -- node [above, align=center] {Bemenő jelek\\gerjesztés} (block1);
+            \draw [->] (block1) -- node [above, align=center] {Állapot\\állapotváltozók} (block2);
+            \draw [->] (block2) -- node [above, align=center] {Kimenő jelek\\Kívülről\\Látható/mérhető\\változások} (output);
+            
+            \draw [->] (input) -- ++(1,0) |- ($(block2.south) + (0, -0.5)$) -- (block2.south);
+        \end{tikzpicture}
+    \end{figure}
+
+    \item lineáris idő invariáns (LTI) rendszerek diszkrét idejű állapottér modellje:
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto, >=latex, thick]
+            \node [draw, align=left, minimum height=2.5em] (block1) {állapot egyenlet(ek)\\n db memória};
+            \node [coordinate, left=1.5cm of block1] (input) {};
+            \node [draw, align=left, right=3cm of block1, minimum height=2.5em] (block2) {kimeneti\\egyenletek(ek)};
+            \node [coordinate, right=1.5cm of block2] (output) {};
+
+            \draw [->] (input) -- node [above, align=left] {bemenő jel\\u[k]} (block1);
+            \draw [->] (block1) -- node [above, align=left] {állapotváltozók\\$x_1[k+1] ... x_n[k+1]$} (block2);
+            \draw [->] (block2) -- node [above, align=left] {kimenő jel\\y[k]} (output);
+            
+            \draw [->] (input) -- ++(1,0) |- ($(block2.south) + (0, -0.5)$) -- (block2.south);
+        \end{tikzpicture}
+    \end{figure}
+
+    \item MIMO (Multiple Input Multiple Output) diszkrét idejű állapotegyenlete:
+    
+    \begin{align*}
+        \underline{x}[k+1] &= \underline{\underline{A_d}} \underline{x}[k] + \underline{\underline{B_d}} \underline{u}[k] \\
+        \underline{y}[k] &= \underline{\underline{C_d}} \underline{x}[k] + \underline{\underline{D_d}} \underline{u}[k]
+    \end{align*}
+
     \begin{itemize}
-        \item állapotváltozó: az állapot egyértelmű leírására szolgálnak
-        \item állapot: a múlt összesített hatása
-    \end{itemize}
-    \item végtelen: végtelen számú állapotváltozóval írható le a rendszer
-    \item véges: véges számú állapotváltozóval írható le a rendszer
-    \begin{itemize}
-        \item $\underline{x}(t) \in \mathbb{R}^n$
+        \item $\underline{\underline{A_d}}$: állapotmátrix – a jelenlegi állapot hatása a következő állapotra
+        \item $\underline{\underline{B_d}}$: bemeneti mátrix – a jelenlegi bemenet hatása a következő állapotra
+        \item $\underline{\underline{C_d}}$: kimeneti mátrix – az állapot hatása a kimenetre
+        \item $\underline{\underline{D_d}}$: segédmátrix – a bemenet hatása közvetlenül a kimenetre
+        \item a mátrixok dimenziója függ a bemenetek és kimenetek számától, pl. egy SISO (Single Input Single Output) rendszernél: $\underline{\underline{B_d}} \in \mathbb{R}^{n \times 1}$, $\underline{\underline{C_d}} \in \mathbb{R}^{1 \times n}$, $\underline{\underline{D_d}} \in \mathbb{R}^{1 \times 1}$
+        \item hatásvázlat:
+        
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[auto, node distance=1.5cm, >=latex, thick]
+                \node [coordinate] (input) {};
+                \node [draw, rectangle, right=1cm of input] (Bd) {$B_d$};
+                \node [draw, circle, right=1cm of Bd] (sum1) {};
+                \draw[-] (sum1.north west) -- (sum1.south east);
+                \draw[-] (sum1.south west) -- (sum1.north east);
+                
+                \node [draw, rectangle, right=1cm of sum1] (z) {$z^{-1}$};
+                \node [draw, rectangle, right=1cm of z] (Cd) {$C_d$};
+                
+                \node [draw, circle, right=1cm of Cd] (sum2) {};
+                \draw[-] (sum2.north west) -- (sum2.south east);
+                \draw[-] (sum2.south west) -- (sum2.north east);
+                
+                \node [coordinate, right=1cm of sum2] (output) {};
+                
+                \node [draw, rectangle, below=1cm of z] (Ad) {$A_d$};
+                \node [draw, rectangle, below=2cm of Ad] (Dd) {$D_d$};
+
+                \draw [->] (input) -- node [above] {$\underline{u}[k]$} (Bd);
+                \draw [->] (Bd) -- (sum1);
+                \draw [->] (sum1) -- node [above] {$\underline{x}[k+1]$} (z);
+                \draw [->] (z) -- node [above] {$\underline{x}[k]$} (Cd);
+                \draw [->] (Cd) -- (sum2);
+                \draw [->] (sum2) -- node [above] {$\underline{y}[k]$} (output);
+                
+                \draw [->] (z.east) -- ++(0.5,0) |- (Ad.east);
+                \draw [->] (Ad.west) -| (sum1.south);
+                
+                \draw [->] (input) -- ++(0.5,0) |- (Dd.west);
+                \draw [->] (Dd.east) -| (sum2.south);
+            \end{tikzpicture}
+        \end{figure}
     \end{itemize}
 \end{itemize}
 
-\paragraph{Diszkrét/folytonos jelleg:}
+\textbf{ARMA modell:}
+\noindent \textbf{ARMA-alak:}
 \begin{itemize}
-    \item diszkrét állapotú:
+    \item diszkrét idejű rendszer:
     \begin{itemize}
-        \item ha egy véges dimenziójú rendszer állapotváltozói véges számú értéket vehetnek fel, akkor a rendszer diszkrét állapotú
-        \item pl. digitális technika: 0 vagy 1
-        \item állapotautomaták:
-        \begin{itemize}
-            \item az állapotbeli változások egy-egy esemény hatására ugrásszerűen mennek végbe
-            \item tipikusan szekvenciális hálózatok
-        \end{itemize}
+        \item $u(t)$ és $y(t)$ csak diszkrét $t = T_k, k \in \mathbb{N}, t \in \{..., T_{-k}, ..., T_{-1}, T_0, T_1, ..., T_k, ...\}$ időpontok sorozatában van értelmezve, ahol: $T_{k-1} < T_k < T_{k+1}$
+        \item általában $T_k = k \cdot T_s$, ahol $T_s$ a mintavételezési idő
+        \item $u[k] := u[T_k]$
+        \item $y[k] := y[T_k]$
     \end{itemize}
-    \item folytonos állapotú:
-    \begin{itemize}
-        \item az állapotváltozók folytonos értéket vesznek fel
-        \item pl. sebesség
-    \end{itemize}
+    \item AutoRegresszív Mozgó Átlag
+    \item AR – az $y[k]$ kimenő jel korábbi értékei hogyan hatnak vissza a kimenő jel aktuális értékeire
+    \item MA – az $u[k]$ bemenő jel korábbi értékei (mozgó átlaga) milyen hatással bírnak az aktuális kimenetre
+    \item mi a bemenő és kimenő jel összefüggésének felírására használjuk
+    \item előnyös, mert közvetlenül látszik a memória jelleg, mely léptető (shift) memóriával valósítható meg
+    \item általános alak:
+    $$ \sum_{i=0}^{n} a_{di} y[k-i] = \sum_{i=0}^{r} b_{di} u[k-i] $$
+    \item ezt átrendezve a kimenet új értékének számítása:
+    $$ y[k] = \sum_{i=0}^{r} b_{di} u[k-i] - \sum_{i=1}^{n} a_{di} y[k-i] \text{, ahol } a_{d0} = 1 \text{: az } y[k] \text{ együtthatója} $$
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
-        \begin{scope}[local bounding box=plots]
-            % Analog
-            \begin{axis}[
-                at={(0,4cm)}, anchor=south west,
-                width=5cm, height=4cm,
-                axis lines=middle,
-                xtick=\empty, ytick=\empty,
-                xlabel={$t$}, ylabel={$y(t)$},
-                title={analóg},
-                ymin=0, ymax=1.2,
-                xmin=0, xmax=4
-            ]
-                \addplot[blue, thick, samples=100, domain=0.2:3.8] {0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5))};
-            \end{axis}
-            
-            % Mintavételezett
-            \begin{axis}[
-                at={(6cm,4cm)}, anchor=south west,
-                width=5cm, height=4cm,
-                axis lines=middle,
-                xtick={1,2,3}, xticklabels={{$k-1$}, {$k$}, {$k+1$}},
-                ytick=\empty,
-                xlabel={$k$}, ylabel={$y[k]$},
-                title={mintavételezett},
-                ymin=0, ymax=1.2,
-                xmin=0, xmax=4
-            ]
-                \addplot[blue, thick, ycomb, mark=*, samples at={0.5,1,1.5,2,2.5,3,3.5}] {0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5))};
-            \end{axis}
-            
-            % Kvantált
-            \begin{axis}[
-                at={(0,0)}, anchor=south west,
-                width=5cm, height=4cm,
-                axis lines=middle,
-                xtick=\empty, ytick=\empty,
-                xlabel={$t$}, ylabel={$y_q(t)$},
-                title={kvantált},
-                ymin=0, ymax=1.2,
-                xmin=0, xmax=4
-            ]
-                \addplot[blue, thick, const plot, samples=20, domain=0.2:3.8] {round((0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5)))*5)/5};
-            \end{axis}
-            
-            % Digitális
-            \begin{axis}[
-                at={(6cm,0)}, anchor=south west,
-                width=5cm, height=4cm,
-                axis lines=middle,
-                xtick=\empty, ytick=\empty,
-                xlabel={$k$}, ylabel={$y_q[k]$},
-                title={digitális},
-                ymin=0, ymax=1.2,
-                xmin=0, xmax=4
-            ]
-                \addplot[blue, thick, only marks, mark=*, samples at={0.5,1,1.5,2,2.5,3,3.5}] {round((0.5 + 0.3*sin(deg(x*2)) + 0.1*sin(deg(x*5)))*5)/5};
-                % dotted lines to show quantization levels?
-                \draw[gray, dotted] (0, 0.2) -- (4, 0.2);
-                \draw[gray, dotted] (0, 0.4) -- (4, 0.4);
-                \draw[gray, dotted] (0, 0.6) -- (4, 0.6);
-                \draw[gray, dotted] (0, 0.8) -- (4, 0.8);
-                \draw[gray, dotted] (0, 1.0) -- (4, 1.0);
+    \begin{tikzpicture}[auto, >=latex, thick]
+        % Define styles
+        \tikzstyle{block} = [draw, rectangle, minimum height=1.5em, minimum width=1.5em]
+        \tikzstyle{sum} = [draw, rectangle, minimum height=2em, minimum width=1.5em]
+        \tikzstyle{container} = [draw, rectangle, inner sep=0.3cm]
 
-            \end{axis}
-        \end{scope}
+        % Input
+        \node [coordinate] (input) {};
         
-        \node[rotate=90, anchor=south] at ($(plots.north west)!0.25!(plots.south west) + (-0.5,0)$) {térben folytonos};
-        \node[rotate=90, anchor=south] at ($(plots.north west)!0.75!(plots.south west) + (-0.5,0)$) {térben diszkrét};
+        % Split point for u[k]
+        \node [coordinate, right=2cm of input] (split_u) {};
         
-        \node[anchor=north] at ($(plots.south west)!0.25!(plots.south east) + (0,-0.5)$) {időben folytonos};
-        \node[anchor=north] at ($(plots.south west)!0.75!(plots.south east) + (0,-0.5)$) {időben diszkrét};
+        % b_d0 block (top)
+        \node [block, right=1.5cm of split_u] (bd0) {$b_{d0}$};
+        
+        % Shift Register U (box with content)
+        \node [below=1cm of split_u, align=left] (shiftU_content) {
+            $u[k-1]$ \\[0.3cm]
+            $u[k-2]$ \\[0.3cm]
+            $\vdots$ \\[0.3cm]
+            $u[k-r]$
+        };
+        \node [container, fit=(shiftU_content)] (shiftU) {};
+        
+        % Arrows into Shift Register U
+        \draw [->] (split_u) -- (shiftU.north);
+        
+        % Coefficient blocks b_d
+        % We manually position them relative to the lines in the shift register for alignment
+        % It's easier to define coordinates relative to shiftU_content
+        \node [block, right=1.5cm of shiftU_content.north east, anchor=west, yshift=-0.3cm] (bd1) {$b_{d1}$};
+        \node [block, right=1.5cm of shiftU_content.east, anchor=west, yshift=0.3cm] (bd2) {$b_{d2}$}; % Approx
+        \node [block, right=1.5cm of shiftU_content.south east, anchor=west, yshift=0.3cm] (bdr) {$b_{dr}$};
+        
+        % Connect Shift U to b blocks
+        % Using specific anchors on the content node if possible, or manual offsets
+        \draw [->] (shiftU.north east) ++(0,-0.6cm) -- (bd1.west); 
+        \draw [->] (shiftU.north east) ++(0,-1.4cm) -- (bd2.west);
+        \draw [->] (shiftU.south east) ++(0,0.6cm) -- (bdr.west);
+
+        % Sum MA
+        \node [sum, right=1.5cm of bd2] (sumMA) {$\Sigma$};
+        \node [above=0.1cm of sumMA] {összegző};
+        
+        \draw [->] (bd0) -| (sumMA.north);
+        \draw [->] (bd1) -- (sumMA.160);
+        \draw [->] (bd2) -- (sumMA.180);
+        \draw [->] (bdr) -- (sumMA.230);
+        
+        % Global Input Line
+        \draw [->] (input) -- node [above] {$u[k]$} (split_u) -- (bd0);
+
+        % Final Sum
+        \node [sum, below right=1cm and 1cm of sumMA] (sumFinal) {$\Sigma$};
+        \draw [->] (sumMA) -| (sumFinal.130);
+        
+        % Output
+        \node [coordinate, right=2cm of sumFinal] (output) {};
+        \draw [->] (sumFinal) -- node [above] {$y[k]$} (output);
+        
+        % Feedback path point
+        \node [coordinate, right=0.5cm of sumFinal] (split_y) {};
+        
+        % Shift Register Y (bottom)
+        \node [below=4cm of shiftU_content, align=left] (shiftY_content) {
+            $y[k-1]$ \\[0.3cm]
+            $y[k-2]$ \\[0.3cm]
+            $\vdots$ \\[0.3cm]
+            $y[k-n]$
+        };
+        \node [container, fit=(shiftY_content)] (shiftY) {};
+        
+        % Feedback arrow
+        \draw [->] (split_y) |- (shiftY.north);
+        
+        % Coefficient blocks a_d
+        \node [block, right=1.5cm of shiftY_content.north east, anchor=west, yshift=-0.3cm] (ad1) {$a_{d1}$};
+        \node [block, right=1.5cm of shiftY_content.east, anchor=west, yshift=0.3cm] (ad2) {$a_{d2}$};
+        \node [block, right=1.5cm of shiftY_content.south east, anchor=west, yshift=0.3cm] (adn) {$a_{dn}$};
+        
+        % Connect Shift Y to a blocks
+        \draw [->] (shiftY.north east) ++(0,-0.6cm) -- (ad1.west);
+        \draw [->] (shiftY.north east) ++(0,-1.4cm) -- (ad2.west);
+        \draw [->] (shiftY.south east) ++(0,0.6cm) -- (adn.west);
+        
+        % Sum AR (negative)
+        \node [sum, right=1.5cm of ad2] (sumAR) {$-\Sigma$};
+        \node [below=0.1cm of sumAR] {összegző};
+        
+        \draw [->] (ad1) -- (sumAR.160);
+        \draw [->] (ad2) -- (sumAR.180);
+        \draw [->] (adn) -- (sumAR.230);
+        
+        % Connect Sum AR to Final Sum
+        \draw [->] (sumAR) -| (sumFinal.230);
+        
+        % Labels
+        \node [right=0.5cm of bd0] {MA alrendszer};
+        \node [right=0.5cm of adn] {AR alrendszer};
+        \node [below=0.1cm of shiftY] {léptető memória};
+
+        % Include library for fit if not already loaded (usually useful, but standard node works too)
+        % Using simple rectangle draw instead of fit library if not sure, but 'fit' is standard TikZ
     \end{tikzpicture}
 \end{figure}
 
-\paragraph{Diszkrét idejű folytonos értékű rendszer:}
+\textbf{Impulzusátviteli függvény:}
+\noindent \textbf{Eltolási operátor - z:}
 \begin{itemize}
-    \item differencia egyenletekkel írható le $\underline{x}[k+1] = \underline{\Phi}\underline{x}[k] + \underline{\Gamma}\underline{u}[k]$
-    \item az állapotváltozók tetszőleges értéket vehetnek fel, de a diszkrét idő miatt ugrásszerűen mennek végbe
-\end{itemize}
+    \item egy adatot a jövőbe tol, ezt nem lehet mindig megvalósítani (csak egy múltbeli adatot tudunk a saját jövőjébe tolni), de az inverzének a megvalósítása könnyű
+    \item az eltolási operátor inverze egy időkésleltető elem:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[auto, node distance=1.5cm, >=latex, thick]
+            \node [coordinate] (input) {};
+            \node [draw, rectangle, right=1cm of input, minimum height=2em, minimum width=2em] (delay) {$\frac{1}{z}$};
+            \node [coordinate, right=1cm of delay] (output) {};
 
-\paragraph{Folytonos idejű folytonos értékű rendszer:}
-\begin{itemize}
-    \item differenciál egyenletekkel írható le $\underline{\dot{x}}(t) = \underline{A}\underline{x}(t) + \underline{B}\underline{u}(t)$
-    \item állapotváltozók tetszőleges értéket vehetnek fel, folytonos idő miatt folyamatosan változnak
+            \draw [->] (input) -- node [above] {$x[k]$} (delay);
+            \draw [->] (delay) -- node [above] {$x[k-1]$} (output);
+        \end{tikzpicture}
+    \end{figure}
+    \item az eltolási operátor alkalmazása:
+    \begin{align*}
+        x[k+i] &= z^i x[k] \\
+        z^{-i} x[k+i] &= x[k] \\
+        z^{-i} x[k] &= x[k-i]
+    \end{align*}
+    \item az ARMA-modell algebrai alakja:
+    $$ y[k] = \sum_{i=0}^{r} b_{di} u[k-i] - \sum_{i=1}^{n} a_{di} y[k-i] $$
+    \item ARMA-modell az eltolási operátorral:
+    $$ y[k] = \sum_{i=0}^{r} z^{-i} b_{di} u[k] - \sum_{i=1}^{n} z^{-i} a_{di} y[k] $$
+    \item átrendezve:
+    $$ \sum_{i=0}^{n} z^{-i} a_{di} y[k] = \sum_{i=0}^{r} z^{-i} b_{di} u[k] \quad a_{d0}=1 $$
+    \item be- és kimeneti összefüggés eltolási operátorral, ahol $w(z)$ az impulzus átviteli függvény:
+    $$ y(z) = \frac{\sum_{i=0}^{r} z^{-i} b_{di}}{\sum_{i=0}^{n} z^{-i} a_{di}} u(z) = w(z) u(z) \quad a_{d0}=1 $$
 \end{itemize}

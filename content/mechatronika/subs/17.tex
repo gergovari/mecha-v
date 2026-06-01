@@ -1,104 +1,158 @@
-\subsection{Ismertesse a frekvencia-átviteli függvény fogalmát, illetve annak megjelenítési módjait (Bode diagram)!}
+\subsection{Mutassa be, milyen módszerekkel határozható meg a kereszt, illetve átmenő változók értékei különféle források figyelembevétele esetén! Ismertesse az egyes módszerek alkalmazásának lépéseit egy példa segítségével!}
 
-\noindent \textbf{A kérdés, hogy egy folytonos idejű időinvariáns rendszer milyen választ ad harmonikus gerjesztésre:}
+\noindent \textbf{Feladatmegoldás:}
 \begin{itemize}
-    \item szinuszos vizsgáló jelet használunk:
-    $$ u(t) = A \sin(\omega t) \to U(s) = \frac{A\omega}{s^2 + \omega^2} $$
-    \item harmonikus gerjesztés esetén a válasz (állandósult értéke):
-    $$ y(t) = \tilde{A}(\omega) \sin(\omega t - \varphi(\omega)) $$
-    $\tilde{A}(\omega)$: frekvenciafüggő amplitúdó, \quad $\varphi(\omega)$: frekvenciafüggő fáziseltolás
-    \item formális helyettesítés: $s \to j\omega$ komplex szám
-    \begin{itemize}
-        \item \textbf{frekvencia-átviteli függvény az átviteli függvényből:}
-        $$ W(j\omega) = W(s)|_{s=j\omega} $$
-    \end{itemize}
-    \item a komplex szám nagysága:
-    $$ |W(j\omega)| = \frac{A_{ki}}{A_{be}} = A_r, \quad \text{ahol } A_{ki} = \tilde{A}, \ A_{be} = A, \ A_r: \text{amplitúdó arány} $$
-    \item fáziskülönbség:
-    $$ \Delta \varphi = \varphi_{ki} - \varphi_{be} = \arg(W(j\omega)) = \arctan \left( \frac{\text{Im}\{W(j\omega)\}}{\text{Re}\{W(j\omega)\}} \right) $$
+    \item ha kapunk egy rendszert, hogy oldjuk meg a feladatot?
+    \item első lépés: struktúragráfot készítünk
+    \item a struktúragráf alapján elkészítjük az impedanciahálózatot (itt már Laplace tartományban vagyunk)
+    \item a struktúragráfot redukáljuk
+    \item miután a legegyszerűbb alakra hoztuk, felmerül a kérdés, hogy mit is kell kiszámolnunk, és ez milyen módszerrel lehetséges
+    \item több módszer van, a forrás és a keresett változó típusától függ, hogyan tudjuk megoldani a feladatot
 \end{itemize}
 
-\noindent \textbf{Frekvencia-átviteli függvény megjelenítése:}
+\noindent \textbf{A lehetséges módszerek:}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|l|}
+        \hline
+        Forrás & Keresett mennyiség & Számítás módja \\ \hline
+        $\phi_g$ & $\chi_i$ & a) csomóponti potenciálok módszere \\
+        & & b) feszültségosztó + forráscsere (Thevenin tétel) \\ \hline
+        $\phi_g$ & $\phi_i$ & a) hurokáramok módszere \\
+        & & b) áramosztó \\ \hline
+        $\chi_g$ & $\chi_i$ & a) csomóponti potenciálok módszere \\
+        & & b) feszültségosztó \\ \hline
+        $\chi_g$ & $\phi_i$ & a) hurokáramok módszere \\
+        & & b) áramosztó + forráscsere (Norton tétel) \\ \hline
+    \end{tabular}
+\end{table}
+
+\noindent \textbf{Forráscsere:}
 \begin{itemize}
-    \item \textbf{Nyquist-diagram:}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.4\textwidth]{res/imgs/mecha_17_nyquist.png}
-    \end{figure}
-    \item \textbf{Bode diagram(ok):}
-    \begin{itemize}
-        \item[a)] amplitúdó -- körfrekvencia diagram (teljesítmény arány)
-        \item[b)] fázisszög -- körfrekvencia diagram (fáziskülönbség)
-    \end{itemize}
+    \item akkor lehet szükség rá, ha a keresett mennyiség és a forrás típusa különböző
+    \item a Thevenin illetve Norton ekvivalens képe egy tetszőleges hálózatnak:
 \end{itemize}
 
-\noindent \textbf{Amplitúdó -- körfrekvencia diagram:}
-$$ A_r \to P_r = A_r^2 $$
-$$ B = \lg(P_r) = \lg(A_r^2) \ [B] \text{ (bel)} $$
-$$ B = 10 \lg(P_r) \ [dB] \text{ (decibel)} $$
-$$ B = 10 \lg(A_r^2) = 20 \lg(A_r) \ [dB] $$
-
-\noindent \textbf{Diagramok:}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{res/imgs/mecha_17_bode_axis.png}
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_thevenin_norton.png}
 \end{figure}
 
 \begin{itemize}
-    \item a frekvencia-átviteli függvény szorzattagokra bontható
-    \item a diagram ezeknek a tagoknak a diagramjának az összegzésével kapható meg, bizonyítás:
-    \begin{itemize}
-        \item komplex szám másik alakja: $W(j\omega) = re^{i\varphi}$
-        \item szorzatokra bontható: $W(j\omega) = W_1(j\omega)W_2(j\omega)$
-        \item $W(j\omega) = r_1 e^{i\varphi_1} r_2 e^{i\varphi_2} = r_1 r_2 e^{i(\varphi_1 + \varphi_2)}$
-        \item $\lg(r_1 r_2) = \lg(r_1) + \lg(r_2)$
-    \end{itemize}
+    \item forráscserénél az általánosított Ohm-törvény alapján a belső ellenállással tudjuk kiszámolni a forráscsere utáni forrásokat ($\chi_g = Z_b \phi_g$)
 \end{itemize}
 
-\noindent \textbf{Az alapelemek (általános alak):}
+\noindent \textbf{Elanyagolható impedanciák:}
+\begin{itemize}
+    \item keresztváltozó forrással párhuzamosan kapcsolt impedanciák:
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{res/imgs/mecha_17_general_tf.png}
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_negligible_parallel.png}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Arányos tag:} $W(s) = K$
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_prop_tag.png}
-    \end{figure}
+    \item átmenő változó forrással sorosan kapcsolt impedanciák:
+\end{itemize}
 
-    \item \textbf{Deriváló tag:} $W(s) = s \to W(j\omega) = j\omega$
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_deriv_tag.png}
-    \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_negligible_series.png}
+\end{figure}
 
-    \item \textbf{integráló tag:} $W(s) = \frac{1}{s} \to W(j\omega) = \frac{1}{j\omega} = -j\frac{1}{\omega}$
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.3\textwidth]{res/imgs/mecha_17_integ_tag.png}
-    \end{figure}
+\newpage
+\noindent \textbf{Feszültségosztó:}
 
-    \item \textbf{tiszta pólus:} $W(s) = \frac{1}{1+sT} \to W(j\omega) = \frac{1-j\omega T}{1+\omega^2 T^2}$
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.6\textwidth]{res/imgs/mecha_17_real_pole.png}
-    \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_voltage_divider.png}
+\end{figure}
 
-    \item \textbf{tiszta zérus:} $W(s) = 1 + sT \to W(j\omega) = 1 + j\omega T$
-    \begin{itemize}
-        \item tiszta pólus esetén kapott eredmények tükrözése y tengelyre
-    \end{itemize}
+\begin{itemize}
+    \item $u_2$-t keressük
+    \item tudjuk, hogy ugyanaz az áram folyik $R_1$-en és $R_2$-n: $i = i_1 = i_2$
+    \item a feszültség pedig megoszlik az ellenállásokon: $u_g = u_1 + u_2$
+    \item az Ohm-törvényt alkalmazva ezekre az egyenletekre:
+    $$ \frac{u_1}{R_1} = \frac{u_2}{R_2} $$
+    \item rendezzük át az egyenletet
+    $$ u_1 = \frac{R_1}{R_2} u_2 $$
+    \item helyettesítsünk be $u_g$-be:
+    $$ u_g = \frac{R_1}{R_2} u_2 + u_2 = \frac{R_1 + R_2}{R_2} u_2 $$
+    \item átrendezve a keresett $u_2$ feszültség:
+    $$ u_2 = \frac{R_2}{R_1 + R_2} u_g $$
+    \item ez felírható az általánosított Ohm-törvénnyel is:
+    $$ \chi_2 = \frac{R_2}{R_1 + R_2} \chi_g $$
+\end{itemize}
 
-    \item \textbf{komplex póluspár:} $W(s) = \frac{\omega_n^2}{s^2+2\zeta\omega_n s + \omega_n^2} \to W(j\omega) = \frac{\omega_n^2}{-\omega^2+2\zeta\omega_n \omega j + \omega_n^2}$
-    $$ W(j\omega) = \frac{1}{1 - \frac{\omega^2}{\omega_n^2} + \frac{2\zeta\omega j}{\omega_n}} $$
-    \begin{itemize}
-        \item frekvenciahányados: $\lambda = \frac{\omega}{\omega_n}$
-    \end{itemize}
-    $$ W(j\omega) = \frac{1 - \lambda^2 - 2\zeta\lambda j}{((1 - \lambda^2)^2 + 4\zeta^2\lambda^2)^2} $$
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.6\textwidth]{res/imgs/mecha_17_complex_pole.png}
-    \end{figure}
+\noindent \textbf{Áramosztó:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_current_divider.png}
+\end{figure}
+
+\begin{itemize}
+    \item ismert a forrás, az ellenállások értékei és keressük $i_1$-et
+    \item tudjuk, hogy a párhuzamosan kapcsolt ellenállásokon ugyanaz a feszültség esik:
+    $$ u = u_1 = u_2 $$
+    \item az áram pedig az ellenállásoknak megfelelően megoszlik:
+    $$ i_g = i_1 + i_2 $$
+    \item felírva az Ohm-törvényt:
+    $$ R_1 i_1 = R_2 i_2 \to i_2 = \frac{R_1}{R_2} i_1 $$
+    \item $i_g$-be való behelyettesítés és rendezés:
+    $$ i_g = i_1 + \frac{R_1}{R_2} i_1 = \frac{R_1 + R_2}{R_2} i_1 \to i_1 = \frac{R_2}{R_1 + R_2} i_g $$
+    \item általános Ohm-törvénnyel:
+    $$ \phi_1 = \frac{Z_2}{Z_1 + Z_2} \phi_g $$
+\end{itemize}
+
+\newpage
+\noindent \textbf{Csomóponti potenciálok módszere:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_nodal_potential.png}
+\end{figure}
+
+\begin{itemize}
+    \item minden csomópontra felírjuk a Kirchhoff csomóponti törvényt: $\sum i = 0$
+    $$ \chi_1 : \phi_d + \phi_k - \phi_g = \frac{\chi_1 - \chi_2}{Z_d} + \frac{\chi_1 - \chi_3}{Z_k} - \phi_g = 0 $$
+    $$ \chi_2 : \phi_a - \phi_d = \frac{\chi_2 - \chi_3}{Z_a} - \frac{\chi_1 - \chi_2}{Z_d} = 0 $$
+    $$ \chi_3 : \phi_g - \phi_a - \phi_k = \phi_g - \frac{\chi_2 - \chi_3}{Z_a} - \frac{\chi_1 - \chi_3}{Z_k} = 0 $$
+    \item tudjuk, hogy a referencia 0, így leegyszerűsödik az egyenletünk
+    \item az egyenletet átalakítva, majd megoldva:
+    $$ (Z_d + Z_a) \cdot \chi_2 = Z_a \cdot \chi_1 $$
+    $$ \chi_1 = \frac{Z_d + Z_a}{Z_a} \cdot \chi_2 $$
+    \item innen már csak vissza kell helyettesíteni és kifejezni a keresett változót:
+    $$ \chi_2 = \frac{Z_k \cdot Z_a}{Z_a + Z_k + Z_d} \cdot \phi_g \qquad \chi_1 = \frac{Z_d + Z_a}{Z_a} \cdot \frac{Z_k \cdot Z_a}{Z_a + Z_k + Z_d} \cdot \phi_g = \frac{Z_k(Z_a + Z_d)}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+\end{itemize}
+
+\noindent \textbf{Hurokáramok módszere:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{res/imgs/mecha_22_mesh_current.png}
+\end{figure}
+
+\begin{itemize}
+    \item feszítőfát kell választani: olyan hurokmentes részgráf, mely minden csomópontot tartalmaz
+    \item a feszítőfa ágai és a kötőágak hurkokat határoznak meg, melyek irányait az irányított kötőágak szabnak meg
+    \item minden hurokra felírjuk a Kirchhoff huroktörvényt: miszerint az egy hurkon belül a feszültségek előjeles összege 0: $\sum u = 0$
+    \item felírjuk a hurokegyenleteket (pozitív irány: az ág iránya egyezik a hurokéval):
+    $$ \text{I} : \chi_g + \chi_k = 0 $$
+    $$ \text{II} : \chi_a - \chi_k + \chi_d = 0 $$
+    \item kifejezzük a feszültségeket a hurokáramok segítségével, az általános Ohm-törvény felírásával:
+    $$ Z = \frac{\chi}{\phi} $$
+    $$ \chi_d = Z_d \cdot \phi_d = Z_d \cdot \phi_{\text{II}} $$
+    $$ \chi_a = Z_a \cdot \phi_a = Z_a \cdot \phi_{\text{II}} $$
+    $$ \chi_k = Z_k \cdot \phi_k = Z_k \cdot (\phi_{\text{I}} - \phi_{\text{II}}) $$
+    \item visszaírva a hurokegyenletbe a 2-es ág esetén:
+    $$ \text{II} : Z_a \cdot \phi_{\text{II}} - Z_k \cdot (\phi_{\text{I}} - \phi_{\text{II}}) + Z_d \cdot \phi_{\text{II}} = Z_a \cdot \phi_{\text{II}} - Z_k \cdot \phi_{\text{I}} + Z_k \cdot \phi_{\text{II}} + Z_d \cdot \phi_{\text{II}} = 0 $$
+    $$ (Z_a + Z_k + Z_d) \cdot \phi_{\text{II}} = Z_k \cdot \phi_{\text{I}} $$
+    \item az 1-es ágban a forrás előírja az abban az ágban folyó áramot, $\phi_{\text{I}} = \phi_g$, így:
+    $$ \phi_{\text{II}} = \frac{Z_k}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+    \item mivel a hurokáramok ismertek, kiszámolhatók belőlük a feszültségek az általános Ohm-törvénnyel
+    $$ \chi_2 = \chi_a = \frac{Z_a \cdot Z_k}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+    $$ \chi_1 = \chi_k = Z_k \cdot \left( 1 - \frac{Z_k}{Z_a + Z_k + Z_d} \right) \cdot \phi_g = \frac{Z_k(Z_a + Z_d)}{Z_a + Z_k + Z_d} \cdot \phi_g $$
+    \item az éleken folyó áramok pedig kiszámolhatók a már ismert hurokáramok előjeles összegeiből
 \end{itemize}

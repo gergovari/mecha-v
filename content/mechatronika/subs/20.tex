@@ -1,54 +1,74 @@
-\subsection{Ismertesse a következő fogalmakat (adja meg a definícióját és rövid értelmezését): extenzív és intenzív fizikai mennyiségek, átmenő és keresztváltozók, energiatárolók (átmenő és keresztváltozóval) és disszipatív elemek (kétpólusok), csatolt kétpólus elem (transzformátor és girátor)!}
+\subsection{Egy adott, tanult példa (hidraulikus és pneumatikus munkahenger) kapcsán ismertesse a struktúra gráf és az impedancia hálózat felrajzolásának lépéseit. Válaszában térjen ki az egy oldalra redukálás módszerére a rendszerek közötti átjárásokat biztosító fizikai összefüggések alapján!}
 
-\begin{itemize}
-    \item \textbf{extenzív fizikai mennyiség:} olyan mennyiség, melynek a rendszer egészét jellemző értéke megegyezik az őt alkotó részrendszereket jellemző értékek összegével (pl. tömeg, térfogat, töltés).
-    \item \textbf{intenzív fizikai mennyiség:} a rendszer egészét jellemző értéke egyensúly esetén megegyezik a rendszert alkotó részrendszerek értékeivel (pl. hőmérséklet, nyomás).
-    \item \textbf{átmenő változók ($\Phi$):} extenzív fizikai mennyiség rátája ($d/dt$), általában megmaradási törvény is tartozik hozzá.
-    \item \textbf{keresztváltozók ($\chi$):} intenzív fizikai mennyiségek (különbsége) vagy általános elmozdulás ($q$) rátája.
-\end{itemize}
+\noindent \textbf{Hidraulikus munkahenger:}
 
-\noindent \textbf{Állapot-tetraéder (Tetrahedron of state):}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4 \textwidth]{res/imgs/mecha_20_tetrahedron.png}
-\end{figure}
-
-\noindent \textbf{A rendszerelemek feloszthatók energetikai szempontból:}
-\begin{itemize}
-    \item \textbf{energiatárolók:} energiát tárolnak, az elem valamilyen extenzív mennyiség energiáját halmozza fel, lehet kapacitív vagy induktív.
-    \item \textbf{disszipatív elemek:} veszteséget modellezik, a valós rendszerek modellezéséhez szükségesek.
-    \item \textbf{energiaátalakítók:} csatolt kétpólus, négypólus elem.
-    \item \textbf{energiaforrások}.
-\end{itemize}
-
-\noindent \textbf{Energiaátalakítók:}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4 \textwidth]{res/imgs/mecha_20_converter.png}
+    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_25_hyd_construction.png}
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{veszteségmentes:} $P_{be} = P_{ki}$, előjelkonvenció miatt $P_{be} + P_{ki} = 0 \implies \chi_{be}\Phi_{be} + \chi_{ki}\Phi_{ki} = 0$
-    \item \textbf{lineáris, statikus rendszer} $\rightarrow$ algebrai egyenlet:
-    $$ \begin{bmatrix} \chi_{be} \\ \Phi_{be} \end{bmatrix} = \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \end{bmatrix} \begin{bmatrix} \chi_{ki} \\ \Phi_{ki} \end{bmatrix} $$
-    $$ \chi_{be} = c_{11}\chi_{ki} + c_{12}\Phi_{ki} $$
-    $$ \Phi_{be} = c_{21}\chi_{ki} + c_{22}\Phi_{ki} $$
-    \item \textbf{behelyettesítve a teljesítmény-egyenletbe:}
-    $$ (c_{11}\chi_{ki} + c_{12}\Phi_{ki})(c_{21}\chi_{ki} + c_{22}\Phi_{ki}) + \chi_{ki}\Phi_{ki} = 0 $$
-    $$ c_{11}c_{21}\chi_{ki}^2 + (1 + c_{11}c_{22} + c_{12}c_{21})\chi_{ki}\Phi_{ki} + c_{12}c_{22}\Phi_{ki}^2 = 0 $$
-    \item \textbf{2 nem triviális megoldás:}
+    \item nincs $C_f$ mert a tartály zárt, valamint nem összenyomható a közeg
+    \item \textbf{struktúragráf:}
 \end{itemize}
 
-\noindent \textbf{1. lehetőség:} $c_{12} = c_{21} = 0$, ekkor $(1 + c_{11}c_{22}) = 0 \implies c_{22} = - \frac{1}{c_{11}}$
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_25_hyd_graph.png}
+\end{figure}
+
 \begin{itemize}
-    \item energiaátalakító: \textbf{transzformátor}
-    \item azonos típusú változók között teremt kapcsolatot (pl. villamos transzformátor, hatómű, DC motor)
-    $$ \begin{bmatrix} \chi_{be} \\ \Phi_{be} \end{bmatrix} = \begin{bmatrix} c_{11} & 0 \\ 0 & -\frac{1}{c_{11}} \end{bmatrix} \begin{bmatrix} \chi_{ki} \\ \Phi_{ki} \end{bmatrix} $$
+    \item \textbf{Megjegyzés:} átmenő változó generátorral sorosan kapcsolt impedancia elhanyagolható: $R_f$
+    \item akkor lehet a kapcsolt kétpólus oldalait redukálni, ha:
+    \begin{itemize}
+        \item veszteségmentes: $P_{\text{be}} = P_{\text{ki}}$, előjelkonvenció miatt $P_{\text{be}} + P_{\text{ki}} = 0$
+        \item lineáris, statikus rendszer -- algebrai egyenletekkel leírható
+    \end{itemize}
+    \item \textbf{fizikai összefüggések:} $p_{12} = (-) \frac{f}{A}, q_v = A v$
+    \item \textbf{így a girátor:}
+    $$ \begin{bmatrix} p_{12} \\ q_v \end{bmatrix} = \begin{bmatrix} 0 & (-) \frac{1}{A} \\ A & 0 \end{bmatrix} \begin{bmatrix} v \\ f \end{bmatrix} $$
+\end{itemize}
+\newpage
+\noindent \textbf{Pneumatikus munkahenger:}
+\begin{itemize}
+    \item mivel a gáz összenyomható: van $C_f$
+    \item a kompresszor tápnyomást állít elő $\to$ keresztváltozó forrás
+    \item \textbf{struktúragráf:}
 \end{itemize}
 
-\noindent \textbf{2. lehetőség:} $c_{11} = c_{22} = 0$, ekkor $(1 + c_{12}c_{21}) = 0 \implies c_{21} = - \frac{1}{c_{12}}$
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{res/imgs/mecha_25_pne_graph.png}
+\end{figure}
+
 \begin{itemize}
-    \item energiaátalakító: fordítóváltó, \textbf{girátor}
-    \item eltérő típusú változók között teremt kapcsolatot (pl. giroszkóp, munkahenger)
-    $$ \begin{bmatrix} \chi_{be} \\ \Phi_{be} \end{bmatrix} = \begin{bmatrix} 0 & c_{12} \\ -\frac{1}{c_{12}} & 0 \end{bmatrix} \begin{bmatrix} \chi_{ki} \\ \Phi_{ki} \end{bmatrix} $$
+    \item a fizikai összefüggések ugyanazok, mint a hidraulikus rendszernél
+    \item \textbf{impedanciahálózat:}
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/imgs/mecha_25_pne_impedance.png}
+\end{figure}
+
+\noindent \textbf{Impedanciahálózat redukálása girátorral:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/imgs/mecha_25_girator_reduction.png}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{forrás redukálása:}
+    $$ \left. \begin{matrix} \chi_{\text{ki}} = c_{12} \phi_{\text{be}} \\ \phi_{\text{ki}} = \frac{1}{c_{12}} \chi_{\text{be}} \end{matrix} \right\} \text{a forrás típusa is megváltozik} $$
+    \item \textbf{impedanciák redukálása:}
+    $$ Z_{\text{ki}} = \frac{\chi_{\text{ki}}}{\phi_{\text{ki}}} = \frac{c_{12} \phi_{\text{be}}}{\frac{1}{c_{12}} \chi_{\text{be}}} = c_{12}^2 \frac{1}{Z_{\text{be}}} $$
+    \begin{itemize}
+        \item az impedanciák kapcsolása is megváltozik: soros $\leftrightarrow$ párhuzamos
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/imgs/mecha_25_reduced_network_girator.png}
+\end{figure}
