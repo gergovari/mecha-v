@@ -4,19 +4,19 @@
 \begin{itemize}
     \item nincs be- és kimenő jel
     \item diszkrét állapotokból és eseményekből áll
-    \item esemény: az állapotok közti átmenet
+    \item \textbf{esemény:} az állapotok közti átmenet
     \item gráfként ábrázolható
     \item példa:
     \begin{center}
         \includegraphics[width=0.8\textwidth]{res/imgs/info_29_state_machine.png}
     \end{center}
-    \item az állapotok:
+    \item \textbf{az állapotok:}
     \begin{itemize}
         \item pénzre vár (0)
         \item válassz (1)
         \item ital elvehető (2)
     \end{itemize}
-    \item események:
+    \item \textbf{események:}
     \begin{itemize}
         \item pénz be
         \item választ, és van
@@ -56,8 +56,8 @@
     \begin{equation*}
         y[k] = \sum_{i=0}^r b_{di} u[k-i] - \sum_{i=1}^n a_{di} y[k-i], \quad \text{ahol } a_{d0} = 1 \text{: az } y[k] \text{ együtthatója}
     \end{equation*}
-    \item AR -- az $y[k]$ kimenő jel korábbi értékei hogyan hatnak vissza a kimenő jel aktuális értékeire
-    \item MA -- az $u[k]$ bemenő jel korábbi értékei (mozgó átlaga) milyen hatással bírnak az aktuális kimenetre
+    \item \textbf{AR} -- az $y[k]$ kimenő jel korábbi értékei hogyan hatnak vissza a kimenő jel aktuális értékeire
+    \item \textbf{MA} -- az $u[k]$ bemenő jel korábbi értékei (mozgó átlaga) milyen hatással bírnak az aktuális kimenetre
 \end{itemize}
 
 \textbf{ARMA-modell programozás:}

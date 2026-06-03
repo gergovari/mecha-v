@@ -11,11 +11,11 @@
 
 \textbf{Képi adatok feldolgozása:}
 \begin{itemize}
-    \item színfényesség hisztogram
+    \item \textbf{színfényesség hisztogram}
     \begin{center}
         \includegraphics[width=0.6\textwidth]{res/imgs/info_24_color_histogram.png}
     \end{center}
-    \item képminőségek
+    \item \textbf{képminőségek}
     \begin{center}
         \includegraphics[width=0.95\textwidth]{res/imgs/info_24_image_qualities.png}
     \end{center}
@@ -23,7 +23,7 @@
 
 \textbf{Képhibák javítása:}
 \begin{itemize}
-    \item Konvolúció
+    \item \textbf{Konvolúció}
     \begin{itemize}
         \item egy képpont intenzitása a képpont és a környezete intenzitásának súlyozott összege
         \begin{equation*}
@@ -33,9 +33,9 @@
         \item $q$ - a képpont új világossága
         \item $t$ - a súlyok (az operator), rendszerint páratlan számú sort és oszlopot tartalmaz
     \end{itemize}
-    \item Szűrések (lágyítás):
+    \item \textbf{Szűrések (lágyítás):}
     \begin{itemize}
-        \item elmosás
+        \item \textbf{elmosás}
         \begin{itemize}
             \item a képpont és a környezete világosságának átlaga -- lágyít
             \begin{equation*}
@@ -47,14 +47,14 @@
                 \end{bmatrix}
             \end{equation*}
         \end{itemize}
-        \item Gauss elmosás
+        \item \textbf{Gauss elmosás}
         \begin{itemize}
             \item Gauss-eloszlás (haranggörbe) alapján számoljuk
             \item A normális eloszlás haranggörbéje \quad $G(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{x^2}{2\sigma^2}}$
             \item Két dimenzióban a magfüggvény \quad $G(x,y) = K e^{-\frac{x^2}{2\sigma^2} - \frac{y^2}{2\sigma^2}}$
             \item $\sigma$ a szórás, 0 a várható érték
         \end{itemize}
-        \item medián (rank) szűrés (nem lineáris)
+        \item \textbf{medián (rank) szűrés} (nem lineáris)
         \begin{itemize}
             \item egypontos hibákra, az adott pont a környezetének mediánja lesz
         \end{itemize}
@@ -63,11 +63,11 @@
 
 \textbf{Képek élesítése:}
 \begin{itemize}
-    \item életlenség eltávolítása
+    \item \textbf{életlenség eltávolítása}
     \begin{itemize}
         \item éles kép = 1,5 * kép - 0,5 * blur(kép)
     \end{itemize}
-    \item bilaterális szűrés
+    \item \textbf{bilaterális szűrés}
     \begin{itemize}
         \item zajokat eltávolítja, éleket megtartja
         \item élesítés, ahol nagy a szórás
@@ -91,7 +91,7 @@
             &= g(k+1,l) - 2 \cdot g(k,l) + g(k-1,l)
         \end{split}
     \end{equation*}
-    \item élkeresés Canny módszerével
+    \item \textbf{élkeresés Canny módszerével}
     \begin{itemize}
         \item Gauss zajszűrés
         \item szürkeárnyalatos kép
@@ -108,8 +108,8 @@
 \begin{itemize}
     \item szegmentálás, csoportosítás, rendezés érzékelés alapján
     \item összetartozó jellemzők összegyűjtése, csoportosítása
-    \item szegmentálás felülről lefelé (Top-down): közös ismert objektum hasonló pixeleinek keresése
-    \item szegmentálás lentről felfelé (Bottom-up): azonos jellegű pixelek gyűjtése pixelből indítva
+    \item \textbf{szegmentálás felülről lefelé (Top-down):} közös ismert objektum hasonló pixeleinek keresése
+    \item \textbf{szegmentálás lentről felfelé (Bottom-up):} azonos jellegű pixelek gyűjtése pixelből indítva
 \end{itemize}
 \begin{center}
     \includegraphics[width=0.4\textwidth]{res/imgs/info_24_segmentation_grid.png}
@@ -117,7 +117,7 @@
 
 \textbf{Globális szegmentálás:}
 \begin{itemize}
-    \item globális szegmentálás küszöbértékekkel
+    \item \textbf{globális szegmentálás küszöbértékekkel}
     \begin{itemize}
         \item Top-down
         \item ha a hasonló intenzitású keresett elem és a háttér között nagy a kontraszt
@@ -126,7 +126,7 @@
     \begin{center}
         \includegraphics[width=0.95\textwidth]{res/imgs/info_24_global_threshold.png}
     \end{center}
-    \item Otsu módszere
+    \item \textbf{Otsu módszere}
     \begin{itemize}
         \item Top-down
     \end{itemize}
@@ -134,7 +134,7 @@
         \includegraphics[width=0.95\textwidth]{res/imgs/info_24_otsu_method.png}
     \end{center}
     \item \verb|graythresh()|, \verb|threshold()| (THRESH\_BINARY + THRESH\_OTSU)
-    \item Isodata algoritmus – Iterativ Self-Organizing Data Analysis Technique
+    \item \textbf{Isodata algoritmus} – Iterativ Self-Organizing Data Analysis Technique
     \begin{itemize}
         \item Top-down
     \end{itemize}
@@ -145,11 +145,11 @@
 
 \textbf{Lokális szegmentálás – Bottom up:}
 \begin{itemize}
-    \item adaptív szegmentálás küszöbértékekkel
+    \item \textbf{adaptív szegmentálás küszöbértékekkel}
     \begin{itemize}
         \item átlaggal vág
     \end{itemize}
-    \item elárasztás statisztikával
+    \item \textbf{elárasztás statisztikával}
     \begin{itemize}
         \item $P$ a vizsgált pont intenzitása, körülötte $T$ tartományban $N$ szomszédos pont
         \item $T$ tartományban $p_i$ a pontok intenzitása
@@ -158,12 +158,12 @@
         \item $\tau = \sqrt{\frac{N}{N+1}} * \frac{(P - \mu)^2}{\sigma^2}$
         \item $\tau \le K$ küszöbszám akkor szomszédos P pont a régióhoz tartozik.
     \end{itemize}
-    \item elárasztás vágóélekkel
+    \item \textbf{elárasztás vágóélekkel}
 \end{itemize}
 
 \textbf{Alakfelismerés:}
 \begin{itemize}
-    \item alakfelismerés sablonillesztéssel
+    \item \textbf{alakfelismerés sablonillesztéssel}
     \begin{equation*}
         r = \frac{ \sum_{i=1}^n (sz_{1_i} - \overline{sz}_1) \cdot (sz_{2_i} - \overline{sz}_2) }{ \sqrt{ \sum_{i=1}^n (sz_{1_i} - \overline{sz}_1)^2 \cdot \sum_{i=1}^n (sz_{2_i} - \overline{sz}_2)^2 } }
     \end{equation*}
@@ -177,9 +177,9 @@
     \begin{center}
         \includegraphics[width=0.8\textwidth]{res/imgs/info_24_template_matching.png}
     \end{center}
-    \item alakfelismerés Hough transzformációval
+    \item \textbf{alakfelismerés Hough transzformációval}
     \begin{itemize}
-        \item egyenesek:
+        \item \textbf{egyenesek:}
         \begin{center}
             \includegraphics[width=0.95\textwidth]{res/imgs/info_24_hough_lines.png}
         \end{center}
@@ -187,7 +187,7 @@
             \item lényege, hogy a polárkoordinátával több egyenes leírható, mely átmegy egy adott ponton
             \item ha felrajzoljuk grafikonon ezeket az egyenleteket r-re $\Theta$ függvényében, akkor az adott egyenesen lévő pontokat transzformáljuk, akkor a görbék egymást metszeni fogják, méghozzá azokban a polárkoordinátákban, melyek leírják a képtér egyeneseit
         \end{itemize}
-        \item körök:
+        \item \textbf{körök:}
         \begin{center}
             \includegraphics[width=0.95\textwidth]{res/imgs/info_24_hough_circles.png}
         \end{center}

@@ -4,8 +4,8 @@ Lényegük, hogy alakzatokat tudjunk leírni különböző módszerekkel
 
 \textbf{3D görbék:}
 \begin{itemize}
-    \item függvényközelítés: $y = f(x)$, $z = g(x)$
-    \item implicit görbemegadás: $f(x,y,z) = 0$
+    \item \textbf{függvényközelítés:} $y = f(x)$, $z = g(x)$
+    \item \textbf{implicit görbemegadás:} $f(x,y,z) = 0$
 \end{itemize}
 
 \textbf{Paraméteres görbemegadás:}
@@ -27,17 +27,18 @@ $G^1 \implies$ az érintők iránya folytonos $C^1 \neq G^1$
 \end{center}
 
 \textbf{Elsőfokú paraméteres görbeszakasz közelítés:}
+
 \begin{minipage}{0.2\textwidth}
     \begin{center}
         \includegraphics[width=\textwidth]{res/imgs/info_22_linear_curve.png}
     \end{center}
-\end{minipage}
+\end{minipage}%
 \begin{minipage}{0.4\textwidth}
     \begin{align*}
         \underline{Q}(t) &= \underline{P_0} + t \cdot (\underline{P_1} - \underline{P_0}) \\
         \underline{Q}(t) &= \underline{P_0} \cdot (1 - t) + \underline{P_1} \cdot t
     \end{align*}
-\end{minipage}
+\end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \begin{center}
         $t \in [0, 1]$ \\
@@ -51,7 +52,7 @@ $G^1 \implies$ az érintők iránya folytonos $C^1 \neq G^1$
         S_0 &= -t + 1 \\
         S_1 &= t
     \end{align*}
-\end{minipage}
+\end{minipage}%
 \begin{minipage}{0.4\textwidth}
     \begin{center}
         \includegraphics[width=\textwidth]{res/imgs/info_22_weights_linear.png}
@@ -72,16 +73,20 @@ Hol $\underline{\underline{P}}$ a Geometriát jellemző mátrix, $\underline{\un
 \end{itemize}
 
 \textbf{Harmadfokú paraméteres görbeszakasz közelítés -- Hermite-féle görbeszakasz:}
+
 \begin{minipage}{0.7\textwidth}
     \begin{equation*}
-        \underline{Q}(t) = \underline{P_1} * s_{P1}(t) + \underline{P_4} * s_{P4}(t) + \underline{R_1} * s_{R1}(t) + \underline{R_4} * s_{R4}(t) \quad t \in [0,1]
+        \begin{split}
+            \underline{Q}(t) = \underline{P_1} * s_{P1}(t) + \underline{P_4} * s_{P4}(t) \\
+            + \underline{R_1} * s_{R1}(t) + \underline{R_4} * s_{R4}(t) \quad t \in [0,1]
+        \end{split}
     \end{equation*}
     \begin{itemize}
         \item egy függvényhez -- görbéhez 4 adat kell
         \item a kezdő- és végpont koordinátái
         \item valamint a kezdő- és végpontokba húzott érintő egyenes egyenletei (vektorosan)
     \end{itemize}
-\end{minipage}
+\end{minipage}%
 \begin{minipage}{0.2\textwidth}
     \begin{center}
         \includegraphics[width=\textwidth]{res/imgs/info_22_hermite.png}
@@ -89,11 +94,12 @@ Hol $\underline{\underline{P}}$ a Geometriát jellemző mátrix, $\underline{\un
 \end{minipage}
 
 \textbf{Bezier-féle görbeszakasz:}
+
 \begin{minipage}{0.6\textwidth}
     \begin{itemize}
         \item Hermite módszeréhez hasonló, viszont nem az érintő vektorát adjuk meg, hanem még 1-1 pontot, melyeket a kezdő- és végpontokkal összekötve megkapjuk az azokba húzott érintő egyenest.
     \end{itemize}
-\end{minipage}
+\end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \begin{center}
         \includegraphics[width=\textwidth]{res/imgs/info_22_bezier.png}
@@ -112,7 +118,7 @@ A $\tau = (1 - f)$, ahol $f \le 1$ a görbe feszítése. Ha $f = 0$, akkor $\tau
     \item interpoláló görbe
     \item Hermite-féle görbeszakaszból származtatott
     \item a pontokhoz tartozó érintővektorokat a szomszédos pontokból számolja
-    \item f: kardinális paraméter -- mennyire sima/szögletes a görbe
+    \item \textbf{f: kardinális paraméter} -- mennyire sima/szögletes a görbe
 \end{itemize}
 
 \textbf{Természetes spline:}

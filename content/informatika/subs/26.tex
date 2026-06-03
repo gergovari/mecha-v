@@ -4,22 +4,22 @@
 \begin{itemize}
     \item agyi neuronok működését leutánzó számítási egységek
     \item minták formájában reprezentált tudás megtanulására képes
-    \item tudás típusai:
+    \item \textbf{tudás típusai:}
     \begin{itemize}
         \item analitikus, pl. matematikai egyenletek
         \item szabályalapú, pl. fuzzy rendszerek
         \item tapasztalati: minták, megfigyelések
     \end{itemize}
-    \item neuronok biológiában:
+    \item \textbf{neuronok biológiában:}
     \begin{itemize}
         \item feladat: jelek vétele, kombinálása
         \item ha a kombinált jel elég erős, a neuron tüzel: kimenet
     \end{itemize}
-    \item tanulás – programozás:
+    \item \textbf{tanulás – programozás:}
     \begin{center}
         \includegraphics[width=0.6\textwidth]{res/imgs/info_26_learning_types.png}
     \end{center}
-    \item mesterséges neuron:
+    \item \textbf{mesterséges neuron:}
     \begin{center}
         \includegraphics[width=0.4\textwidth]{res/imgs/info_26_artificial_neuron.png}
     \end{center}
@@ -32,7 +32,7 @@
         \item nem képes összetett problémák megoldására
         \item neuronok összekötve képesek komplex viselkedésre, így használhatók komplex problémák megoldására
     \end{itemize}
-    \item felügyelt tanulás: \\
+    \item \textbf{felügyelt tanulás:} \\
     adott: input-output tanító minták ($x_1^{(p)}, x_2^{(p)}, \dots, x_n^{(p)}, t^{(p)}$) \\
     $p$ darab minta, $n$ dimenziós input, skalár output
     \begin{center}
@@ -55,7 +55,7 @@
     \item rejtett rétegének mélységét a döntési összetettsége határozza meg
     \item szélességét a döntéshez szükséges adatok mennyisége határozza meg
     \item a hálózat megfelelő méretei általában nem előre meghatározhatók
-    \item teljesen kapcsolt mesterséges neurális hálózatok
+    \item \textbf{teljesen kapcsolt mesterséges neurális hálózatok}
     \begin{itemize}
         \item egy adott réteg összes neuronja kapcsolatban áll a következő réteg összes neuronjával
         \item előny: egyszerű felépítés, maximális kihasználtság
@@ -64,23 +64,23 @@
     \begin{center}
         \includegraphics[width=0.7\textwidth]{res/imgs/info_26_fully_connected_ann.png}
     \end{center}
-    \item részlegesen kapcsolt mesterséges neurális hálózatok
+    \item \textbf{részlegesen kapcsolt mesterséges neurális hálózatok}
     \begin{itemize}
         \item egy adott réteg összes neuronja a következő rétegből csak néhány neuronnal áll kapcsolatban
     \end{itemize}
-    \item csoportosítás jelfolyam szerint
+    \item \textbf{csoportosítás jelfolyam szerint}
     \begin{itemize}
-        \item \begin{minipage}[t]{0.65\textwidth} előrecsatolt \end{minipage} \begin{minipage}[t]{0.3\textwidth} \vspace{-15pt} \begin{flushright} \includegraphics[width=\textwidth]{res/imgs/info_26_feedforward_ann.png} \end{flushright} \end{minipage}
+        \item \begin{minipage}[t]{0.65\textwidth} \textbf{előrecsatolt} \end{minipage} \begin{minipage}[t]{0.3\textwidth} \vspace{-15pt} \begin{flushright} \includegraphics[width=\textwidth]{res/imgs/info_26_feedforward_ann.png} \end{flushright} \end{minipage}
         \begin{itemize}
             \item időben független adatok gyors feldolgozása
             \item időben függő adatok nem valós idejű pontos feldolgozása
         \end{itemize}
-        \item \begin{minipage}[t]{0.75\textwidth} celluláris \end{minipage} \begin{minipage}[t]{0.2\textwidth} \vspace{-15pt} \begin{flushright} \includegraphics[width=\textwidth]{res/imgs/info_26_cellular_ann.png} \end{flushright} \end{minipage}
+        \item \begin{minipage}[t]{0.75\textwidth} \textbf{celluláris} \end{minipage} \begin{minipage}[t]{0.2\textwidth} \vspace{-15pt} \begin{flushright} \includegraphics[width=\textwidth]{res/imgs/info_26_cellular_ann.png} \end{flushright} \end{minipage}
         \begin{itemize}
             \item csak a szomszédos egységek között van kapcsolat
             \item főleg képfeldolgozásra
         \end{itemize}
-        \item \begin{minipage}[t]{0.65\textwidth} visszacsatolt \end{minipage} \begin{minipage}[t]{0.3\textwidth} \vspace{-15pt} \begin{flushright} \includegraphics[width=\textwidth]{res/imgs/info_26_recurrent_ann.png} \end{flushright} \end{minipage}
+        \item \begin{minipage}[t]{0.65\textwidth} \textbf{visszacsatolt} \end{minipage} \begin{minipage}[t]{0.3\textwidth} \vspace{-15pt} \begin{flushright} \includegraphics[width=\textwidth]{res/imgs/info_26_recurrent_ann.png} \end{flushright} \end{minipage}
         \begin{itemize}
             \item időben függő adatok gyors feldolgozása
         \end{itemize}

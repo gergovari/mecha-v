@@ -12,13 +12,13 @@
     \item string konstans jele az egyes és kettes macskaköröm is
     \item kettes macskakörömben lévő stringek összefűzhetők \verb|+| jellel
     \item \verb|num2str()|: szám -> szöveg konverzió
-    \item változó terület neve workspace
+    \item \textbf{változó terület neve workspace}
     \begin{itemize}
         \item értékeit megtartja futtatások közt
         \item \verb|clear| -> törlés
         \item kimenthető és visszatölthető -- \verb|.mat| fájlba
     \end{itemize}
-    \item feltételes utasítás
+    \item \textbf{feltételes utasítás}
     \begin{itemize}
         \item feltétel nincs zárójelben
         \item végére \verb|end| kell
@@ -30,13 +30,13 @@
         \item \verb|xor()|, \verb|bitxor()| függvények vannak
     \end{itemize}
     \item \verb|^| a hatványozás jele
-    \item függvény definíció
+    \item \textbf{függvény definíció}
     \begin{itemize}
         \item vagy külön \verb|.m| fájlban
         \item vagy a programunk végén
     \end{itemize}
     \item nincs hátultesztelt ciklus
-    \item számtani sorozat készítés
+    \item \textbf{számtani sorozat készítés}
     \begin{itemize}
         \item for ciklushoz is ezt használjuk
         \item kezdőérték : végérték
@@ -46,12 +46,12 @@
             \item megadott tartományt megadott darab részre osztja
         \end{itemize}
     \end{itemize}
-    \item műveletek vektorokkal
+    \item \textbf{műveletek vektorokkal}
     \begin{itemize}
         \item ha a vektor elemein akarunk műveletet végezni: ponttal jelöljük
         \item pl: \verb|C = B ./ a;|  \% B vektor elemeit egyesével osztottuk le 'a' konstanssal
     \end{itemize}
-    \item rajzolás 2D
+    \item \textbf{rajzolás 2D}
 \begin{minted}[breaklines]{matlab}
 figure; % ábra window
 clf; % grafika törlése
@@ -62,31 +62,31 @@ plot(x,y1,'green');
 y2=sin(x)./x; % elemenkénti osztás
 plot(x,y2,'blue');
 \end{minted}
-    \item függvény automatikus rajzolás
+    \item \textbf{függvény automatikus rajzolás}
     \begin{itemize}
         \item \verb|fplot()|
     \end{itemize}
-    \item kirajzolt ablak skálázása
+    \item \textbf{kirajzolt ablak skálázása}
     \begin{itemize}
         \item \verb|grid();|
     \end{itemize}
-    \item címsor
+    \item \textbf{címsor}
     \begin{itemize}
         \item \verb|title(string)|
     \end{itemize}
-    \item méretarányos skálaosztás a tengelyeken
+    \item \textbf{méretarányos skálaosztás a tengelyeken}
     \begin{itemize}
         \item \verb|axis equal;|
     \end{itemize}
-    \item felület rajza
+    \item \textbf{felület rajza}
     \begin{itemize}
         \item \verb|surf(x3, y3, z3)|
     \end{itemize}
-    \item 3d paraméteresen megadott görbe
+    \item \textbf{3d paraméteresen megadott görbe}
     \begin{itemize}
         \item \verb|plot3()|
     \end{itemize}
-    \item fájlkezelés:
+    \item \textbf{fájlkezelés}:
 \begin{minted}[breaklines]{matlab}
 f=fopen('d2.txt','r'); % r: olvasás, w: írás, f a file "kezelő", int
 disp(f);

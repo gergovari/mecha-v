@@ -3,31 +3,31 @@
 \textbf{Evolúciós algoritmusok:}
 \begin{itemize}
     \item alapelvük a megoldások egy populációján történő keresés, melyet a biológiából megismert törvényszerűségek vezérelnek
-    \item gén: funkcionális entitás, ez egyed egy speciális tulajdonságát kódolja (pl. hajszín)
-    \item allél: a gén értéke (pl. szőke)
-    \item egyed: kromoszóma, egy megoldás jelölt a problémára
+    \item \textbf{gén:} funkcionális entitás, ez egyed egy speciális tulajdonságát kódolja (pl. hajszín)
+    \item \textbf{allél:} a gén értéke (pl. szőke)
+    \item \textbf{egyed:} kromoszóma, egy megoldás jelölt a problémára
     \begin{itemize}
         \item a probléma egy lehetséges megoldása valamilyen formában az egyedbe van kódolva (pl. bináris, vagy valós)
-        \item fitnesz érték: az egyedeket valamilyen kritérium szerint kiértékeljük, aszerint, hogy milyen jó megoldást adnak a problémára
+        \item \textbf{fitnesz érték:} az egyedeket valamilyen kritérium szerint kiértékeljük, aszerint, hogy milyen jó megoldást adnak a problémára
         \item jobb egyedeknek nagyobb a fitnesz értéke, nagyobb eséllyel élnek túl
     \end{itemize}
-    \item genotípus: egy egyed alléljainak egy speciális kombinációja
-    \item fenotípus: egy egyed külső-belső tulajdonságainak összessége
-    \item locus: egy gén pozíciója a kromoszómán belül
-    \item populáció: egyszerre együtt élő egyedek összessége
+    \item \textbf{genotípus:} egy egyed alléljainak egy speciális kombinációja
+    \item \textbf{fenotípus:} egy egyed külső-belső tulajdonságainak összessége
+    \item \textbf{locus:} egy gén pozíciója a kromoszómán belül
+    \item \textbf{populáció:} egyszerre együtt élő egyedek összessége
     \begin{itemize}
         \item fejlődik, egyre jobb egyedeket kapunk
     \end{itemize}
     \begin{center}
         \includegraphics[width=0.6\textwidth]{res/imgs/info_27_evolutionary_algorithm.png}
     \end{center}
-    \item szelekciós módszerek:
+    \item \textbf{szelekciós módszerek:}
     \begin{itemize}
         \item minél jobb az egyed, annál nagyobb az esély a kiválasztásra
         \item \begin{minipage}[t]{0.5\textwidth} rulett kerék szelekció: az egyedek a fitnesz értékükkel arányos nagyságú szeletet kapnak \end{minipage} \begin{minipage}[t]{0.4\textwidth} \vspace{-15pt} \begin{center} \includegraphics[width=\textwidth]{res/imgs/info_27_roulette_selection.png} \end{center} \end{minipage}
     \end{itemize}
     \vspace{10pt}
-    \item keresztezés:
+    \item \textbf{keresztezés:}
     \begin{itemize}
         \item véletlenszerű keresztezési pont kiválasztása két szülőn
         \item utódok létrehozása az információ kicserélődésével a keresztezési pont alapján
@@ -35,7 +35,7 @@
     \begin{center}
         \includegraphics[width=0.7\textwidth]{res/imgs/info_27_crossover.png}
     \end{center}
-    \item mutáció:
+    \item \textbf{mutáció:}
     \begin{itemize}
         \item gén értékének véletlenszerű megváltoztatása $p_m$ valószínűséggel (mutációs arány)
     \end{itemize}
@@ -51,25 +51,25 @@
     \begin{center}
         \includegraphics[width=0.95\textwidth]{res/imgs/info_27_genetic_programming.png}
     \end{center}
-    \item véletlenszerű programok létrehozása:
+    \item \textbf{véletlenszerű programok létrehozása:}
     \begin{itemize}
-        \item rendelkezésre álló függvények: pl. $F = \{+, -, *, /, IF\}$
-        \item rendelkezésre álló terminálisok: pl. $T = \{X, Y, \text{konstansok}\}$
-        \item véletlen programok:
+        \item \textbf{rendelkezésre álló függvények:} pl. $F = \{+, -, *, /, IF\}$
+        \item \textbf{rendelkezésre álló terminálisok:} pl. $T = \{X, Y, \text{konstansok}\}$
+        \item \textbf{véletlen programok:}
         \begin{itemize}
             \item szintaktikailag érvényesek
             \item végrehajthatók
         \end{itemize}
         \item a fák különböző méretűek és alakúak lehetnek
     \end{itemize}
-    \item genetikus operátorok:
+    \item \textbf{genetikus operátorok:}
     \begin{itemize}
-        \item reprodukció:
+        \item \textbf{reprodukció:}
         \begin{itemize}
             \item szülő kiválasztása (fitnesz alapján)
             \item változatlan lemásolása a populáció következő generációjába
         \end{itemize}
-        \item mutáció:
+        \item \textbf{mutáció:}
         \begin{itemize}
             \item 1 szülő kiválasztása (fitnesz alapján)
             \item a fa egy pontjának kiválasztása
@@ -81,7 +81,7 @@
         \begin{center}
             \includegraphics[width=0.8\textwidth]{res/imgs/info_27_subtree_mutation.png}
         \end{center}
-        \item keresztezés:
+        \item \textbf{keresztezés:}
         \begin{itemize}
             \item 2 szülő kiválasztása (fitnesz érték alapján)
             \item első szülő fájában egy véletlen pont kiválasztása
@@ -91,7 +91,7 @@
             \item leszármazottak elhelyezése a populáció következő generációjába
         \end{itemize}
     \end{itemize}
-    \item előkészítő lépések:
+    \item \textbf{előkészítő lépések:}
     \begin{itemize}
         \item a terminálisok halmazának meghatározása
         \item függvények halmazának meghatározása

@@ -4,18 +4,18 @@
 \begin{itemize}
     \item agyi neuronok működését leutánzó számítási egységek
     \item minták formájában reprezentált tudás megtanulására képes
-    \item tudás típusai:
+    \item \textbf{tudás típusai:}
     \begin{itemize}
         \item analitikus, pl. matematikai egyenletek
         \item szabályalapú, pl. fuzzy rendszerek
         \item tapasztalati: minták, megfigyelések
     \end{itemize}
-    \item neuronok biológiában:
+    \item \textbf{neuronok biológiában:}
     \begin{itemize}
         \item feladat: jelek vétele, kombinálása
         \item ha a kombinált jel elég erős, a neuron tüzel: kimenet
     \end{itemize}
-    \item tanulás – programozás:
+    \item \textbf{tanulás – programozás:}
     \begin{center}
         \includegraphics[width=0.6\textwidth]{res/imgs/info_25_learning_types.png}
     \end{center}
@@ -23,13 +23,13 @@
 
 \textbf{Perceptron:}
 \begin{itemize}
-    \item egyrétegű perceptron
+    \item \textbf{egyrétegű perceptron}
     \begin{itemize}
         \item legegyszerűbb formájú neurális hálózat
         \item minták osztályozására használják fel
         \item McCulloch-Pitts féle neuron modellen alapul
     \end{itemize}
-    \item mesterséges neuron:
+    \item \textbf{mesterséges neuron:}
     \begin{center}
         \includegraphics[width=0.4\textwidth]{res/imgs/info_25_artificial_neuron.png}
     \end{center}
@@ -42,7 +42,7 @@
         \item nem képes összetett problémák megoldására
         \item neuronok összekötve képesek komplex viselkedésre, így használhatók komplex problémák megoldására
     \end{itemize}
-    \item egyrétegű perceptron
+    \item \textbf{egyrétegű perceptron}
     \begin{center}
         \includegraphics[width=0.4\textwidth]{res/imgs/info_25_single_layer_perceptron.png}
     \end{center}
@@ -60,7 +60,7 @@
     \begin{center}
         \includegraphics[width=0.6\textwidth]{res/imgs/info_25_separability.png}
     \end{center}
-    \item logikai kapuk megvalósítása:
+    \item \textbf{logikai kapuk megvalósítása:}
     \begin{itemize}
         \item súlyokat és küszöbértékeket kell megállapítani
         \item NOT, OR, AND kapukat tudunk megvalósítani, XOR-t nem
@@ -71,11 +71,11 @@
     \begin{center}
         \includegraphics[width=0.95\textwidth]{res/imgs/info_25_logic_gates.png}
     \end{center}
-    \item perceptron tanítása:
+    \item \textbf{perceptron tanítása:}
     \begin{itemize}
         \item tanítási algoritmus
         \item a tanító minták, és az elvárt kimenet ($d$) adottak
-        \item 1. kezdeti inicializálás:
+        \item \textbf{1. kezdeti inicializálás:}
         \begin{center}
             \includegraphics[width=0.3\textwidth]{res/imgs/info_25_training_initialization.png}
         \end{center}
@@ -84,19 +84,19 @@
             \item állítsunk be a küszöbértéknek egy -0,5 és 0,5 közötti számot
             \item állítsuk be a $\eta$ tanulási paramétert 1-nél kisebb pozitív értékre
         \end{itemize}
-        \item 2. aktiválás:
+        \item \textbf{2. aktiválás:}
         \begin{center}
             \includegraphics[width=0.3\textwidth]{res/imgs/info_25_activation_function.png}
         \end{center}
         \begin{itemize}
             \item számítsuk ki a tényleges a p=1 iterációs lépésben, a kimenetre lépés aktivációs függvényt alkalmazva
         \end{itemize}
-        \item 3. súlyok tanulása:
+        \item \textbf{3. súlyok tanulása:}
         \begin{itemize}
             \item számítsuk ki a tényleges kimenet és az elvárt kimenet közti hibát a p-edik lépésben: $e(p) = d(p) - y(p)$
             \item korrigáljuk a súlyokat: $\Delta w_i(p) = \eta \cdot x_i(p) \cdot e(p)$
             \item új súly: $w_i(p+1) = w_i(p) + \Delta w_i(p)$
         \end{itemize}
-        \item 4. iteráció: növeljük $p$ értékét eggyel, menjünk vissza a 2-es lépésre, ismételjük addig, amíg nincs konvergencia
+        \item \textbf{4. iteráció:} növeljük $p$ értékét eggyel, menjünk vissza a 2-es lépésre, ismételjük addig, amíg nincs konvergencia
     \end{itemize}
 \end{itemize}
