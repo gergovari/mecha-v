@@ -4,12 +4,23 @@
 \begin{itemize}
     \item végtelen nagy impulzus végtelen kicsi idő alatt
     $$ \delta(t, \tau) = \begin{cases} 0, \text{ ha } t \neq \tau \\ \infty, \text{ ha } t = \tau \end{cases} $$
-    \item MOGI -- rendszertechnika jegyzet: 3.15:
+    \item A Dirac-impulzus felfogható egy $\Delta t$ szélességű és $1/\Delta t$ magasságú négyszögimpulzus határértékeként, amint $\Delta t \to 0$.
+    \item Ennek a négyszögimpulzusnak a területe minden esetben 1.
+    \item A definíció szerinti integrál:
     $$ \int_{-\infty}^\infty \delta(t) dt = 1 $$
-    \item a Dirac impulzus Laplace-transzformáltja:
-    $$ \mathcal{L}\{\delta(t)\} = \int_0^\infty \delta(t) e^{-st} dt = e^{-s \cdot 0} = 1 $$
+    \item A Dirac-impulzus Laplace-transzformáltja a formális definíció alapján (mivel a függvény csak a $t=0$ pontban vesz fel nem nulla értéket, és integrálja 1):
+    $$ \mathcal{L}\{\delta(t)\} = \int_0^\infty \delta(t) e^{-st} dt = e^{-s \cdot 0} \int_0^\infty \delta(t) dt = 1 \cdot 1 = 1 $$
 \end{itemize}
 
 \noindent \textbf{Egységugrás:}
 $$ \varepsilon(t) = \begin{cases} 0, \text{ ha } t < 0 \\ 1, \text{ ha } t \geq 0 \end{cases} $$
 $$ \mathcal{L}\{\varepsilon(t)\} = \int_0^\infty \varepsilon(t) e^{-st} dt = \int_0^\infty 1 \cdot e^{-st} dt = \left[ -\frac{1}{s} e^{-st} \right]_0^\infty = 0 - \left( -\frac{1}{s} e^0 \right) = \frac{1}{s} $$
+
+\noindent \textbf{Exponenciális függvény:}
+$$ f(t) = e^{at} \varepsilon(t) $$
+\begin{itemize}
+    \item A Laplace-transzformáció definícióját alkalmazva:
+    $$ \mathcal{L}\{e^{at}\} = \int_0^\infty e^{at} e^{-st} dt = \int_0^\infty e^{-(s-a)t} dt $$
+    \item Az integrál kiszámítása (feltételezve, hogy $Re(s) > a$, így az integrál konvergens):
+    $$ \mathcal{L}\{e^{at}\} = \left[ -\frac{1}{s-a} e^{-(s-a)t} \right]_0^\infty = 0 - \left( -\frac{1}{s-a} e^0 \right) = \frac{1}{s-a} $$
+\end{itemize}

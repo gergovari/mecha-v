@@ -1,0 +1,8 @@
+f=fopen('d2.txt','r'); % r: olvasás, w: írás, f a file "kezelő", int
+disp(f);
+adatok=fscanf(f,'%f %f %f\n',[3 inf]); % 3 adat van a sorban, összes sor olvas
+xyz=adatok'; % ' a transzponáltja
+fclose(f);
+x=adatok(1,:)'; % adatok 1. sora x vektorba, transzponálva
+y=adatok(2,:)';
+z=adatok(3,:)';

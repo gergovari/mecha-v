@@ -134,3 +134,18 @@
         \end{tikzpicture}
     \end{figure}
 \end{itemize}
+
+\noindent \textbf{Átmeneti függvény származtatása súlyfüggvényből (Példa: RL kör):}
+\begin{itemize}
+    \item Az átmeneti függvény (egységugrás-válasz, $v[k]$) a súlyfüggvény (egységimpulzus-válasz, $w[k]$) diszkrét integráljaként (összegeként) származtatható, kihasználva, hogy az egységugrás az egységimpulzusok összege:
+    $$ v[k] = \sum_{i=0}^{k} w[i] $$
+    \item \textbf{RL kör példa (elsőrendű rendszer):}
+    \begin{itemize}
+        \item Tekintsünk egy RL (ellenállás-tekercs) kört, amelynek folytonos idejű időállandója $T = \frac{L}{R}$.
+        \item A rendszer folytonos súlyfüggvénye: $w(t) = \frac{1}{T} e^{-\frac{t}{T}} \cdot \varepsilon(t)$.
+        \item Ha ezt egy $T_s$ mintavételezési idővel diszkretizáljuk, a diszkrét súlyfüggvény (megfelelő állandókkal): $w[k] = A \cdot a^k$ alakú lesz (ahol $a = e^{-\frac{T_s}{T}}$).
+        \item Ekkor a rendszer átmeneti függvénye a definíció alapján:
+        $$ v[k] = \sum_{i=0}^{k} w[i] = \sum_{i=0}^{k} A \cdot a^i = A \frac{1-a^{k+1}}{1-a} $$
+        \item Ez jól mutatja, hogy az elsőrendű rendszer (RL kör) átmeneti függvénye hogyan áll elő az impulzusválasz (súlyfüggvény) sorozatos összegzésével.
+    \end{itemize}
+\end{itemize}

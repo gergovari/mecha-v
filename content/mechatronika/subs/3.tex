@@ -25,6 +25,7 @@
     \end{figure}
 
     \item lineáris idő invariáns (LTI) rendszerek diszkrét idejű állapottér modellje:
+    \item leírásmód: $n$ db elsőrendű differenciaegyenlet
     
     \begin{figure}[H]
         \centering
@@ -114,6 +115,7 @@
     $$ \sum_{i=0}^{n} a_{di} y[k-i] = \sum_{i=0}^{r} b_{di} u[k-i] $$
     \item ezt átrendezve a kimenet új értékének számítása:
     $$ y[k] = \sum_{i=0}^{r} b_{di} u[k-i] - \sum_{i=1}^{n} a_{di} y[k-i] \text{, ahol } a_{d0} = 1 \text{: az } y[k] \text{ együtthatója} $$
+    \item leírásmód: $1$ db $n$-edrendű differenciaegyenlet
 \end{itemize}
 
 \begin{figure}[H]
@@ -254,4 +256,5 @@
     $$ \sum_{i=0}^{n} z^{-i} a_{di} y[k] = \sum_{i=0}^{r} z^{-i} b_{di} u[k] \quad a_{d0}=1 $$
     \item be- és kimeneti összefüggés eltolási operátorral, ahol $w(z)$ az impulzus átviteli függvény:
     $$ y(z) = \frac{\sum_{i=0}^{r} z^{-i} b_{di}}{\sum_{i=0}^{n} z^{-i} a_{di}} u(z) = w(z) u(z) \quad a_{d0}=1 $$
+    \item Előnye: hatásvázlat algebra működik (tagok soros/párhuzamos kapcsolása, visszacsatolása egyszerű algebrai műveletekkel kezelhető), a tagok egymással szorozhatók az időtartománybeli bonyolult konvolúció helyett.
 \end{itemize}
