@@ -69,6 +69,23 @@
 \textbf{Probléma:} azonos hosszú párhuzamos szakaszok azonos hosszúnak látszanak, nincs perspektíva, torzul a kép. A valós tárgyak torzítva jelennek meg, nincs térérzet.
 
 \textbf{Centrális vetítés:}
+\begin{itemize}
+    \item A vetítősugarak egy közös ponton (vetítési centrum) haladnak át.
+    \item A térbeli pont vetülete a pontot és a centrumot összekötő egyenes (vetítősugár) és a képsík metszéspontja.
+    \item Jellemző a perspektivikus hatás (távolabbi tárgyak kisebbnek látszanak).
+    \item Vetítési egyenletek (ha a képsík $z=d$ távolságra van):
+    $$ x' = x \cdot \frac{d}{z}, \quad y' = y \cdot \frac{d}{z} $$
+\end{itemize}
+
+\textbf{Window-viewport transzformáció:}
 \begin{center}
     \includegraphics[width=0.9\textwidth]{res/imgs/info_21_central_projection.png}
 \end{center}
+\begin{itemize}
+    \item A 2D világkoordinátákban megadott téglalap alakú ablak (Window) leképezése a képernyő fizikai koordináta-rendszerébe (Viewport).
+    \item Ablak (Window) határai: $[x_{w,min}, x_{w,max}] \times [y_{w,min}, y_{w,max}]$
+    \item Nézet (Viewport) határai: $[x_{v,min}, x_{v,max}] \times [y_{v,min}, y_{v,max}]$
+    \item A transzformáció egy eltolásból és egy skálázásból áll:
+    $$ x_v = x_{v,min} + (x_w - x_{w,min}) \cdot \frac{x_{v,max} - x_{v,min}}{x_{w,max} - x_{w,min}} $$
+    $$ y_v = y_{v,min} + (y_w - y_{w,min}) \cdot \frac{y_{v,max} - y_{v,min}}{y_{w,max} - y_{w,min}} $$
+\end{itemize}
